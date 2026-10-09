@@ -6,7 +6,7 @@ on:
 
 jobs:
   checks:
-    name: Check lint, formatting, and build
+    name: Run fix-style on PR
     runs-on: ubuntu-latest
 
     steps:
