@@ -7,8 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "format": "prettier . --ignore-path .gitignore --write",
-    "lint": "eslint . --fix",
-    "fix-style": "npm run format & npm run lint",
+    "format:check": "prettier . --ignore-path .gitignore --check",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "fix-style": "npm run format && npm run lint:fix",
     "preview": "vite preview",
     "prepare": "husky"
   },
@@ -39,6 +41,10 @@
     "vite": "^8.3.0"
   },
   "lint-staged": {
-    "*": "npm run fix-style"
+    "*.{ts,tsx}": [
+      "eslint",
+      "prettier --check"
+    ],
+    "*.{js,jsx,json,css,md,html,yml,yaml}": "prettier --check"
   }
 }
