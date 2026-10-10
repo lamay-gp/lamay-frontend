@@ -145,6 +145,8 @@ Use a title that follows the commit format:
 
 - If review feedback requires changes, commit and push them to the same branch.
 
+Your can use [Pull request templete](.github/pull_request_template.md)
+
 ## General workflow
 
 **1. If it's your first time on this project, clone this repo.**
