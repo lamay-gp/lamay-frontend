@@ -1,11 +1,10 @@
-```
 ## Summary
 
 <!-- Briefly describe what this PR changes. -->
 
 ## Jira issue
 
-<!-- Link the Jira issue, for example: SCRUM-36 -->
+[Jira task](your_jira_task_link)
 
 ## Type of change
 
@@ -25,4 +24,3 @@
 ## Additional notes
 
 <!-- Mention dependencies, extra checks, or anything reviewers should know. -->
-```
