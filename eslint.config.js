@@ -38,6 +38,31 @@ export default defineConfig([
       'no-unused-vars': 'off',
       'import/no-dynamic-require': 'warn',
       'import/no-nodejs-modules': 'off',
+      'import/order': [
+        'error',
+        {
+          'groups': [
+            'builtin',
+            'external',
+            'internal',
+            ['parent', 'sibling', 'index'],
+            'type',
+          ],
+          'pathGroups': [
+            {
+              pattern: '@/**',
+              group: 'internal',
+              position: 'before',
+            },
+          ],
+          'pathGroupsExcludedImportTypes': ['builtin'],
+          'newlines-between': 'always',
+          'alphabetize': {
+            order: 'asc',
+            caseInsensitive: true,
+          },
+        },
+      ],
     },
   },
   eslintConfigPrettier,
