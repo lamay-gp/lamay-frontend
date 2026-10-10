@@ -5,7 +5,7 @@
 
 ## Jira issue
 
-<!-- Link the Jira issue, for example: DEV-1234 -->
+<!-- Link the Jira issue, for example: SCRUM-36 -->
 
 ## Type of change
 
@@ -16,10 +16,11 @@
 - [ ] Tests
 - [ ] Chore or configuration
 
-## Checklist (use "+" here)
+## Checklist
 
 - [ ] My branch is up to date with `main`.
 - [ ] I followed the project guidelines in `CONTRIBUTING.md`.
+- [ ] I requested a review from other team members.
 
 ## Additional notes
 
