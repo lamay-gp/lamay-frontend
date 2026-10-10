@@ -30,68 +30,132 @@ Keep the branch focused on its Jira issue. Do not include unrelated changes.
 
 ## Code guidelines
 
-**1.** Use **import type** when importing TypeScript types only.
+### TypeScript and imports
 
-**2.** Use the **`@/` alias** for imports from the src directory.
+- Use `import type` when importing TypeScript types only.
 
-**Exapmle:**
+- Use the `@/` alias for imports across `src` directories. Relative imports are allowed between files in the same component directory.
 
-```ts
+- Keep imports grouped and sorted according to the ESLint `import/order` rule.
+
+```tsx
 import type { User } from '@/types/User';
+
+import { Button } from '@/components/ui/button';
+import { formatName } from './formatName';
 ```
 
-**3.** Create React components as named **arrow-function exports**.
+### React components
 
-**Example:**
+- Define React components as named arrow functions.
 
-```ts
-export const UserCard = () => {
-	return <div>User</div>;
+- Give components and their props clear, specific names.
+
+- Avoid using `any`; define or reuse a type for values that need one.
+
+```tsx
+type Props = {
+  user: User;
+};
+
+export const UserCard = ({ user }: Props) => {
+  return <div>{user.name}</div>;
 };
 ```
 
-**4.** Organize UI components according to the **[Atomic Design methodology](https://atomicdesign.bradfrost.com/chapter-2/)**: `atoms`, `molecules`, `organisms`, `templates`, and `pages`. Put each component in the appropriate category based on its role.
+### Project structure and Atomic Design
 
-**Our starter Atomic Design file structure**:
+Organize the project's own UI components according to the [Atomic Design methodology](https://atomicdesign.bradfrost.com/chapter-2/):
 
-```
+- **Atoms** are basic UI elements, such as project-specific buttons, inputs, and labels.
+
+- **Molecules** combine atoms into small, reusable components, such as a search field.
+
+- **Organisms** combine smaller components into larger sections, such as a navigation bar or footer.
+
+- **Templates** define page layouts.
+
+- **Pages** compose templates and page-specific content.
+
+Use this starter structure:
+
+```text
 src/
-├── components/				# The core design system blocks
-│		├── atoms/			# Buttons, Inputs, Typography
-│		├── molecules/		# SearchBar, Dropdown
-│ 		└── organisms/		# Navbar, Footer, ProductCard
-│
-├── templates/				# Layout blueprints (Can also live inside components/)
-│
-└── pages/					# Main route entries & data-fetching hubs
-	├── HomePage.tsx
-	├── CatalogPage.tsx
-	├── ProductPage.tsx
-	├── FavouritesPage.tsx
-	└── CartPage.tsx
+├── assets/
+│   ├── fonts/
+│   └── images/
+├── components/
+│   ├── atoms/
+│   ├── molecules/
+│   ├── organisms/
+│   └── ui/                 # shadcn/ui components
+├── hooks/
+├── pages/
+├── templates/
+├── types/
+├── utils/
+├── App.tsx
+├── index.css
+└── main.tsx
 ```
 
-**5.** Give each component its own directory. Add an **`index.ts`** file in that directory to re-export the component, and import it through the **`@/` alias**.
+- Give each project-owned component its own directory. Put the component in a file with the same name and add an `index.ts` file to re-export it.
 
-**`index.ts` Example:**
+- Import project-owned components through their directory and the `@/` alias.
+
+- Keep shadcn/ui components in `src/components/ui/`. They are source files managed by the project and may be customized. The shadcn CLI generates them as individual files, so they are exempt from the per-component directory and `index.ts` convention.
+
+- Put reusable hooks in `src/hooks/`, shared TypeScript types in `src/types/`, and shared non-UI helper functions in `src/utils/`.
+
+Example project-owned component:
+
+```text
+src/components/atoms/UserCard/
+├── UserCard.tsx
+└── index.ts
+```
+
+```tsx
+// src/components/atoms/UserCard/UserCard.tsx
+import type { User } from '@/types/User';
+
+type Props = {
+  user: User;
+};
+
+export const UserCard = ({ user }: Props) => {
+  return <div>{user.name}</div>;
+};
+```
 
 ```ts
-export { Button } from './Button';
+// src/components/atoms/UserCard/index.ts
+export { UserCard } from './UserCard';
 ```
 
-**Usage Example:**
-
-```jsx
-import { Button } from '@/components/atoms/Button';
+```tsx
+import { UserCard } from '@/components/atoms/UserCard';
 ```
 
-**6.** Use **shadcn/ui** components for common interface elements when available. Customize them to match the project’s design, and use Tailwind CSS for styling.
+### Styling and accessibility
 
-**7.** Use **Tailwind CSS** utility classes for styling components. Avoid adding a separate styling solution unless the task requires it.
+- Use Tailwind CSS utility classes to style components.
 
-**8.** Follow the ESLint and Prettier rules configured in the project.
+- Use shadcn/ui components for common interface elements when available. Customize their source code to match the project’s design.
 
-**9.** Keep changes focused and use clear names for files, components, variables, and functions.
+- Use the shared design tokens and CSS variables defined in `src/index.css` instead of repeating hard-coded colors.
+
+- Keep custom CSS in `src/index.css` for global styles or cases that are awkward to express with Tailwind.
+
+- Prefer semantic HTML elements. Provide accessible names for controls and ensure interactive elements can be used with a keyboard.
+
+### General
+
+- Follow the ESLint and Prettier rules configured in the project.
+
+- Keep changes focused. Use clear names for files, components, variables, and functions.
+
+- Keep reusable UI components focused on rendering and interaction. Put page-level composition and data loading in pages or hooks.
 
 ## Commits
 
