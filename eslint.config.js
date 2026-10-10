@@ -37,7 +37,7 @@ export default defineConfig([
       'react/react-in-jsx-scope': 'off',
       'no-unused-vars': 'off',
       'import/no-dynamic-require': 'warn',
-      'import/no-nodejs-modules': 'warn',
+      'import/no-nodejs-modules': 'off',
     },
   },
   eslintConfigPrettier,
