@@ -209,7 +209,7 @@ Use a title that follows the commit format:
 
 - If review feedback requires changes, commit and push them to the same branch.
 
-Your can use [Pull request templete](.github/pull_request_template.md)
+You don't need to do `npm run deploy` by yourself. After merging your task branch with main, it deploys automatically.
 
 ## General workflow
 
@@ -217,7 +217,7 @@ Your can use [Pull request templete](.github/pull_request_template.md)
 
 **2. Switch to the Node.js version specified in `.nvmrc`**.
 
-**3. Install dependencies:**
+**3. Install dependencies (`ci - clean install`):**
 
 ```
 npm ci
@@ -273,18 +273,24 @@ git status
 git commit -m "<type>(<JIRA-KEY>): <short description>"
 ```
 
-**10. If lint checks are passed make sure you are working with the latest version of the main branch (again):**
+**10. If prettier checks failed - use this command to fix them:**
+
+```
+npm run format
+```
+
+**11. If prettier checks are passed make sure you are working with the latest version of the main branch (again):**
 
 ```
 git pull origin main
 ```
 
-**11. Push changes to the origin (GitHub):**
+**12. Push changes to the origin (GitHub):**
 
 ```
 git push origin <your branch name>
 ```
 
-**12. Open a new pull request. See [Pull requests](#pull-requests).**
+**13. Open a new pull request. See [Pull requests](#pull-requests).**
 
-**13. After the pull request is merged, delete the task branch and move the Jira issue to the appropriate status.**
+**14. After the pull request is merged, delete the task branch and move the Jira issue to the appropriate status.**
