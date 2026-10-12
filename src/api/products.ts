@@ -1,4 +1,4 @@
-import type { Product, Gadget } from '@/types/Products';
+import type { Product, Gadget, Category } from '@/types/Products';
 
 const GADGETS_URL =
   'https://raw.githubusercontent.com/superpooperxxx/mate-group-project/refs/heads/master/public/gadgets';
@@ -14,6 +14,6 @@ const fetchGadgets = async <T>(filename: string): Promise<T> => {
 };
 
 export const getProducts = () => fetchGadgets<Product[]>('products.json');
-export const getPhones = () => fetchGadgets<Gadget[]>('phones.json');
-export const getTablets = () => fetchGadgets<Gadget[]>('tablets.json');
-export const getAccessories = () => fetchGadgets<Gadget[]>('accessories.json');
+export const getGadgets = async (category: Category): Promise<Gadget[]> => {
+  return fetchGadgets<Gadget[]>(`${category}.json`);
+};
