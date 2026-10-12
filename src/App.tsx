@@ -1,5 +1,6 @@
+import { Button } from '@/components/ui/button';
+
 import { FavoriteButton } from './components/atoms/FavoriteButton';
-import { Button } from './components/ui/button';
 
 export const App = () => {
   return (
