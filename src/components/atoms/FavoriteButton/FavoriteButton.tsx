@@ -24,10 +24,8 @@ export const FavoriteButton: React.FC<Props> = ({
 */
   return (
     <Button
-      variant="outline"
-      size="icon"
+      variant="default"
       className={cn(
-        'rounded-full border bg-transparent hover:border-[#0f0f11] hover:bg-transparent',
         size === 'sm' ? 'size-10' : 'size-12',
         isFavorite ? 'border-[#e2e6e9]' : 'border-[#b4bdc3]',
       )}

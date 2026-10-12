@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight, ChevronUp } from 'lucide-react';
 import { Outlet } from 'react-router';
 
 import { Button } from '@/components/ui/button';
@@ -31,6 +32,34 @@ export const App = () => {
         //onClick={}
       >
         Checkout
+      </Button>
+      <Button
+        variant="default"
+        size="icon-sm"
+        //onClick={}
+      >
+        <ChevronRight className="size-4" />
+      </Button>
+      <Button
+        variant="default"
+        size="icon-sm"
+        //onClick={}
+      >
+        <ChevronLeft className="size-4" />
+      </Button>
+      <Button
+        variant="default"
+        size="icon-sm"
+        //onClick={}
+      >
+        <ChevronUp className="size-4" />
+      </Button>
+      <Button
+        variant="default"
+        size="icon-sm"
+        aria-current="page"
+      >
+        1
       </Button>
       {/*Header will be here*/}
       <Outlet />

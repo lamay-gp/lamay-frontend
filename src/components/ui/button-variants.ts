@@ -5,7 +5,8 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground hover:bg-primary/80',
+        default:
+          'rounded-full border border-[#b4bdc3] bg-transparent text-[#0f0f11] font-medium text-sm hover:border-[#0f0f11] disabled:border-[#e2e6e9] disabled:text-[#b4bdc4] aria-[current=page]:bg-[#0f0f11] aria-[current=page]:text-[#fff] aria-[current=page]:border-[#0f0f11]',
         outline:
           'border-border bg-background shadow-xs hover:bg-muted aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50',
         secondary:
@@ -27,8 +28,7 @@ export const buttonVariants = cva(
         'icon': 'size-9',
         'icon-xs':
           "size-6 rounded-[min(var(--radius-md),8px)] in-data-[slot=button-group]:rounded-md [&_svg:not([class*='size-'])]:size-3",
-        'icon-sm':
-          'size-8 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-md',
+        'icon-sm': 'size-8 rounded-full',
         'icon-lg': 'size-10',
       },
     },
@@ -39,7 +39,7 @@ export const buttonVariants = cva(
   },
 );
 /*
-//For CheckoutButton
+//for CheckoutButton
 import { Button } from '@/components/ui/button';
  <Button
         variant="primaryAction"
@@ -49,4 +49,44 @@ import { Button } from '@/components/ui/button';
       >
         Checkout
       </Button>
-*/
+
+//for arrowButton
+import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+<Button
+        variant="default"
+        size="icon-sm"
+        disabled={isDisabled}
+        //onClick={}
+      >
+        <ChevronRight className="size-4" />
+      </Button>
+      <Button
+        variant="default"
+        size="icon-sm"
+        disabled={isDisabled}
+        //onClick={}
+      >
+        <ChevronLeft className="size-4" />
+      </Button>
+
+// for goUp
+import { ChevronUp } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+<Button
+        variant="default"
+        size="icon-sm"
+        //onClick={}
+      >
+        <ChevronUp className="size-4" />
+      </Button>
+
+      //for pagination button
+      <Button
+        variant="default"
+        size="icon-sm"
+        aria-current={isCurrentPage ? 'page' : undefined}
+      >
+        1
+      </Button>
+      */
