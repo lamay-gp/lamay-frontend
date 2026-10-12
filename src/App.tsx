@@ -1,3 +1,5 @@
+import { Outlet } from 'react-router';
+
 import { Button } from '@/components/ui/button';
 
 import { AddToCartButton } from './components/atoms/AddToCartButton';
@@ -30,6 +32,9 @@ export const App = () => {
       >
         Checkout
       </Button>
+      {/*Header will be here*/}
+      <Outlet />
+      {/*Footer will be here*/}
     </>
   );
 };

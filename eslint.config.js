@@ -30,7 +30,9 @@ export default defineConfig([
         version: 'detect',
       },
       'import/resolver': {
-        typescript: true,
+        typescript: {
+          project: './tsconfig.app.json',
+        },
       },
     },
     rules: {
