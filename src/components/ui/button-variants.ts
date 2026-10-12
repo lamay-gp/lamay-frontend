@@ -7,7 +7,7 @@ export const buttonVariants = cva(
       variant: {
         default: 'bg-primary text-primary-foreground hover:bg-primary/80',
         outline:
-          'border-border bg-background shadow-xs hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50',
+          'border-border bg-background shadow-xs hover:bg-muted aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50',
         secondary:
           'bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground',
         ghost:
@@ -15,6 +15,8 @@ export const buttonVariants = cva(
         destructive:
           'bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40',
         link: 'text-primary underline-offset-4 hover:underline',
+        primaryAction:
+          'w-full rounded-lg border-[#216cff] bg-[#216cff] font-bold text-sm text-white hover:shadow-[0_3px_13px_0_rgba(23,32,49,0.4)]',
       },
       size: {
         'default':
@@ -36,3 +38,15 @@ export const buttonVariants = cva(
     },
   },
 );
+/*
+//For CheckoutButton
+import { Button } from '@/components/ui/button';
+ <Button
+        variant="primaryAction"
+        className="py-[14px]"
+        aria-label="Checkout"
+        //onClick={}
+      >
+        Checkout
+      </Button>
+*/
