@@ -18,6 +18,8 @@ export const buttonVariants = cva(
         link: 'text-primary underline-offset-4 hover:underline',
         primaryAction:
           'w-full rounded-lg border-[#216cff] bg-[#216cff] font-bold text-sm text-white hover:shadow-[0_3px_13px_0_rgba(23,32,49,0.4)]',
+        paginationArrow:
+          'size-4  text-[#0f0f11] hover:bg-transparent hover:text-[#b4bdc3]',
       },
       size: {
         'default':
@@ -73,7 +75,7 @@ import { Button } from '@/components/ui/button';
 // for goUp
 import { ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-<Button
+   <Button
         variant="default"
         size="icon-sm"
         //onClick={}
@@ -81,7 +83,8 @@ import { Button } from '@/components/ui/button';
         <ChevronUp className="size-4" />
       </Button>
 
-      //for pagination button
+//for pagination button
+import { Button } from '@/components/ui/button';
       <Button
         variant="default"
         size="icon-sm"
@@ -89,4 +92,18 @@ import { Button } from '@/components/ui/button';
       >
         1
       </Button>
+
+//for arrowBack without border
+import { ChevronLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+      <Button
+        variant="paginationArrow"
+        //onClick={}
+      >
+        <ChevronLeft className="size-4" />
+      </Button> 
+
+      //for arrowForward without border
+import { ChevronRight } from 'lucide-react';
+        <ChevronRight className="size-4 text-[#b4bdc3]" />
       */
