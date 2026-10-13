@@ -6,6 +6,7 @@ export const App = () => {
   return (
     <>
       <Button>LAMAY</Button>
+
       {/*Header will be here*/}
       <Outlet />
       {/*Footer will be here*/}
