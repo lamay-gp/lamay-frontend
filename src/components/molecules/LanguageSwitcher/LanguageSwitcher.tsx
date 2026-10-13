@@ -1,7 +1,6 @@
+import { Dropdown } from '@/components/atoms/Dropdown';
 import { Button } from '@/components/ui/Button/button';
 import { DropdownMenuItem } from '@/components/ui/Dropdown-menu/dropdown-menu';
-
-import { Dropdown } from '../Dropdown/Dropdown';
 
 export const LanguageSwitcher = () => {
   return (
@@ -11,7 +10,7 @@ export const LanguageSwitcher = () => {
           className="
             flex h-12 w-12 items-center justify-center
             rounded-none border-2 border-t-0 border-elements
-            bg-transparent p-0 text-[12px]! font-medium text-black shadow-none
+            bg-transparent p-0 text-[12px] font-medium text-text shadow-none
             hover:bg-transparent
             desktop:h-16 desktop:w-16 desktop:text-sm!
           "
@@ -28,7 +27,7 @@ export const LanguageSwitcher = () => {
         className="
           flex h-12 cursor-pointer items-center justify-center
           rounded-none p-0 text-[12px] font-medium
-          focus:bg-gray-100 focus:text-black
+          focus:bg-hover focus:text-text
           desktop:h-16 desktop:text-[14px]
         "
         onClick={() => {

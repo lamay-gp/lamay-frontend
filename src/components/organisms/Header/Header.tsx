@@ -1,15 +1,15 @@
 import { HeartIcon, MenuIcon, ShoppingBagIcon } from 'lucide-react';
 import { NavLink } from 'react-router';
 
-import { LanguageSwitcher } from '@/components/atoms/LanguageSwitcher/LanguageSwitcher';
-import { SearchBar } from '@/components/atoms/SearchBar/SearchBar';
+import { SearchBar } from '@/components/atoms/SearchBar';
 import { Typography } from '@/components/atoms/Typography';
+import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher';
 import { Button } from '@/components/ui/Button/button';
 import logo from '@/public/logo/lamay-logo-1920.png';
 
 export const Header = () => {
   return (
-    <header className="h-12 shadow-[0px_1px_0px_0px_var(--color-elements)] desktop:h-16">
+    <header className="h-12 shadow-[0px_1px_0px_0px_var(--elements)] desktop:h-16">
       {/* Mobile header */}
       <div className="flex h-12 w-full items-center justify-between tablet:hidden">
         <img
@@ -48,7 +48,7 @@ export const Header = () => {
               `relative flex h-full items-center ${
                 isActive ?
                   'text-black after:absolute after:right-0 after:bottom-0 after:left-0 after:h-0.75 after:bg-black'
-                : 'text-(--color-text-secondary)'
+                : 'text-text-secondary'
               }`
             }
           >
@@ -66,7 +66,7 @@ export const Header = () => {
               `relative flex h-full items-center ${
                 isActive ?
                   'text-black after:absolute after:right-0 after:bottom-0 after:left-0 after:h-0.75 after:bg-black'
-                : 'text-(--color-text-secondary)'
+                : 'text-text-secondary'
               }`
             }
           >
@@ -94,7 +94,7 @@ export const Header = () => {
             aria-label="Favourites"
             className="flex h-12 w-12 items-center justify-center border-2 border-t-0 border-l-0 border-elements desktop:h-16 desktop:w-16"
           >
-            <HeartIcon className="h-3.5 desktop:h-4.5 w-4.5" />
+            <HeartIcon className="h-3.5 w-4.5 desktop:h-4.5" />
           </NavLink>
 
           <NavLink
@@ -102,7 +102,7 @@ export const Header = () => {
             aria-label="Shopping cart"
             className="flex h-12 w-12 items-center justify-center border-2 border-t-0 border-l-0 border-elements desktop:h-16 desktop:w-16"
           >
-            <ShoppingBagIcon className="h-3.5 desktop:h-4.5 w-4.5" />
+            <ShoppingBagIcon className="h-3.5 w-4.5 desktop:h-4.5" />
           </NavLink>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 
-import { Header } from '@/components/molecules/Header/Header';
+import { Header } from './components/organisms/Header';
 
 export const App = () => {
   return (
