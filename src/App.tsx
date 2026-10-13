@@ -1,9 +1,11 @@
 import { Outlet } from 'react-router';
 
+import { Header } from '@/components/molecules/Header/Header';
+
 export const App = () => {
   return (
     <>
-      {/*Header will be here*/}
+      <Header />
 
       <Outlet />
 
