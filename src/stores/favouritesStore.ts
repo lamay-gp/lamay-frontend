@@ -2,9 +2,9 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 type FavouritesState = {
-  favouriteIds: number[];
-  addToFavourites: (id: number) => void;
-  removeFromFavourites: (id: number) => void;
+  favouriteIds: string[];
+  addToFavourites: (id: string) => void;
+  removeFromFavourites: (id: string) => void;
   clearFavourites: () => void;
 };
 
