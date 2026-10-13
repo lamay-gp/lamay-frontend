@@ -1,7 +1,8 @@
 import { cn } from 'cn';
-import { Trash2 } from 'lucide-react';
+import { NavLink } from 'react-router';
 
 import { Button } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button-variants';
 import { useCartStore } from '@/stores/cartStore';
 import type { Product } from '@/types/Products';
 
@@ -18,35 +19,36 @@ export const AddToCartButton: React.FC<Props> = ({
 }) => {
   const cartItems = useCartStore((state) => state.cartItems);
   const addToCart = useCartStore((state) => state.addToCart);
-  const removeFromCart = useCartStore((state) => state.removeFromCart);
 
   const isInCart = cartItems.some((item) => item.productId === productId);
 
-  const handleClick = () => {
-    if (isInCart) {
-      removeFromCart(productId);
-    } else {
-      addToCart(productId);
-    }
-  };
+  const className = cn(
+    'border',
+    size === 'sm' ? 'py-2.5' : 'py-3.5',
+    isInCart ?
+      'border-elements bg-transparent text-button'
+    : 'border-button bg-button',
+  );
 
+  if (isInCart) {
+    return (
+      <NavLink
+        to="/cart"
+        className={cn(buttonVariants({ variant: 'primaryAction' }), className)}
+        aria-label="Go to cart"
+      >
+        Go to cart
+      </NavLink>
+    );
+  }
   return (
     <Button
       variant="primaryAction"
-      className={cn(
-        'border cursor-pointer',
-        size === 'sm' ? 'py-2.5' : 'py-3.5',
-        isInCart ?
-          'border-elements bg-transparent text-button'
-        : 'border-button bg-button',
-      )}
-      aria-label={isInCart ? 'Remove from cart' : 'Add to cart'}
-      aria-pressed={isInCart}
-      onClick={handleClick}
+      className={className}
+      aria-label="Add to cart"
+      onClick={() => addToCart(productId)}
     >
-      {isInCart ?
-        <Trash2 className="size-3 text-button" />
-      : 'Add to cart'}
+      Add to cart
     </Button>
   );
 };
