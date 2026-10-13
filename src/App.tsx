@@ -1,5 +1,7 @@
 import { Outlet } from 'react-router';
 
+import { Footer } from '@/components/organisms/Footer';
+
 export const App = () => {
   return (
     <>
@@ -7,7 +9,7 @@ export const App = () => {
 
       <Outlet />
 
-      {/*Footer will be here*/}
+      <Footer />
     </>
   );
 };
