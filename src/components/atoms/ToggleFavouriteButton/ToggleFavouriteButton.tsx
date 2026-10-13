@@ -12,7 +12,10 @@ type Props = {
   //in ItemCard page will be 'lg'
   size?: 'sm' | 'lg';
 };
-export const FavoriteButton: React.FC<Props> = ({ productId, size = 'sm' }) => {
+export const ToggleFavouriteButton: React.FC<Props> = ({
+  productId,
+  size = 'sm',
+}) => {
   const favouriteIds = useFavouritesStore((state) => state.favouriteIds);
   const addToFavourites = useFavouritesStore((state) => state.addToFavourites);
   const removeFromFavourites = useFavouritesStore(
@@ -34,8 +37,9 @@ export const FavoriteButton: React.FC<Props> = ({ productId, size = 'sm' }) => {
     <Button
       variant="default"
       className={cn(
+        'cursor-pointer',
         size === 'sm' ? 'size-10' : 'size-12',
-        isFavorite ? 'border-[var(--elements)]' : 'border-[var(--icon-border)]',
+        isFavorite ? 'border-elements' : 'border-icon-border',
       )}
       aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
       aria-pressed={isFavorite}
@@ -44,8 +48,8 @@ export const FavoriteButton: React.FC<Props> = ({ productId, size = 'sm' }) => {
       <Heart
         className={
           isFavorite ?
-            'size-[14px] fill-[var(--secondary-accent)] text-[var(--secondary-accent)]'
-          : 'size-[14px] text-[var(--text)]'
+            'size-3.5 fill-secondary-accent text-secondary-accent'
+          : 'size-3.5 text-text'
         }
       />
     </Button>

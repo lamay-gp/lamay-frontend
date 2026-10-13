@@ -15,6 +15,11 @@ export type Product = {
   image: string;
 };
 
+export type ProductSpecification = {
+  name: string;
+  value: string;
+};
+
 export type Description = {
   title: string;
   text: string[];
