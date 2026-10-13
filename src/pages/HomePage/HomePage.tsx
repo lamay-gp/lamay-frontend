@@ -1,3 +1,12 @@
+import { Typography } from '@/components/atoms/Typography';
+
 export const HomePage = () => {
-  return <div>Home page</div>;
+  return (
+    <Typography
+      variant="h1"
+      as="h1"
+    >
+      Home page
+    </Typography>
+  );
 };
