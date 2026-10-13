@@ -34,18 +34,18 @@ export const AddToCartButton: React.FC<Props> = ({
     <Button
       variant="primaryAction"
       className={cn(
-        'border',
-        size === 'sm' ? 'py-[10px]' : 'py-[14px]',
+        'border cursor-pointer',
+        size === 'sm' ? 'py-2.5' : 'py-3.5',
         isInCart ?
-          'border-[var(--elements)] bg-transparent text-[var(--button)]'
-        : 'border-[var(--button)] bg-[var(--button)]',
+          'border-elements bg-transparent text-button'
+        : 'border-button bg-button',
       )}
       aria-label={isInCart ? 'Remove from cart' : 'Add to cart'}
       aria-pressed={isInCart}
       onClick={handleClick}
     >
       {isInCart ?
-        <Trash2 className="size-3 text-[var(--button)]" />
+        <Trash2 className="size-3 text-button" />
       : 'Add to cart'}
     </Button>
   );
