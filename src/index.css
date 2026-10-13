@@ -2,13 +2,19 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
-@import '@fontsource-variable/inter';
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --breakpoint-tablet: 40rem; /* 640px */
+  --breakpoint-tablet-lg: 48rem; /* 768px */
+  --breakpoint-desktop: 75rem; /* 1200px */
+}
+
 @theme inline {
+  --font-sans: 'Mont', sans-serif;
   --font-heading: var(--font-sans);
-  --font-sans: 'Inter Variable', sans-serif;
+  --font-manrope: 'Manrope', sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -17,11 +23,6 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -40,17 +41,32 @@
   --color-card: var(--card);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+  --radius-sm: calc(var(--custom-radius) * 0.6);
+  --radius-md: calc(var(--custom-radius) * 0.8);
+  --radius-lg: var(--custom-radius);
+  --radius-xl: calc(var(--custom-radius) * 1.4);
+  --radius-2xl: calc(var(--custom-radius) * 1.8);
+  --radius-3xl: calc(var(--custom-radius) * 2.2);
+  --radius-4xl: calc(var(--custom-radius) * 2.6);
+
+  --radius-icon: var(--custom-radius-icon);
+  --radius-opacity: var(--custom-radius-opacity);
+  --radius-color: var(--custom-radius-color);
+
+  --color-text: var(--text);
+  --color-elements: var(--elements);
+  --color-green: var(--green);
+  --color-white: var(--white);
+  --color-hover: var(--hover);
+  --color-icon-border: var(--icon-border);
+  --color-red: var(--red);
+  --color-text-secondary: var(--text-secondary);
+  --color-secondary-accent: var(--secondary-accent);
+  --color-button: var(--button);
 }
 
 :root {
-  --background: oklch(1 0 0);
+  --background: #fafbfc;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -68,12 +84,10 @@
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  --custom-radius: 8px;
+  --custom-radius-icon: 48px;
+  --custom-radius-opacity: 4px;
+  --custom-radius-color: 36px;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -82,6 +96,17 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --text: #0f0f11;
+  --elements: #e2e6e9;
+  --green: #27ae60;
+  --white: #ffffff;
+  --hover: #fafbfc;
+  --icon-border: #b4bdc3;
+  --red: #eb5757;
+  --text-secondary: #89939a;
+  --secondary-accent: #f447af;
+  --button: #216cff;
 }
 
 .dark {
@@ -122,10 +147,92 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('./assets/fonts/Mont/Mont-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('./assets/fonts/Mont/Mont-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('./assets/fonts/Mont/Mont-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('./assets/fonts/Manrope/Manrope-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('./assets/fonts/Manrope/Manrope-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('./assets/fonts/Manrope/Manrope-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('./assets/fonts/Manrope/Manrope-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('./assets/fonts/Manrope/Manrope-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('./assets/fonts/Manrope/Manrope-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('./assets/fonts/Manrope/Manrope-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
 }
