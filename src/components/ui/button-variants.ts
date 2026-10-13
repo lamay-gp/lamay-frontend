@@ -6,7 +6,7 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'rounded-full border border-[#b4bdc3] bg-transparent text-[#0f0f11] font-medium text-sm hover:border-[#0f0f11] disabled:border-[#e2e6e9] disabled:text-[#b4bdc4] aria-[current=page]:bg-[#0f0f11] aria-[current=page]:text-[#fff] aria-[current=page]:border-[#0f0f11]',
+          'rounded-full border border-[var(--icon-border)] bg-transparent text-[var(--text)] font-medium text-sm hover:border-[var(--text)] disabled:border-[var(--elements)] disabled:text-[#b4bdc4] aria-[current=page]:bg-[var(--text)] aria-[current=page]:text-[var(--white)] aria-[current=page]:border-[var(--text)]',
         outline:
           'border-border bg-background shadow-xs hover:bg-muted aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50',
         secondary:
@@ -17,9 +17,9 @@ export const buttonVariants = cva(
           'bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40',
         link: 'text-primary underline-offset-4 hover:underline',
         primaryAction:
-          'w-full rounded-lg border-[#216cff] bg-[#216cff] font-bold text-sm text-white hover:shadow-[0_3px_13px_0_rgba(23,32,49,0.4)]',
+          'w-full rounded-lg border-[var(--button)] bg-[var(--button)] font-bold text-sm text-white hover:shadow-[0_3px_13px_0_rgba(23,32,49,0.4)]',
         paginationArrow:
-          'size-4  text-[#0f0f11] hover:bg-transparent hover:text-[#b4bdc3]',
+          'size-4  text-[var(--text)] hover:bg-transparent hover:text-[var(--icon-border)]',
       },
       size: {
         'default':
@@ -105,5 +105,5 @@ import { Button } from '@/components/ui/button';
 
       //for arrowForward without border
 import { ChevronRight } from 'lucide-react';
-        <ChevronRight className="size-4 text-[#b4bdc3]" />
+        <ChevronRight className="size-4 text-[var(--icon-border)]" />
       */
