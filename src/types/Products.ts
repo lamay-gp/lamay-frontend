@@ -47,7 +47,6 @@ export type Gadget = {
   cell: string[];
 };
 
-// Checklist
 export type ChecklistItem<T extends string = string> = {
   id: T;
   label: string;
