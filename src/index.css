@@ -160,21 +160,24 @@
 }
 
 @layer components {
-  .section-container {
-    width: 100%;
-    max-width: 1136px;
-    margin-inline: auto;
+  section {
     padding-inline: 16px;
   }
 
+  .container {
+    max-width: 1200px !important;
+    min-width: 320px;
+    margin-inline: auto;
+  }
+
   @media (min-width: 640px) {
-    .section-container {
+    section {
       padding-inline: 24px;
     }
   }
 
   @media (min-width: 1200px) {
-    .section-container {
+    section {
       padding-inline: 32px;
     }
   }

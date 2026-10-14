@@ -36,7 +36,7 @@ export const CartCheckout = () => {
   );
 
   return (
-    <Card className="items-center min-w-72 max-w-148 gap-x-4 p-6">
+    <Card className="items-center min-w-72 gap-x-4 p-6">
       <CardHeader className="flex flex-col w-full items-center p-0">
         <CardTitle>
           <ProductPrice
