@@ -17,7 +17,7 @@ export const buttonVariants = cva(
           'bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40',
         link: 'text-primary underline-offset-4 hover:underline',
         primaryAction:
-          'w-full rounded-lg border-[var(--button)] bg-[var(--button)] font-bold text-sm text-white hover:shadow-[0_3px_13px_0_rgba(23,32,49,0.4)]',
+          'w-full rounded-lg border-[var(--button)] bg-[var(--button)] font-bold !text-[14px] text-white hover:shadow-[0_3px_13px_0_rgba(23,32,49,0.4)]',
         paginationArrow:
           'size-4  text-[var(--text)] hover:bg-transparent hover:text-[var(--icon-border)]',
       },
