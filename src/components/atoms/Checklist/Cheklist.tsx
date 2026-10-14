@@ -1,5 +1,7 @@
+import { useMemo } from 'react';
+
 import { cn } from '@/lib/utils';
-import type { ChecklistItem } from '@/types/Products';
+import type { ChecklistItem, Product } from '@/types/Products';
 
 import { Typography } from '../Typography';
 
@@ -8,6 +10,7 @@ type Props<T extends string = string> = {
   items: ChecklistItem<T>[];
   selectedIds: T[];
   onChange: (selectedIds: T[]) => void;
+  products?: Product[];
   className?: string;
 };
 
@@ -16,8 +19,18 @@ export const Checklist = <T extends string = string>({
   items,
   selectedIds,
   onChange,
+  products,
   className,
 }: Props<T>) => {
+  const itemsWithCounts = useMemo(() => {
+    if (!products) return items;
+
+    return items.map((item) => ({
+      ...item,
+      count: products.filter((product) => product.category === item.id).length,
+    }));
+  }, [items, products]);
+
   const handleCheckboxChange = (id: T) => {
     if (selectedIds.includes(id)) {
       onChange(selectedIds.filter((item) => item !== id));
@@ -44,7 +57,7 @@ export const Checklist = <T extends string = string>({
       )}
 
       <div className="flex flex-col gap-2">
-        {items.map((item) => {
+        {itemsWithCounts.map((item) => {
           const isChecked = selectedIds.includes(item.id);
 
           return (
@@ -57,9 +70,9 @@ export const Checklist = <T extends string = string>({
                   type="checkbox"
                   checked={isChecked}
                   onChange={() => handleCheckboxChange(item.id)}
-                  className="size-4 rounded border-input text-primary focus:ring-ring cursor-pointer accent-primary"
+                  className="size-4 rounded border-input text-button focus:ring-button cursor-pointer accent-button]"
                 />
-                <span className="group-hover:text-primary transition-colors capitalize">
+                <span className="group-hover:text-button transition-colors capitalize">
                   {item.label}
                 </span>
               </div>
