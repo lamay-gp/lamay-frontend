@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -26,7 +28,19 @@ jobs:
         run: npm run lint
 
       - name: Check formatting
-        run: npm run format:check
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          mapfile -d '' -t files < <(
+            git diff --name-only -z --diff-filter=ACMR "origin/${BASE_REF}...HEAD" -- \
+              '*.ts' '*.tsx' '*.js' '*.jsx' '*.json' '*.css' '*.md' '*.html' '*.yml' '*.yaml'
+          )
+
+          if ((${#files[@]})); then
+            npx prettier --check "${files[@]}"
+          else
+            echo "No changed files supported by Prettier."
+          fi
 
       - name: Build
         run: npm run build

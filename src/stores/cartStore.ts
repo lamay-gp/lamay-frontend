@@ -1,12 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-type CartItem = {
-  productId: string;
-  quantity: number;
-};
-
-type Action = 'increment' | 'decrement';
+import type { Action, CartItem } from '@/types/Products';
 
 type CartState = {
   cartItems: CartItem[];

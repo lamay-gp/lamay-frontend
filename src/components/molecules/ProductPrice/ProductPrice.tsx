@@ -1,23 +1,25 @@
 import { cn } from 'cn';
-import { useParams } from 'react-router';
 
 import { Typography } from '@/components/atoms/Typography';
 
 type Props = {
   regularPrice: number;
   discountPrice: number;
+  variant?: 'default' | 'accent';
 };
 
-export const ProductPrice = ({ regularPrice, discountPrice }: Props) => {
-  const { itemId } = useParams();
-
+export const ProductPrice = ({
+  regularPrice,
+  discountPrice,
+  variant = 'default',
+}: Props) => {
   const hasDiscount = regularPrice - discountPrice > 0;
 
   return (
     <div className="flex items-center gap-2">
       <Typography
-        variant={itemId ? 'h2' : 'h3'}
-        as={itemId ? 'h2' : 'h3'}
+        variant={variant === 'accent' ? 'h2' : 'h3'}
+        as={variant === 'accent' ? 'h2' : 'h3'}
         className="before:content-['$'] text-text"
       >
         {regularPrice}
