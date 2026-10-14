@@ -1,75 +1,65 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState } from 'react';
-
 import { Typography } from '@/components/atoms/Typography';
-import { Button } from '@/components/ui/Button/button';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 import type { Product } from '@/types/Products';
+
+import { ProductCard } from '../ProductCard';
 
 type Props = {
   title: string;
   products: Product[];
 };
-
-export const ProductsSlider = ({ title = 'section', products }: Props) => {
-  const [startIndex, setStartIndex] = useState(0);
-
-  const visibleProducts = products.slice(startIndex, startIndex + 4);
-
-  const handlePrev = () => {
-    setStartIndex((current) => Math.max(0, current - 1));
-  };
-
-  const handleNext = () => {
-    setStartIndex((current) => Math.min(products.length - 4, current + 1));
-  };
-
+export const ProductsSlider = ({ title, products }: Props) => {
   return (
     <section className="py-7 tablet:py-8 desktop:py-10">
-      <div className="mb-6 flex items-center justify-between">
-        <Typography
-          variant="h2"
-          as="h2"
+      <Carousel
+        opts={{
+          align: 'start',
+          slidesToScroll: 1,
+        }}
+        className="w-full"
+      >
+        <div
+          className="mb-6 flex items-center justify-between px-4 tablet:px-6
+    desktop:px-8"
         >
-          {title}
-        </Typography>
-        <div className="flex gap-4">
-          <Button
-            variant="default"
-            size="icon-sm"
-            disabled={startIndex === 0}
-            onClick={handlePrev}
-            aria-label="Previous products"
+          <Typography
+            variant="h2"
+            as="h2"
           >
-            <ChevronLeft className="size-4" />
-          </Button>
-          <Button
-            variant="default"
-            size="icon-sm"
-            disabled={startIndex >= products.length - 4}
-            onClick={handleNext}
-            aria-label="Next products"
-          >
-            <ChevronRight className="size-4" />
-          </Button>
+            {title}
+          </Typography>
+
+          <div className="flex gap-4">
+            <CarouselPrevious className="static translate-y-0" />
+            <CarouselNext className="static translate-y-0" />
+          </div>
         </div>
-      </div>
-      <div className="overflow-hidden">
-        <div className="flex gap-4">
-          {visibleProducts.map((product) => (
-            <div
-              key={product.itemId}
-              className="
-          min-w-0 shrink-0
-          basis-[calc((100%_-_48px)*3/4_+_32px)]
-          tablet:basis-[calc((100%_-_176px)*5/12_+_64px)]
-          desktop:basis-[calc((100%_-_368px)*6/24_+_80px)]
-        "
-            >
-              {/*product*/}
-            </div>
-          ))}
+        <div className="ml-4 tablet:ml-6 desktop:mx-8">
+          <CarouselContent>
+            {products.map((product) => (
+              <CarouselItem
+                key={product.itemId}
+                className="
+            pl-4
+            basis-[calc((100%_-_48px)*3/4_+_32px)]
+            tablet:basis-[calc((100%_-_176px)*5/12_+_64px)]
+            desktop:basis-1/4
+          "
+              >
+                <div className="h-full [&>*]:h-full [&>*]:w-full [&>*]:!max-w-none [&>*]:!min-w-0">
+                  <ProductCard product={product} />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
         </div>
-      </div>
+      </Carousel>
     </section>
   );
 };
