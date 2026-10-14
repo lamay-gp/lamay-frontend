@@ -22,7 +22,7 @@ export const ProductPrice = ({
         as={variant === 'accent' ? 'h2' : 'h3'}
         className="before:content-['$'] text-text"
       >
-        {regularPrice}
+        {discountPrice}
       </Typography>
       {hasDiscount && (
         <Typography
@@ -32,7 +32,7 @@ export const ProductPrice = ({
             "before:content-['$'] line-through text-text-secondary font-medium tablet:font-medium",
           )}
         >
-          {discountPrice}
+          {regularPrice}
         </Typography>
       )}
     </div>
