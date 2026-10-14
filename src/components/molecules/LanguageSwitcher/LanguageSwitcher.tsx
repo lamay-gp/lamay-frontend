@@ -1,0 +1,41 @@
+import { Dropdown } from '@/components/atoms/Dropdown';
+import { Button } from '@/components/ui/Button/button';
+import { DropdownMenuItem } from '@/components/ui/Dropdown-menu/dropdown-menu';
+
+export const LanguageSwitcher = () => {
+  return (
+    <Dropdown
+      trigger={
+        <Button
+          className="
+            flex h-12 w-12 items-center justify-center
+            rounded-none border-2 border-t-0 border-elements
+            bg-transparent p-0 text-[12px] font-medium text-text shadow-none
+            hover:bg-transparent
+            desktop:h-16 desktop:w-16 desktop:text-sm!
+          "
+        >
+          EN
+        </Button>
+      }
+      contentClassName="
+        w-12 min-w-12 rounded-none border-2 border-t-0 border-elements p-0
+        desktop:w-16 desktop:min-w-16
+      "
+    >
+      <DropdownMenuItem
+        className="
+          flex h-12 cursor-pointer items-center justify-center
+          rounded-none p-0 text-[12px] font-medium
+          focus:bg-hover focus:text-text
+          desktop:h-16 desktop:text-[14px]
+        "
+        onClick={() => {
+          // TODO: implement language change
+        }}
+      >
+        UA
+      </DropdownMenuItem>
+    </Dropdown>
+  );
+};

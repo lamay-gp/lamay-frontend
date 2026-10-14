@@ -2,7 +2,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 
 import { Typography } from '@/components/atoms/Typography';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button/button';
 import type { Product } from '@/types/Products';
 
 type Props = {

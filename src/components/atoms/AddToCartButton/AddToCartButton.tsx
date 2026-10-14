@@ -1,8 +1,8 @@
 import { cn } from 'cn';
 import { NavLink } from 'react-router';
 
-import { Button } from '@/components/ui/button';
-import { buttonVariants } from '@/components/ui/button-variants';
+import { Button } from '@/components/ui/Button/button';
+import { buttonVariants } from '@/components/ui/Button/button-variants';
 import { useCartStore } from '@/stores/cartStore';
 import type { Product } from '@/types/Products';
 
