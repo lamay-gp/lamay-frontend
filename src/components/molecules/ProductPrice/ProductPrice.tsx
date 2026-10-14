@@ -4,13 +4,13 @@ import { Typography } from '@/components/atoms/Typography';
 
 type Props = {
   regularPrice: number;
-  discountPrice: number;
-  variant?: 'default' | 'accent';
+  discountPrice?: number;
+  variant?: 'default' | 'accent' | 'checkout';
 };
 
 export const ProductPrice = ({
   regularPrice,
-  discountPrice,
+  discountPrice = regularPrice,
   variant = 'default',
 }: Props) => {
   const hasDiscount = regularPrice - discountPrice > 0;
@@ -18,9 +18,9 @@ export const ProductPrice = ({
   return (
     <div className="flex items-center gap-2">
       <Typography
-        variant={variant === 'accent' ? 'h2' : 'h3'}
-        as={variant === 'accent' ? 'h2' : 'h3'}
-        className="before:content-['$'] text-text"
+        variant={variant === 'accent' || variant === 'checkout' ? 'h2' : 'h3'}
+        as={variant === 'accent' || variant === 'checkout' ? 'h2' : 'h3'}
+        className={`before:content-['$'] text-text ${variant === 'checkout' && 'text-[32px]'}`}
       >
         {discountPrice}
       </Typography>
