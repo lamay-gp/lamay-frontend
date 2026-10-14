@@ -9,7 +9,7 @@ import logo from '@/public/logo/lamay-logo-1920.png';
 
 export const Header = () => {
   return (
-    <header className="h-12 shadow-[0px_1px_0px_0px_var(--elements)] desktop:h-16">
+    <header className="h-12 shadow-[0px_1px_0px_0px_var(--elements)] desktop:h-16 mb-6">
       {/* Mobile header */}
       <div className="flex h-12 w-full items-center justify-between tablet:hidden">
         <img
@@ -23,7 +23,7 @@ export const Header = () => {
           variant="ghost"
           size="icon"
           aria-label="Open menu"
-          className="mr-4 h-12 w-12 shrink-0"
+          className="h-12 w-12 shrink-0"
           onClick={() => {
             // TODO: open mobile menu
           }}
@@ -81,7 +81,7 @@ export const Header = () => {
 
         <div className="hidden min-w-0 flex-1 tablet:flex tablet:justify-center">
           <SearchBar
-            className="h-12 w-full max-w-125 min-w-0 rounded-none border-2 border-t-0 border-elements px-4 text-[14px] desktop:h-16 desktop:text-[17px]"
+            className="h-12 w-full max-w-125 min-w-0 rounded-none border border-t-0 border-b-0 border-elements px-4 text-[14px] desktop:h-16 desktop:text-[17px]"
             iconClassName="size-5 desktop:size-6"
           />
         </div>
@@ -92,7 +92,7 @@ export const Header = () => {
           <NavLink
             to="/favourites"
             aria-label="Favourites"
-            className="flex h-12 w-12 items-center justify-center border-2 border-t-0 border-l-0 border-elements desktop:h-16 desktop:w-16"
+            className="flex h-12 w-12 items-center justify-center border-r border-elements desktop:h-16 desktop:w-16"
           >
             <HeartIcon className="h-3.5 w-4.5 desktop:h-4.5" />
           </NavLink>
@@ -100,7 +100,7 @@ export const Header = () => {
           <NavLink
             to="/cart"
             aria-label="Shopping cart"
-            className="flex h-12 w-12 items-center justify-center border-2 border-t-0 border-l-0 border-elements desktop:h-16 desktop:w-16"
+            className="flex h-12 w-12 items-center justify-center border border-t-0 border-b-0 border-l-0 border-elements desktop:h-16 desktop:w-16"
           >
             <ShoppingBagIcon className="h-3.5 w-4.5 desktop:h-4.5" />
           </NavLink>
