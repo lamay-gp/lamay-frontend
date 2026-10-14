@@ -46,3 +46,9 @@ export type Gadget = {
   zoom?: string;
   cell: string[];
 };
+
+export type ChecklistItem<T extends string = string> = {
+  id: T;
+  label: string;
+  count?: number;
+};
