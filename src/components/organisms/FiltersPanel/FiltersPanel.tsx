@@ -1,14 +1,6 @@
 import { Filter } from 'lucide-react';
 
-import { PriceRange } from '@/components/atoms/PriceRange';
-import { SearchBar } from '@/components/atoms/SearchBar';
 import { Typography } from '@/components/atoms/Typography';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/Accordion/accordion';
 import { Button } from '@/components/ui/Button/button';
 import {
   Sheet,
@@ -19,101 +11,7 @@ import {
 } from '@/components/ui/Sheet/sheet';
 import { cn } from '@/lib/utils';
 
-const FiltersContent = () => {
-  return (
-    <div className="flex flex-col gap-4">
-      <SearchBar />
-
-      <Accordion>
-        <AccordionItem value="price">
-          <AccordionTrigger>
-            <Typography
-              variant="button"
-              as="span"
-            >
-              Price
-            </Typography>
-          </AccordionTrigger>
-          <AccordionContent>
-            <PriceRange />
-          </AccordionContent>
-        </AccordionItem>
-
-        <AccordionItem value="color">
-          <AccordionTrigger>
-            <Typography
-              variant="button"
-              as="span"
-            >
-              Color
-            </Typography>
-          </AccordionTrigger>
-          <AccordionContent>{/* TODO: color options */}</AccordionContent>
-        </AccordionItem>
-
-        <AccordionItem value="capacity">
-          <AccordionTrigger>
-            <Typography
-              variant="button"
-              as="span"
-            >
-              Capacity
-            </Typography>
-          </AccordionTrigger>
-          <AccordionContent>{/* TODO: capacity options */}</AccordionContent>
-        </AccordionItem>
-
-        <AccordionItem value="ram">
-          <AccordionTrigger>
-            <Typography
-              variant="button"
-              as="span"
-            >
-              RAM
-            </Typography>
-          </AccordionTrigger>
-          <AccordionContent>{/* TODO: RAM options */}</AccordionContent>
-        </AccordionItem>
-
-        <AccordionItem value="category">
-          <AccordionTrigger>
-            <Typography
-              variant="button"
-              as="span"
-            >
-              Category
-            </Typography>
-          </AccordionTrigger>
-          <AccordionContent>{/* TODO: category options */}</AccordionContent>
-        </AccordionItem>
-
-        <AccordionItem value="year">
-          <AccordionTrigger>
-            <Typography
-              variant="button"
-              as="span"
-            >
-              Year
-            </Typography>
-          </AccordionTrigger>
-          <AccordionContent>{/* TODO: year options */}</AccordionContent>
-        </AccordionItem>
-
-        <AccordionItem value="screen">
-          <AccordionTrigger>
-            <Typography
-              variant="button"
-              as="span"
-            >
-              Screen
-            </Typography>
-          </AccordionTrigger>
-          <AccordionContent>{/* TODO: screen options */}</AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    </div>
-  );
-};
+import { FiltersContent } from './FiltersContent';
 
 type FiltersPanelProps = {
   className?: string;
