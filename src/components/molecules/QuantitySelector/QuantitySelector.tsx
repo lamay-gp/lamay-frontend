@@ -6,14 +6,14 @@ import type { Action, CartItem } from '@/types/Products';
 
 type Props = {
   id: string;
-  quantity: number;
+  quantity?: number;
   cartItems: CartItem[];
   updateQuantity: (action: Action, id: string) => void;
 };
 
 export const QuantitySelector = ({
   id,
-  quantity,
+  quantity = 0,
   cartItems,
   updateQuantity,
 }: Props) => {

@@ -47,6 +47,12 @@ export type Gadget = {
   cell: string[];
 };
 
+export type ChecklistItem<T extends string = string> = {
+  id: T;
+  label: string;
+  count?: number;
+};
+
 export type Action = 'increment' | 'decrement';
 
 export type CartItem = {

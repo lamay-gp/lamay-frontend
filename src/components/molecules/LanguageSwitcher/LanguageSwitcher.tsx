@@ -9,9 +9,9 @@ export const LanguageSwitcher = () => {
         <Button
           className="
             flex h-12 w-12 items-center justify-center
-            rounded-none border-2 border-t-0 border-elements
+            rounded-none border-b-0 border-elements
             bg-transparent p-0 text-[12px] font-medium text-text shadow-none
-            hover:bg-transparent
+            hover:bg-transparent hover:border-b
             desktop:h-16 desktop:w-16 desktop:text-sm!
           "
         >
@@ -19,7 +19,7 @@ export const LanguageSwitcher = () => {
         </Button>
       }
       contentClassName="
-        w-12 min-w-12 rounded-none border-2 border-t-0 border-elements p-0
+        w-12 min-w-12 rounded-none border-elements p-0
         desktop:w-16 desktop:min-w-16
       "
     >
