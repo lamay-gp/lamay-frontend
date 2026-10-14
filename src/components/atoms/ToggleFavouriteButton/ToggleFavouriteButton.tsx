@@ -1,7 +1,7 @@
 import { cn } from 'cn';
 import { Heart } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button/button';
 import { useFavouritesStore } from '@/stores/favouritesStore';
 import type { Product } from '@/types/Products';
 

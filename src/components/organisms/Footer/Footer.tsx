@@ -2,7 +2,7 @@ import { ChevronUp } from 'lucide-react';
 import { NavLink } from 'react-router';
 
 import { Typography } from '@/components/atoms/Typography';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button/button';
 import logo from '@/public/logo/lamay-logo.svg';
 
 export const Footer = () => {

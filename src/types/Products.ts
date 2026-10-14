@@ -46,3 +46,10 @@ export type Gadget = {
   zoom?: string;
   cell: string[];
 };
+
+export type Action = 'increment' | 'decrement';
+
+export type CartItem = {
+  productId: string;
+  quantity: number;
+};

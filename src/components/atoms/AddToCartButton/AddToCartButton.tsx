@@ -1,7 +1,7 @@
 import { cn } from 'cn';
 import { Trash2 } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button/button';
 import { useCartStore } from '@/stores/cartStore';
 import type { Product } from '@/types/Products';
 
