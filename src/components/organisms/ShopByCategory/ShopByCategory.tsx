@@ -37,11 +37,11 @@ export const ShopByCategory = () => {
   }, []);
   return (
     <section>
-      {/*<div className="py-7 tablet:py-8 desktop:py-10 section-container">*/}
-      <div
+      <div className=" py-7 tablet:py-8 desktop:py-10 container">
+        {/*<div
         className="py-7 tablet:py-8 desktop:py-10 px-4 tablet:px-6
     desktop:px-8 mx-auto max-w-284"
-      >
+      >*/}
         <Typography
           variant="h2"
           as="h2"
@@ -50,10 +50,10 @@ export const ShopByCategory = () => {
           Shop by category
         </Typography>
         <ul className="flex flex-col gap-8  tablet:flex-row tablet:gap-4">
-          <li>
+          <li className="min-w-0 tablet:flex-1">
             <article>
               <img
-                className="aspect-square mb-6"
+                className="aspect-square mb-6 w-full object-cover"
                 src="/src/assets/images/category-phones-desktop.png"
                 alt="Phones"
               />
@@ -81,10 +81,10 @@ export const ShopByCategory = () => {
               </Typography>
             </article>
           </li>
-          <li>
+          <li className="min-w-0 tablet:flex-1">
             <article>
               <img
-                className="aspect-square mb-6"
+                className="aspect-square mb-6 w-full object-cover"
                 src="/src/assets/images/category-tablets-desktop.png"
                 alt="Tablets"
               />
@@ -111,10 +111,10 @@ export const ShopByCategory = () => {
               </Typography>
             </article>
           </li>
-          <li>
+          <li className="min-w-0 tablet:flex-1">
             <article>
               <img
-                className="aspect-square mb-6"
+                className="aspect-square mb-6 w-full object-cover"
                 src="/src/assets/images/category-accessories-desktop.png"
                 alt="Accessories"
               />
@@ -144,6 +144,10 @@ export const ShopByCategory = () => {
         </ul>
       </div>
       {isError && <ErrorMessage message={'Failed to load gadgets'} />}
+      {/*<ProductsSlider
+        title={'slider'}
+        products={accessories}
+      />*/}
     </section>
   );
 };

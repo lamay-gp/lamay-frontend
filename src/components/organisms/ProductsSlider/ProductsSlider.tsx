@@ -5,7 +5,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@/components/ui/carousel';
+} from '@/components/ui/Carousel/carousel';
 import type { Product } from '@/types/Products';
 
 import { ProductCard } from '../ProductCard';
@@ -26,7 +26,7 @@ export const ProductsSlider = ({ title, products }: Props) => {
           className="w-full"
         >
           <div
-            //className="mb-6 flex items-center justify-between section-container"
+            //className="mb-6 flex items-center justify-between container"
             className="mb-6 flex items-center justify-between px-4 tablet:px-6
     desktop:px-8"
           >

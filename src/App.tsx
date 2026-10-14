@@ -3,7 +3,6 @@ import { Outlet } from 'react-router';
 
 import { Footer } from './components/organisms/Footer';
 import { Header } from './components/organisms/Header';
-import { ShopByCategory } from './components/organisms/ShopByCategory';
 import { useProductsStore } from './stores/productsStore';
 
 export const App = () => {
@@ -18,7 +17,6 @@ export const App = () => {
       <Header />
 
       <Outlet />
-      <ShopByCategory />
       <Footer />
     </div>
   );
