@@ -15,6 +15,7 @@ export const App = () => {
   return (
     <>
       <Header />
+
       <Outlet />
 
       <Footer />
