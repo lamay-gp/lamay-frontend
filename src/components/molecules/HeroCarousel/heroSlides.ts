@@ -1,8 +1,7 @@
-import bannerAccessories from '@/assets/images/banner-accessories.png';
-import bannerIphone14Mobile from '@/assets/images/banner-iphone14-mobile.png';
-import bannerIphone14 from '@/assets/images/banner-iphone14.png';
-import bannerPhones from '@/assets/images/banner-phones.png';
-import bannerTablets from '@/assets/images/banner-tablets.png';
+import bannerAppleWatch12 from '@/assets/images/banner-apple-watch-12.png';
+import bannerIpadAir13 from '@/assets/images/banner-ipad-air-13.png';
+import bannerIphone18Pro from '@/assets/images/banner-iphone-18-pro.png';
+import bannerIphoneDuo from '@/assets/images/banner-iphone-duo.png';
 
 export type HeroSlide = {
   id: string;
@@ -15,32 +14,31 @@ export type HeroSlide = {
 
 export const heroSlides: HeroSlide[] = [
   {
-    id: 'accessories',
+    id: 'iphone-18-pro',
     image: {
-      desktop: bannerAccessories,
+      desktop: bannerIphone18Pro,
     },
-    alt: 'Accessories',
+    alt: 'Iphone 18 Pro',
   },
   {
-    id: 'phones',
+    id: 'ipad-air-13',
     image: {
-      desktop: bannerPhones,
+      desktop: bannerIpadAir13,
     },
-    alt: 'Phones',
+    alt: 'Ipad Air 13',
   },
   {
-    id: 'tablets',
+    id: 'iphone-duo',
     image: {
-      desktop: bannerTablets,
+      desktop: bannerIphoneDuo,
     },
-    alt: 'Tablets',
+    alt: 'Iphone Duo',
   },
   {
-    id: 'iphone14',
+    id: 'apple-watch-series-12',
     image: {
-      desktop: bannerIphone14,
-      mobile: bannerIphone14Mobile,
+      desktop: bannerAppleWatch12,
     },
-    alt: 'iPhone 14',
+    alt: 'Apple Watch Series 12',
   },
 ];

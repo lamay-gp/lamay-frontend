@@ -2,7 +2,7 @@ import cartIsEmpty from '@/assets/images/cart-is-empty.png';
 import { Typography } from '@/components/atoms/Typography';
 import { CartCheckout } from '@/components/molecules/CartCheckout';
 import { CartItemList } from '@/components/organisms/CartItemList';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button/button';
 import { useCartStore } from '@/stores/cartStore';
 import { useProductsStore } from '@/stores/productsStore';
 

@@ -2,7 +2,7 @@ import { ArrowRightIcon } from 'lucide-react';
 import { Link } from 'react-router';
 
 import { Typography } from '@/components/atoms/Typography';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button/button';
 import {
   Carousel,
   CarouselContent,
