@@ -42,7 +42,7 @@ export const CartPage = () => {
         </div>
 
         {hasCartItems ?
-          <div className="flex flex-col-reverse gap-8 tablet-lg:flex-row tablet-lg:items-start tablet-lg:gap-4">
+          <div className="flex flex-col-reverse gap-8 tablet-lg:flex-row tablet-lg:items-start tablet-lg:gap-4 justify-between">
             <CartItemList cartProducts={cartProducts} />
             <CartCheckout />
           </div>

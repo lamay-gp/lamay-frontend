@@ -98,7 +98,7 @@ export const HeroCarousel = ({
                 key={slide.id}
                 className="basis-full pl-0"
               >
-                <div className="h-100 w-full overflow-hidden tablet:rounded-lg">
+                <div className="h-150 w-full overflow-hidden tablet:rounded-lg">
                   <picture className="block h-full w-full">
                     {slide.image.mobile && (
                       <source
