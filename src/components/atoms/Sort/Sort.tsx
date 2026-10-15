@@ -30,14 +30,15 @@ type SortProps = {
 export const Sort: React.FC<SortProps> = ({ value, onChange, className }) => {
   return (
     <div className={cn('flex flex-col gap-2', className)}>
-      <div className="flex items-center gap-2">
-        <ArrowUpDown className="w-4 h-4 text-muted-foreground" />
+      <div className="flex items-center justify-end gap-2">
         <Typography
           variant="small"
           as="span"
+          className="text-text-secondary"
         >
           Sort by
         </Typography>
+        <ArrowUpDown className="size-4 text-text-secondary" />
       </div>
 
       <Select
@@ -45,8 +46,11 @@ export const Sort: React.FC<SortProps> = ({ value, onChange, className }) => {
         value={value}
         onValueChange={(val) => onChange(val as SortOption)}
       >
-        <SelectTrigger className="w-full">
-          <SelectValue placeholder="Select sorting" />
+        <SelectTrigger className="w-full h-10">
+          <SelectValue
+            placeholder="Select sorting"
+            className="justify-end text-right"
+          />
         </SelectTrigger>
 
         <SelectContent
@@ -60,7 +64,7 @@ export const Sort: React.FC<SortProps> = ({ value, onChange, className }) => {
             <SelectItem
               key={optionValue}
               value={optionValue}
-              className="cursor-pointer"
+              className="cursor-pointer justify-end text-right"
             >
               {label}
             </SelectItem>
