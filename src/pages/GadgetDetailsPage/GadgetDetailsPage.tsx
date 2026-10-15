@@ -1,38 +1,48 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 
 import { ColorSelectorRadio } from '@/components/atoms/ColorSelectorRadio';
 import { useGadgetDetailsStore } from '@/stores/gadgetDetailsStore';
-import type { Gadget } from '@/types/Products';
+import type { Category } from '@/types/Products';
 
-type Props = {
-  gadget: Gadget;
-};
+export const GadgetDetailsPage = () => {
+  const { category, itemId } = useParams();
 
-export const GadgetDetailsPage = ({ gadget }: Props) => {
   const sortedByCategory = useGadgetDetailsStore(
-    (state) => state.gadgetsByCategory[gadget.category],
+    (state) => state.gadgetsByCategory[category as Category],
   );
 
   const fetchGadgets = useGadgetDetailsStore((state) => state.fetchGadgets);
 
-  const filteredGadgetsByModel = (sortedByCategory ?? []).filter(
-    (model) => model.namespaceId === gadget.namespaceId,
-  );
-  const [currentColor, setCurrentColor] = useState(gadget.color);
+  useEffect(() => {
+    if (category) {
+      fetchGadgets(category as Category);
+    }
+  }, [fetchGadgets, category]);
 
-  const onColorChange = (newColor: string) => setCurrentColor(newColor);
+  const currentGadget = sortedByCategory?.find((model) => model.id === itemId);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+
+  const currentColor = selectedColor ?? currentGadget?.color ?? '';
+
+  const filteredGadgetsByModel =
+    currentGadget ?
+      (sortedByCategory ?? []).filter(
+        (model) => model.namespaceId === currentGadget.namespaceId,
+      )
+    : [];
+
+  const onColorChange = (newColor: string) => {
+    setSelectedColor(newColor);
+  };
 
   console.log(filteredGadgetsByModel);
-
-  useEffect(() => {
-    fetchGadgets(gadget.category);
-  }, [fetchGadgets, gadget.category]);
 
   const selectedGadget = filteredGadgetsByModel.find(
     (model) => model.color === currentColor,
   );
 
-  const currentModelImgs = selectedGadget?.images ?? gadget.images;
+  const currentModelImgs = selectedGadget?.images ?? currentGadget?.images;
 
   console.log(currentModelImgs);
 
@@ -40,8 +50,8 @@ export const GadgetDetailsPage = ({ gadget }: Props) => {
     <div>
       Gadget details page
       <ColorSelectorRadio
-        currentColor={currentColor}
-        colorRange={gadget.colorsAvailable}
+        currentColor={currentColor || ''}
+        colorRange={currentGadget?.colorsAvailable || []}
         onClick={onColorChange}
       />
     </div>

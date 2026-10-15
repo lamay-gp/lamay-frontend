@@ -25,7 +25,7 @@ export const ColorSelectorRadio = ({
       {colorRange.map((color) => (
         <div
           key={color}
-          className="flex items-center justify-center"
+          className="flex cursor-pointer items-center justify-center"
         >
           <RadioGroupItem
             value={color}
