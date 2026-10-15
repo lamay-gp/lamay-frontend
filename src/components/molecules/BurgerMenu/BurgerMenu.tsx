@@ -33,7 +33,7 @@ export const BurgerMenu = () => {
           <Button
             variant="ghost"
             aria-label="Open menu"
-            className="h-12 w-12 rounded-none  border-elements p-0"
+            className="h-12 w-12 rounded-none  border-elements p-0 border-b-0"
           />
         }
       >
@@ -63,7 +63,7 @@ export const BurgerMenu = () => {
             variant="ghost"
             aria-label="Close menu"
             onClick={close}
-            className="h-12 w-12 rounded-none border-l-2 border-elements p-0"
+            className="h-12 w-12 rounded-none border-l border-elements p-0"
           >
             <XIcon className="size-5" />
           </Button>
