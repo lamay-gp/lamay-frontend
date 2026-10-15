@@ -4,7 +4,7 @@ import { HeroCarousel, heroSlides } from '@/components/molecules/HeroCarousel';
 export const HeroSection = () => {
   return (
     <>
-      <section>
+      <section className="mb-14 tablet:mb-16 tablet-lg:mb-20">
         <div className="container">
           <Typography
             variant="h1"

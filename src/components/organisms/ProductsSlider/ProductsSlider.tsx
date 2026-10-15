@@ -1,4 +1,8 @@
+import { ArrowRightIcon } from 'lucide-react';
+import { Link } from 'react-router';
+
 import { Typography } from '@/components/atoms/Typography';
+import { Button } from '@/components/ui/button';
 import {
   Carousel,
   CarouselContent,
@@ -16,50 +20,48 @@ type Props = {
 };
 export const ProductsSlider = ({ title, products }: Props) => {
   return (
-    <section className="py-7 tablet:py-8 desktop:py-10">
-      <Carousel
-        opts={{
-          align: 'start',
-          slidesToScroll: 1,
-        }}
-        className="w-full"
-      >
-        <div
-          className="mb-6 flex items-center justify-between px-4 tablet:px-6
-    desktop:px-8"
-        >
+    <Carousel
+      opts={{
+        align: 'start',
+      }}
+    >
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex gap-x-6 items-center flex-wrap">
           <Typography
             variant="h2"
             as="h2"
           >
             {title}
           </Typography>
+          <Link to={`/catalog`}>
+            <Button
+              variant="ghost"
+              className="text-button pl-0"
+            >
+              <Typography variant="button">View all</Typography>{' '}
+              <ArrowRightIcon />
+            </Button>
+          </Link>
+        </div>
 
-          <div className="flex gap-4">
-            <CarouselPrevious className="static translate-y-0" />
-            <CarouselNext className="static translate-y-0" />
-          </div>
+        <div className="flex gap-6">
+          <CarouselPrevious className="static" />
+          <CarouselNext className="static" />
         </div>
-        <div className="ml-4 tablet:ml-6 desktop:mx-8">
-          <CarouselContent>
-            {products.map((product) => (
-              <CarouselItem
-                key={product.itemId}
-                className="
-            pl-4
-            basis-[calc((100%_-_48px)*3/4_+_32px)]
-            tablet:basis-[calc((100%_-_176px)*5/12_+_64px)]
-            desktop:basis-1/4
-          "
-              >
-                <div className="h-full [&>*]:h-full [&>*]:w-full [&>*]:!max-w-none [&>*]:!min-w-0">
-                  <ProductCard product={product} />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </div>
-      </Carousel>
-    </section>
+      </div>
+      <div className="relative">
+        <div className="h-full w-41 absolute right-0 right-[-4px] bottom-0 bg-linear-to-l from-background to-transparent z-10 pointer-events-none"></div>
+        <CarouselContent className="max-w-60 tablet:max-w-full">
+          {products.map((product) => (
+            <CarouselItem
+              key={product.id}
+              className={`basis-1/${products.length}`}
+            >
+              <ProductCard product={product} />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </div>
+    </Carousel>
   );
 };

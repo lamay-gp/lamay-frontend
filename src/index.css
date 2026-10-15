@@ -162,10 +162,11 @@
 @layer components {
   section {
     padding-inline: 16px;
+    overflow: hidden;
   }
 
   .container {
-    max-width: 1200px !important;
+    width: 100%;
     min-width: 320px;
     margin-inline: auto;
   }
