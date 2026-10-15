@@ -21,7 +21,7 @@ export const LanguageSwitcher = ({
     trigger={
       <Button
         className={cn(
-          'flex h-12 w-12 items-center justify-center rounded-none border-2 border-t-0 border-b-0 border-elements bg-transparent p-0 text-[12px] font-medium text-text shadow-none hover:border-b-2 hover:border-text-secondary desktop:h-16 desktop:w-16 desktop:text-sm',
+          'flex h-12 w-12 items-center justify-center rounded-none border border-t-0 border-b-0 border-elements bg-transparent p-0 text-[12px] font-medium text-text shadow-none hover:border-b-2 hover:border-text-secondary desktop:h-16 desktop:w-16 desktop:text-sm',
           className,
         )}
       >

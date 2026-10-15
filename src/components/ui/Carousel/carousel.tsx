@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/set-state-in-effect */
-/* eslint-disable react-refresh/only-export-components */
+
 import { cn } from 'cn';
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -138,7 +138,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       ref={carouselRef}
-      className="overflow-hidden"
+      className="overflow-hidden h-full"
       data-slot="carousel-content"
     >
       <div
