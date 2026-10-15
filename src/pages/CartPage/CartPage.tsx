@@ -1,3 +1,4 @@
+import cartIsEmpty from '@/assets/images/cart-is-empty.png';
 import { Typography } from '@/components/atoms/Typography';
 import { CartCheckout } from '@/components/molecules/CartCheckout';
 import { CartItemList } from '@/components/organisms/CartItemList';
@@ -47,7 +48,7 @@ export const CartPage = () => {
             <CartCheckout />
           </div>
         : <img
-            src="/src/assets/images/cart-is-empty.png"
+            src={cartIsEmpty}
             alt="Cart is empty"
             className="mx-auto max-w-80 mt-15 tablet:max-w-120"
           />
