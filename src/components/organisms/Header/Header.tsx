@@ -1,111 +1,128 @@
-import { HeartIcon, MenuIcon, ShoppingBagIcon } from 'lucide-react';
+import { X } from 'lucide-react';
+import { useState } from 'react';
 import { NavLink } from 'react-router';
 
 import { SearchBar } from '@/components/atoms/SearchBar';
 import { Typography } from '@/components/atoms/Typography';
+import { BurgerMenu } from '@/components/molecules/BurgerMenu';
 import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher';
 import { Button } from '@/components/ui/Button/button';
+import { ACTION_LINKS, NAV_LINKS } from '@/config/navigation';
 
-const logo = `${import.meta.env.BASE_URL}logo/lamay-logo-1920.png`;
+const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+  `relative flex h-full items-center ${
+    isActive ?
+      'text-black after:absolute after:right-0 after:bottom-0 after:left-0 after:h-0.75 after:bg-black'
+    : 'text-text-secondary'
+  }`;
 
 export const Header = () => {
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   return (
-    <header className="h-12 shadow-[0px_1px_0px_0px_var(--elements)] desktop:h-16 mb-6">
-      {/* Mobile header */}
-      <div className="flex h-12 w-full items-center justify-between tablet:hidden">
+    <header className="sticky top-0 flex h-12 w-full items-center bg-background shadow-[0px_1px_0px_0px_var(--elements)] desktop:h-16 desktop:gap-6">
+      {isSearchFocused && (
+        <div className="flex size-12 shrink-0 items-center justify-center tablet-lg:hidden">
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            aria-label="Open menu"
+            className="h-12 w-12 shrink-0"
+            onClick={() => {
+              (document.activeElement as HTMLElement | null)?.blur();
+              setIsSearchFocused(false);
+            }}
+            onMouseDown={(event) => event.preventDefault()}
+          >
+            <X className="size-5" />
+          </Button>
+        </div>
+      )}
+
+      <NavLink
+        to="/"
+        aria-label="home"
+        className={`shrink-0 pl-4 tablet-lg:block tablet-lg:pl-6 ${
+          isSearchFocused ? 'hidden' : ''
+        }`}
+      >
         <img
-          src={logo}
-          alt="Lamay logo"
-          className="h-4 w-auto shrink-0 pl-4"
+          src="/favicon/favicon-48.png"
+          alt="Lamay"
+          className="size-8 tablet-lg:hidden"
         />
 
-        <Button
-          type="button"
-          variant="ghost"
-          size="icon"
-          aria-label="Open menu"
-          className="h-12 w-12 shrink-0"
-          onClick={() => {
-            // TODO: open mobile menu
-          }}
-        >
-          <MenuIcon className="h-5 w-5" />
-        </Button>
+        <img
+          src="/logo/lamay-logo-header-420.png"
+          alt="Lamay logo"
+          className="hidden h-5.5 w-auto tablet-lg:block"
+        />
+      </NavLink>
+
+      <nav className="hidden h-full shrink-0 items-center gap-4.5 pr-4.5 pl-4 text-[14px] font-extrabold tablet-lg:flex desktop:gap-16 desktop:pr-0 desktop:pl-12 desktop:text-[16px]">
+        {NAV_LINKS.map(({ to, label, ...linkProps }) => (
+          <NavLink
+            key={to}
+            to={to}
+            className={navLinkClass}
+            {...linkProps}
+          >
+            <Typography
+              variant="button"
+              as="span"
+            >
+              {label}
+            </Typography>
+          </NavLink>
+        ))}
+      </nav>
+
+      <div
+        className={`flex h-full min-w-0 flex-1 tablet-lg:justify-center ${
+          isSearchFocused ? 'pl-0 pr-0' : 'pr-3 pl-3'
+        }`}
+      >
+        <SearchBar
+          variant="header"
+          onFocusChange={setIsSearchFocused}
+          className="h-full w-full min-w-0 rounded-none border-2 border-t-0 border-b-0 border-r-0 border-elements px-3 text-[14px] has-focus:border tablet-lg:border-r-2 tablet-lg:border-b-elements tablet-lg:border-r-elements tablet-lg:max-w-125 tablet-lg:px-4 desktop:text-[17px]"
+          iconClassName="size-4 tablet-lg:size-5 desktop:size-6"
+        />
       </div>
 
-      {/* Tablet and desktop header */}
-      <div className="hidden h-12 w-full items-center gap-3 tablet:flex desktop:h-16 desktop:gap-6">
-        <img
-          src={logo}
-          alt="Lamay logo"
-          className="h-5.5 w-auto shrink-0 pl-6"
+      <div className=" hidden h-full shrink-0 items-center tablet-lg:flex">
+        <LanguageSwitcher
+          contentProps={{
+            align: 'start',
+            sideOffset: 0,
+            collisionPadding: 0,
+          }}
         />
 
-        <nav className="flex h-full shrink-0 items-center gap-4.5 pr-4.5 pl-4 text-[14px] font-extrabold desktop:gap-16 desktop:pr-0 desktop:pl-12 desktop:text-[16px]">
+        {ACTION_LINKS.map(({ to, label, icon: Icon }) => (
           <NavLink
-            to="/"
-            end
+            key={to}
+            to={to}
+            aria-label={label}
             className={({ isActive }) =>
-              `relative flex h-full items-center ${
+              `relative flex h-12 w-12 items-center justify-center border-2 border-t-0 border-l-0 border-b-0 border-elements hover:border-b-2 hover:border-l-2 hover:border-text-secondary desktop:h-16 desktop:w-16 ${
                 isActive ?
-                  'text-black after:absolute after:right-0 after:bottom-0 after:left-0 after:h-0.75 after:bg-black'
-                : 'text-text-secondary'
+                  'after:absolute after:right-0 after:bottom-0 after:left-0 after:h-0.75 after:bg-black'
+                : ''
               }`
             }
           >
-            <Typography
-              variant="button"
-              as="span"
-            >
-              Home
-            </Typography>
+            <Icon className="h-3.5 w-4.5 desktop:h-4.5" />
           </NavLink>
+        ))}
+      </div>
 
-          <NavLink
-            to="/catalog"
-            className={({ isActive }) =>
-              `relative flex h-full items-center ${
-                isActive ?
-                  'text-black after:absolute after:right-0 after:bottom-0 after:left-0 after:h-0.75 after:bg-black'
-                : 'text-text-secondary'
-              }`
-            }
-          >
-            <Typography
-              variant="button"
-              as="span"
-            >
-              Catalog
-            </Typography>
-          </NavLink>
-        </nav>
-
-        <div className="hidden min-w-0 flex-1 tablet:flex tablet:justify-center">
-          <SearchBar
-            className="h-12 w-full max-w-125 min-w-0 rounded-none border border-t-0 border-b-0 border-elements px-4 text-[14px] desktop:h-16 desktop:text-[17px]"
-            iconClassName="size-5 desktop:size-6"
-          />
-        </div>
-
-        <div className="ml-auto flex shrink-0 items-center pl-4.5">
-          <LanguageSwitcher />
-
-          <NavLink
-            to="/favourites"
-            aria-label="Favourites"
-            className="flex h-12 w-12 items-center justify-center border-r border-elements desktop:h-16 desktop:w-16"
-          >
-            <HeartIcon className="h-3.5 w-4.5 desktop:h-4.5" />
-          </NavLink>
-
-          <NavLink
-            to="/cart"
-            aria-label="Shopping cart"
-            className="flex h-12 w-12 items-center justify-center border border-t-0 border-b-0 border-l-0 border-elements desktop:h-16 desktop:w-16"
-          >
-            <ShoppingBagIcon className="h-3.5 w-4.5 desktop:h-4.5" />
-          </NavLink>
-        </div>
+      <div
+        className={`shrink-0 tablet-lg:hidden ${
+          isSearchFocused ? 'hidden' : ''
+        }`}
+      >
+        <BurgerMenu />
       </div>
     </header>
   );
