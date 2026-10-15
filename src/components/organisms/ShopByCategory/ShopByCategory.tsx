@@ -1,40 +1,21 @@
-import { Loader } from 'lucide-react';
-import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router';
 
-import { getGadgets } from '@/api/products';
-import { ErrorMessage } from '@/components/atoms/ErrorMessage';
 import { Typography } from '@/components/atoms/Typography';
-import type { Gadget } from '@/types/Products';
+import { useProductsStore } from '@/stores/productsStore';
 
 export const ShopByCategory = () => {
-  const [phones, setPhones] = useState<Gadget[]>([]);
-  const [tablets, setTablets] = useState<Gadget[]>([]);
-  const [accessories, setAccessories] = useState<Gadget[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  useEffect(() => {
-    const loadGadgets = async () => {
-      try {
-        const [phonesData, tabletsData, accessoriesData] = await Promise.all([
-          getGadgets('phones'),
-          getGadgets('tablets'),
-          getGadgets('accessories'),
-        ]);
+  const products = useProductsStore((state) => state.products);
 
-        setPhones(phonesData);
-        setTablets(tabletsData);
-        setAccessories(accessoriesData);
-      } catch (error) {
-        console.error('Failed to load gadgets:', error);
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const phoneCount = products.filter(
+    (product) => product.category === 'phones',
+  ).length;
+  const tabletCount = products.filter(
+    (product) => product.category === 'tablets',
+  ).length;
+  const accessoryCount = products.filter(
+    (product) => product.category === 'accessories',
+  ).length;
 
-    loadGadgets();
-  }, []);
   return (
     <section>
       <div className=" py-7 tablet:py-8 desktop:py-10 container">
@@ -75,9 +56,7 @@ export const ShopByCategory = () => {
                 as="p"
                 className="text-text-secondary"
               >
-                {isLoading ?
-                  <Loader />
-                : `${phones.length} models`}
+                {`${phoneCount} models`}
               </Typography>
             </article>
           </li>
@@ -105,9 +84,7 @@ export const ShopByCategory = () => {
                 as="p"
                 className="text-text-secondary"
               >
-                {isLoading ?
-                  <Loader />
-                : `${tablets.length} models`}
+                {`${tabletCount} models`}
               </Typography>
             </article>
           </li>
@@ -135,18 +112,15 @@ export const ShopByCategory = () => {
                 as="p"
                 className="text-text-secondary"
               >
-                {isLoading ?
-                  <Loader />
-                : `${accessories.length} models`}
+                {`${accessoryCount} models`}
               </Typography>
             </article>
           </li>
         </ul>
       </div>
-      {isError && <ErrorMessage message={'Failed to load gadgets'} />}
       {/*<ProductsSlider
         title={'slider'}
-        products={accessories}
+        products={accessoryCount}
       />*/}
     </section>
   );
