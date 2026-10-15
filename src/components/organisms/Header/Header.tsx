@@ -5,7 +5,8 @@ import { SearchBar } from '@/components/atoms/SearchBar';
 import { Typography } from '@/components/atoms/Typography';
 import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher';
 import { Button } from '@/components/ui/Button/button';
-import logo from '@/public/logo/lamay-logo-1920.png';
+
+const logo = `${import.meta.env.BASE_URL}logo/lamay-logo-1920.png`;
 
 export const Header = () => {
   return (
