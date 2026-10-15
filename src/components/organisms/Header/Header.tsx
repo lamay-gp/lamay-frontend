@@ -6,9 +6,8 @@ import { SearchBar } from '@/components/atoms/SearchBar';
 import { Typography } from '@/components/atoms/Typography';
 import { BurgerMenu } from '@/components/molecules/BurgerMenu';
 import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher';
+import { Button } from '@/components/ui/Button/button';
 import { ACTION_LINKS, NAV_LINKS } from '@/config/navigation';
-import logoMobile from '@/public/favicon/favicon-48.png';
-import logoDesktop from '@/public/logo/lamay-logo-header-420.png';
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   `relative flex h-full items-center ${
@@ -22,18 +21,22 @@ export const Header = () => {
   return (
     <header className="sticky top-0 flex h-12 w-full items-center bg-background shadow-[0px_1px_0px_0px_var(--elements)] desktop:h-16 desktop:gap-6">
       {isSearchFocused && (
-        <button
-          type="button"
-          aria-label="Close search"
-          className="flex size-12 shrink-0 items-center justify-center tablet-lg:hidden"
-          onMouseDown={(event) => event.preventDefault()}
-          onClick={() => {
-            (document.activeElement as HTMLElement | null)?.blur();
-            setIsSearchFocused(false);
-          }}
-        >
-          <X className="size-5" />
-        </button>
+        <div className="flex size-12 shrink-0 items-center justify-center tablet-lg:hidden">
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            aria-label="Open menu"
+            className="h-12 w-12 shrink-0"
+            onClick={() => {
+              (document.activeElement as HTMLElement | null)?.blur();
+              setIsSearchFocused(false);
+            }}
+            onMouseDown={(event) => event.preventDefault()}
+          >
+            <X className="size-5" />
+          </Button>
+        </div>
       )}
 
       <NavLink
@@ -44,13 +47,13 @@ export const Header = () => {
         }`}
       >
         <img
-          src={logoMobile}
+          src="/favicon/favicon-48.png"
           alt="Lamay"
           className="size-8 tablet-lg:hidden"
         />
 
         <img
-          src={logoDesktop}
+          src="/logo/lamay-logo-header-420.png"
           alt="Lamay logo"
           className="hidden h-5.5 w-auto tablet-lg:block"
         />
@@ -102,8 +105,10 @@ export const Header = () => {
             to={to}
             aria-label={label}
             className={({ isActive }) =>
-              `flex h-12 w-12 items-center justify-center border-2 border-t-0 border-l-0 border-b-0 border-elements hover:border-b-2 hover:border-l-2 hover:border-text-secondary desktop:h-16 desktop:w-16 ${
-                isActive ? 'tablet-lg:border-b-black' : ''
+              `relative flex h-12 w-12 items-center justify-center border-2 border-t-0 border-l-0 border-b-0 border-elements hover:border-b-2 hover:border-l-2 hover:border-text-secondary desktop:h-16 desktop:w-16 ${
+                isActive ?
+                  'after:absolute after:right-0 after:bottom-0 after:left-0 after:h-0.75 after:bg-black'
+                : ''
               }`
             }
           >

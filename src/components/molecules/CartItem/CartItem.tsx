@@ -16,11 +16,18 @@ type Props = {
 export const CartItem = ({ product }: Props) => {
   const updateQuantity = useCartStore((state) => state.updateQuantity);
   const cartItems = useCartStore((state) => state.cartItems);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+
+  const cartItem =
+    cartItems.find((item) => item.productId === product.itemId) || null;
 
   return (
-    <Card className="px-4 tablet:px-6 bg-card flex flex-row items-center rounded-lg gap-0 justify-between flex-wrap gap-y-4">
+    <Card className="px-4 tablet:px-6 bg-card flex flex-row items-center rounded-lg gap-0 justify-between gap-x-8 flex-wrap gap-y-4">
       <div className="flex items-center">
-        <Button className="p-2 inline-block cursor-pointer w-fit mr-2 tablet:mr-4">
+        <Button
+          className="p-2 inline-block cursor-pointer w-fit mr-2 tablet:mr-4"
+          onClick={() => removeFromCart(cartItem?.productId || '')}
+        >
           <XIcon className="text-icon-border" />
         </Button>
         <div className="w-20 h-20 flex items-center justify-center mr-4 tablet:mr-6">
@@ -40,8 +47,8 @@ export const CartItem = ({ product }: Props) => {
       <div className="flex items-center w-full justify-between desktop:w-auto desktop:gap-x-14">
         <QuantitySelector
           id={product.itemId}
-          quantity={6}
-          cartItems={cartItems} // temporary value for the tests
+          quantity={cartItem?.quantity}
+          cartItems={cartItems}
           updateQuantity={updateQuantity}
         />
         <ProductPrice

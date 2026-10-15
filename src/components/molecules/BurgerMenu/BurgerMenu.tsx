@@ -7,7 +7,6 @@ import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher';
 import { Button } from '@/components/ui/Button/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/Sheet/sheet';
 import { ACTION_LINKS, NAV_LINKS } from '@/config/navigation';
-import logoTablet from '@/public/logo/lamay-logo-header-420.png';
 
 export const BurgerMenu = () => {
   const [open, setOpen] = useState(false);
@@ -54,7 +53,7 @@ export const BurgerMenu = () => {
             className="pl-4"
           >
             <img
-              src={logoTablet}
+              src="/logo/lamay-logo-header-420.png"
               alt="Lamay"
               className="h-4 w-auto tablet-lg:h-5.5"
             />

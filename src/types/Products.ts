@@ -47,9 +47,18 @@ export type Gadget = {
   cell: string[];
 };
 
+export type ChecklistItem<T extends string = string> = {
+  id: T;
+  label: string;
+  count?: number;
+};
+
 export type Action = 'increment' | 'decrement';
 
 export type CartItem = {
   productId: string;
   quantity: number;
 };
+
+export type SortOption =
+  'price-asc' | 'price-desc' | 'title' | 'age-desc' | 'age-asc';

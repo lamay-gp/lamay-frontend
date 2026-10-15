@@ -85,7 +85,7 @@ export const HeroCarousel = ({
   }, [api, activeIndex, interval, slides.length]);
 
   return (
-    <section className="section-container px-0 tablet:px-6 desktop:px-0">
+    <div>
       <div className="group relative mx-auto w-full">
         <Carousel
           setApi={setApi}
@@ -98,7 +98,7 @@ export const HeroCarousel = ({
                 key={slide.id}
                 className="basis-full pl-0"
               >
-                <div className="h-100 w-full overflow-hidden rounded-lg">
+                <div className="h-150 w-full overflow-hidden tablet:rounded-lg">
                   <picture className="block h-full w-full">
                     {slide.image.mobile && (
                       <source
@@ -165,6 +165,6 @@ export const HeroCarousel = ({
           })}
         </div>
       )}
-    </section>
+    </div>
   );
 };

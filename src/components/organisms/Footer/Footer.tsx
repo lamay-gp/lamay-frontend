@@ -3,7 +3,8 @@ import { NavLink } from 'react-router';
 
 import { Typography } from '@/components/atoms/Typography';
 import { Button } from '@/components/ui/Button/button';
-import logo from '@/public/logo/lamay-logo.svg';
+
+const logo = `${import.meta.env.BASE_URL}logo/lamay-logo.svg`;
 
 export const Footer = () => {
   const scrollToTop = () => {
