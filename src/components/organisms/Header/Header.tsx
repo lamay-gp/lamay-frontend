@@ -19,7 +19,7 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
 export const Header = () => {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   return (
-    <header className="sticky top-0 flex h-12 w-full items-center bg-background shadow-[0px_1px_0px_0px_var(--elements)] desktop:h-16 desktop:gap-6">
+    <header className="flex h-12 w-full items-center bg-background shadow-[0px_1px_0px_0px_var(--elements)] desktop:h-16 desktop:gap-6 mb-6 tablet:mb-8">
       {isSearchFocused && (
         <div className="flex size-12 shrink-0 items-center justify-center tablet-lg:hidden">
           <Button
@@ -85,7 +85,7 @@ export const Header = () => {
         <SearchBar
           variant="header"
           onFocusChange={setIsSearchFocused}
-          className="h-full w-full min-w-0 rounded-none border-2 border-t-0 border-b-0 border-r-0 border-elements px-3 text-[14px] has-focus:border tablet-lg:border-r-2 tablet-lg:border-b-elements tablet-lg:border-r-elements tablet-lg:max-w-125 tablet-lg:px-4 desktop:text-[17px]"
+          className="h-full w-full min-w-0 rounded-none border border-t-0 border-b-0 border-r-0 border-elements px-3 text-[14px] has-focus:border tablet-lg:border-r tablet-lg:border-b-elements tablet-lg:border-r-elements tablet-lg:max-w-125 tablet-lg:px-4 desktop:text-[17px]"
           iconClassName="size-4 tablet-lg:size-5 desktop:size-6"
         />
       </div>
@@ -105,7 +105,7 @@ export const Header = () => {
             to={to}
             aria-label={label}
             className={({ isActive }) =>
-              `relative flex h-12 w-12 items-center justify-center border-2 border-t-0 border-l-0 border-b-0 border-elements hover:border-b-2 hover:border-l-2 hover:border-text-secondary desktop:h-16 desktop:w-16 ${
+              `relative flex h-12 w-12 items-center justify-center border border-t-0 border-l-0 border-b-0 border-elements hover:border-b-2 hover:border-2 hover:border-text-secondary desktop:h-16 desktop:w-16 ${
                 isActive ?
                   'after:absolute after:right-0 after:bottom-0 after:left-0 after:h-0.75 after:bg-black'
                 : ''

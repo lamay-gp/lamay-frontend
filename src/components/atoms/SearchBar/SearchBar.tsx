@@ -63,7 +63,7 @@ export const SearchBar = ({
       </InputGroup>
 
       {isOpen && trimmedQuery && (
-        <div className="absolute top-full left-0 z-50 w-full border-2 border-t-0 border-x-0 border-elements bg-background tablet-lg:border-x-2">
+        <div className="absolute top-full left-0 z-50 w-full border-elements bg-background">
           <ul>
             <li className="border-b border-elements last:border-b-0">
               <button
