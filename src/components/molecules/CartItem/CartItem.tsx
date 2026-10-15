@@ -22,7 +22,7 @@ export const CartItem = ({ product }: Props) => {
     cartItems.find((item) => item.productId === product.itemId) || null;
 
   return (
-    <Card className="px-4 tablet:px-6 bg-card flex flex-row items-center rounded-lg gap-0 justify-between gap-x-2 flex-wrap gap-y-4">
+    <Card className="px-4 tablet:px-6 bg-card flex flex-row items-center rounded-lg gap-0 justify-between gap-x-8 flex-wrap gap-y-4">
       <div className="flex items-center">
         <Button
           className="p-2 inline-block cursor-pointer w-fit mr-2 tablet:mr-4"

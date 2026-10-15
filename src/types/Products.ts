@@ -59,3 +59,6 @@ export type CartItem = {
   productId: string;
   quantity: number;
 };
+
+export type SortOption =
+  'price-asc' | 'price-desc' | 'title' | 'age-desc' | 'age-asc';

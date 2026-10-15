@@ -7,7 +7,7 @@ type Props = {
 
 export const CartItemList = ({ cartProducts }: Props) => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 w-full">
       {cartProducts.map((cartProduct) => (
         <CartItem
           key={cartProduct.id}
