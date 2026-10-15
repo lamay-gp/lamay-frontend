@@ -1,8 +1,7 @@
+import { SLIDER_PRODUCTS_COUNT } from '@/constants/Products';
 import { useProductsStore } from '@/stores/productsStore';
 
 import { ProductsSlider } from '../ProductsSlider';
-
-const SLIDER_PRODUCTS_COUNT = 10;
 
 export const BrandNewModelSection = () => {
   const products = useProductsStore((state) => state.products);
