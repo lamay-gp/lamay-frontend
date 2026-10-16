@@ -51,7 +51,7 @@ export const ProductsSlider = ({ title, products }: Props) => {
       </div>
       <div className="relative">
         <div className="h-full w-41 absolute right-0 right-[-4px] bottom-0 bg-linear-to-l from-background to-transparent z-10 pointer-events-none"></div>
-        <CarouselContent className="max-w-60 tablet:max-w-full">
+        <CarouselContent className="max-w-60">
           {products.map((product) => (
             <CarouselItem
               key={product.id}
