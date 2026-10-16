@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { ImageZoom } from '@/components/kibo-ui/image-zoom';
+
 const IMAGES_BASE_URL =
   'https://raw.githubusercontent.com/superpooperxxx/mate-group-project/master/public/gadgets';
 
@@ -25,11 +27,13 @@ export const ProductGallery = ({ images }: Props) => {
   return (
     <div className=" grid tablet:grid-cols-7 tablet:col-start-2 desktop:grid-cols-12  desktop:col-start-3 gap-4  mb-10 tablet:mb-16 desktop:mb-20">
       <div className="tablet:col-span-6 desktop:col-span-10">
-        <img
-          src={`${IMAGES_BASE_URL}/${selectedImage}`}
-          alt="Product"
-          className="aspect-square w-full object-contain"
-        />
+        <ImageZoom>
+          <img
+            src={`${IMAGES_BASE_URL}/${selectedImage}`}
+            alt="Product"
+            className="aspect-square w-full object-contain"
+          />
+        </ImageZoom>
       </div>
 
       <div
@@ -43,7 +47,7 @@ export const ProductGallery = ({ images }: Props) => {
             onClick={() => handleImageSelect(image)}
             aria-label="Show product image"
             aria-pressed={selectedImage === image}
-            className={` h-[49px] w-[51px] rounded-[4px] shrink-0 overflow-hidden cursor-pointer desktop:rounded-2 border hover:border-text tablet:aspect-square tablet:h-auto tablet:w-full ${
+            className={` h-12.25 w-12.75 rounded-[4px] shrink-0 overflow-hidden cursor-pointer desktop:rounded-2 border hover:border-text tablet:aspect-square tablet:h-auto tablet:w-full ${
               selectedImage === image ? 'border-text' : 'border-elements'
             }`}
           >

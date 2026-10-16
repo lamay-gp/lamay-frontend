@@ -74,7 +74,7 @@ export const GadgetDetailsPage = () => {
 
         <section
           className="container grid grid-cols-1
-        tablet:grid-cols-12 desktop:grid-cols-24 gap-4 tablet:gap-[17px] desktop:gap-16"
+        tablet:grid-cols-12 desktop:grid-cols-24 gap-4 tablet:gap-4.25 desktop:gap-16"
         >
           <div className="tablet:col-span-7 desktop:col-span-12 ">
             <ProductGallery images={currentModelImgs} />
