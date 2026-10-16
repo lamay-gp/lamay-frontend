@@ -1,3 +1,5 @@
+import halloweenBanner from '@/assets/images/banner-halloween-sale.png';
+import salesBanner from '@/assets/images/banner-sales.png';
 import { Typography } from '@/components/atoms/Typography';
 import { HeroCarousel, heroSlides } from '@/components/molecules/HeroCarousel';
 
@@ -17,16 +19,16 @@ export const HeroSection = () => {
           <div className="flex flex-col gap-4">
             <HeroCarousel slides={heroSlides} />
             <div className="flex gap-4 w-full">
-              <div className="rounded-xl overflow-hidden relative h-30 ring-0 inset-ring-1 inset-ring-elements flex items-center justify-center">
+              <div className="rounded-xl overflow-hidden relative h-30 ring-0 inset-ring-1 inset-ring-elements flex flex-1 min-w-0 items-center justify-center">
                 <img
-                  src="src/assets/images/banner-sales.png"
+                  src={salesBanner}
                   alt="Sales"
                   className="w-full scale-120 tablet:scale-100"
                 />
               </div>
-              <div className="rounded-xl overflow-hidden relative h-30 ring-0 inset-ring-1 inset-ring-elements flex items-center justify-center">
+              <div className="rounded-xl overflow-hidden relative h-30 ring-0 inset-ring-1 inset-ring-elements flex flex-1 min-w-0 items-center justify-center">
                 <img
-                  src="src/assets/images/banner-halloween-sale.png"
+                  src={halloweenBanner}
                   alt="Halloween sale"
                   className="w-full scale-200 tablet:scale-200 desktop:scale-130"
                 />
