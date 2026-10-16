@@ -2,7 +2,7 @@ import { X } from 'lucide-react';
 import { useState } from 'react';
 import { NavLink } from 'react-router';
 
-import { SearchBar } from '@/components/atoms/SearchBar';
+import { SearchBarHeader } from '@/components/atoms/SearchBarHeader';
 import { Typography } from '@/components/atoms/Typography';
 import { BurgerMenu } from '@/components/molecules/BurgerMenu';
 import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher';
@@ -82,8 +82,7 @@ export const Header = () => {
           isSearchFocused ? 'pl-0 pr-0' : 'pr-3 pl-3'
         }`}
       >
-        <SearchBar
-          variant="header"
+        <SearchBarHeader
           onFocusChange={setIsSearchFocused}
           className="h-full w-full min-w-0 rounded-none border border-t-0 border-b-0 border-r-0 border-elements px-3 text-[14px] has-focus:border tablet-lg:border-r tablet-lg:border-b-elements tablet-lg:border-r-elements tablet-lg:max-w-125 tablet-lg:px-4 desktop:text-[17px]"
           iconClassName="size-4 tablet-lg:size-5 desktop:size-6"
