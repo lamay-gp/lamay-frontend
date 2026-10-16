@@ -24,7 +24,7 @@ export const FavouritesPage = () => {
 
   return (
     <section className="mb-14 tablet:mb-16 tablet-lg:mb-20">
-      <div className="container px-4 tablet:px-6 tablet-lg:px-8 desktop:px-38">
+      <div className="container">
         <div className="flex items-end justify-between gap-3">
           <div className="min-w-0">
             <Typography
@@ -76,7 +76,7 @@ export const FavouritesPage = () => {
             <img
               src={favouriteIsEmpty}
               alt="Your favourites list is empty"
-              className="mx-auto mt-15 mb-4 max-w-50 tablet:max-w-70"
+              className="mx-auto max-w-80 mt-15 tablet:max-w-120"
             />
             You haven&apos;t added any favourites yet.
           </Typography>
