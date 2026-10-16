@@ -13,7 +13,7 @@ export const App = () => {
   }, [fetchProducts]);
 
   return (
-    <div className="min-h-screen grid grid-rows grid-rows-[auto_1fr_auto]">
+    <div className="min-h-screen grid grid-rows grid-rows-[auto_1fr_auto] grid-cols-[minmax(0,1fr)]">
       <Header />
       <Outlet />
       <Footer />

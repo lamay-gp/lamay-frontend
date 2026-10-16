@@ -51,11 +51,11 @@ export const ProductsSlider = ({ title, products }: Props) => {
       </div>
       <div className="relative">
         <div className="h-full w-41 absolute -right-1 bottom-0 bg-linear-to-l from-background to-transparent z-10 pointer-events-none"></div>
-        <CarouselContent className="max-w-60">
+        <CarouselContent>
           {products.map((product) => (
             <CarouselItem
               key={product.id}
-              className={`basis-1/${products.length}`}
+              className="basis-54"
             >
               <ProductCard product={product} />
             </CarouselItem>
