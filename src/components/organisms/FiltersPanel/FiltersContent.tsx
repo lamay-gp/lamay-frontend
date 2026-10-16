@@ -1,6 +1,5 @@
 import { Checklist } from '@/components/atoms/Checklist';
 import { PriceRange } from '@/components/atoms/PriceRange';
-import { SearchBar } from '@/components/atoms/SearchBar';
 import { Typography } from '@/components/atoms/Typography';
 import {
   Accordion,
@@ -24,8 +23,6 @@ export const FiltersContent = () => {
 
   return (
     <div className="flex flex-col gap-2">
-      <SearchBar />
-
       <Accordion multiple>
         <AccordionItem value="category">
           <AccordionTrigger>
