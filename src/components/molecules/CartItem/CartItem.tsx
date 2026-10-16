@@ -2,7 +2,6 @@ import { Button } from '@base-ui/react';
 import { XIcon } from 'lucide-react';
 
 import { Typography } from '@/components/atoms/Typography';
-import { Card } from '@/components/ui/card';
 import { useCartStore } from '@/stores/cartStore';
 import type { Product } from '@/types/Products';
 
@@ -22,7 +21,7 @@ export const CartItem = ({ product }: Props) => {
     cartItems.find((item) => item.productId === product.itemId) || null;
 
   return (
-    <Card className="px-4 tablet:px-6 bg-card flex flex-row items-center rounded-lg gap-0 justify-between gap-x-8 flex-wrap gap-y-4">
+    <article className=" p-6 px-4 tablet:px-6 bg-card flex flex-row items-center rounded-lg gap-0 justify-between gap-x-8 flex-wrap gap-y-4 ring-0 inset-ring-1 inset-ring-elements">
       <div className="flex items-center">
         <Button
           className="p-2 inline-block cursor-pointer w-fit mr-2 tablet:mr-4"
@@ -57,6 +56,6 @@ export const CartItem = ({ product }: Props) => {
           variant="accent"
         />
       </div>
-    </Card>
+    </article>
   );
 };
