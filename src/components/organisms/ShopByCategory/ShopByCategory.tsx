@@ -118,10 +118,6 @@ export const ShopByCategory = () => {
           </li>
         </ul>
       </div>
-      {/*<ProductsSlider
-        title={'slider'}
-        products={accessoryCount}
-      />*/}
     </section>
   );
 };
