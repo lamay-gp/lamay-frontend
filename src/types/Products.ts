@@ -26,7 +26,7 @@ export type Description = {
 };
 
 export type Gadget = {
-  id: number;
+  id: string;
   category: Category;
   namespaceId: string;
   name: string;
