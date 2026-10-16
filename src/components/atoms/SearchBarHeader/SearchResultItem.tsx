@@ -17,7 +17,7 @@ export const SearchResultItem = ({
     <Button
       variant="ghost"
       onClick={onClick}
-      className="flex cursor-pointer h-auto w-full items-center justify-start gap-3 rounded-none border-b border-elements px-3 py-3 text-left whitespace-normal transition-colors hover:bg-hover tablet-lg:px-4"
+      className="flex h-auto w-full cursor-pointer items-center justify-start gap-3 rounded-none border border-transparent border-b-elements px-3 py-3 text-left whitespace-normal transition-colors hover:border-2 hover:border-text-secondary hover:bg-hover tablet-lg:px-4"
     >
       <img
         src={`${import.meta.env.VITE_GADGETS_URL}/${product.image}`}
