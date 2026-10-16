@@ -15,9 +15,7 @@ export const App = () => {
   return (
     <div className="min-h-screen grid grid-rows grid-rows-[auto_1fr_auto]">
       <Header />
-
       <Outlet />
-
       <Footer />
     </div>
   );

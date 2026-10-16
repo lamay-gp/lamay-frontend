@@ -23,7 +23,7 @@ export const AddToCartButton: React.FC<Props> = ({
   const isInCart = cartItems.some((item) => item.productId === productId);
 
   const className = cn(
-    'border',
+    'border h-full w-full cursor-pointer',
     size === 'sm' ? 'py-2.5' : 'py-3.5',
     isInCart ?
       'border-elements bg-transparent text-button'
