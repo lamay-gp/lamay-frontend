@@ -3,7 +3,7 @@ import { ErrorMessage } from '@/components/atoms/ErrorMessage';
 import { Loader } from '@/components/atoms/Loader';
 import { Typography } from '@/components/atoms/Typography';
 import { ProductCard } from '@/components/organisms/ProductCard';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button/button';
 import { useFavouritesStore } from '@/stores/favouritesStore';
 import { useProductsStore } from '@/stores/productsStore';
 
