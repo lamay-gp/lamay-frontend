@@ -168,6 +168,7 @@
   .container {
     width: 100%;
     min-width: 320px;
+    max-width: 1200px !important;
     margin-inline: auto;
   }
 
