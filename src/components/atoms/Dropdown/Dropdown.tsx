@@ -4,31 +4,28 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/Dropdown-menu/dropdown-menu';
 
-import type { ReactElement, ReactNode } from 'react';
+import type { ComponentProps, ReactElement, ReactNode } from 'react';
 
 type DropdownProps = {
   trigger: ReactElement;
   children: ReactNode;
   contentClassName?: string;
+  contentProps?: Omit<ComponentProps<typeof DropdownMenuContent>, 'className'>;
 };
 
 export const Dropdown = ({
   trigger,
   children,
   contentClassName,
-}: DropdownProps) => {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger render={trigger} />
-
-      <DropdownMenuContent
-        align="start"
-        side="bottom"
-        sideOffset={0}
-        className={contentClassName}
-      >
-        {children}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-};
+  contentProps,
+}: DropdownProps) => (
+  <DropdownMenu>
+    <DropdownMenuTrigger render={trigger} />
+    <DropdownMenuContent
+      className={contentClassName}
+      {...contentProps}
+    >
+      {children}
+    </DropdownMenuContent>
+  </DropdownMenu>
+);

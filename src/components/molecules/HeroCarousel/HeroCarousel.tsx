@@ -86,24 +86,25 @@ export const HeroCarousel = ({
 
   return (
     <div>
-      <div className="group relative mx-auto w-full">
+      <div className="group relative mx-auto w-full h-50 tablet:h-80 tablet-lg:h-100 desktop:h-140">
         <Carousel
           setApi={setApi}
           opts={{ loop: true }}
-          className="w-full"
+          className="w-full h-full"
         >
-          <CarouselContent className="ml-0">
+          <CarouselContent className="ml-0 h-full">
             {slides.map((slide) => (
               <CarouselItem
                 key={slide.id}
-                className="basis-full pl-0"
+                className="basis-full pl-0 h-full"
               >
-                <div className="h-150 w-full overflow-hidden tablet:rounded-lg">
+                <div className="h-full w-full overflow-hidden rounded-lg">
                   <picture className="block h-full w-full">
                     {slide.image.mobile && (
                       <source
                         media="(max-width: 767px)"
                         srcSet={slide.image.mobile}
+                        className="h-full"
                       />
                     )}
 
@@ -132,7 +133,7 @@ export const HeroCarousel = ({
       {slides.length > 1 && (
         <div
           role="group"
-          className="mt-4 flex w-full justify-center gap-2"
+          className="mt-3 flex w-full justify-center gap-2"
           aria-label="Прогрес каруселі"
         >
           {slides.map((slide, index) => {
