@@ -11,6 +11,7 @@ type DropdownProps = {
   children: ReactNode;
   contentClassName?: string;
   contentProps?: Omit<ComponentProps<typeof DropdownMenuContent>, 'className'>;
+  modal?: boolean;
 };
 
 export const Dropdown = ({
@@ -18,8 +19,9 @@ export const Dropdown = ({
   children,
   contentClassName,
   contentProps,
+  modal = true,
 }: DropdownProps) => (
-  <DropdownMenu>
+  <DropdownMenu modal={modal}>
     <DropdownMenuTrigger render={trigger} />
     <DropdownMenuContent
       className={contentClassName}

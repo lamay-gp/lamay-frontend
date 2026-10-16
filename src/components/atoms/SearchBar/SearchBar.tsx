@@ -36,7 +36,7 @@ export const SearchBar = ({
       ref={searchRef}
     >
       <InputGroup className={className}>
-        <InputGroupAddon>
+        <InputGroupAddon className="mr-1">
           <Search className={iconClassName} />
         </InputGroupAddon>
 
