@@ -120,9 +120,7 @@ export const SearchBarHeader = ({
                     <SearchResultItem
                       product={product}
                       onClick={() =>
-                        goTo(
-                          `/catalog/product/${product.category}/${product.itemId}`,
-                        )
+                        goTo(`/product/${product.category}/${product.itemId}`)
                       }
                     />
                   </li>
