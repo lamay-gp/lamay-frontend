@@ -8,83 +8,25 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/Accordion/accordion';
+import { useCatalogFilters } from '@/hooks/useCatalogFilters';
 
-const noop = () => undefined;
+const FACETS = [
+  { key: 'color', label: 'Color' },
+  { key: 'capacity', label: 'Capacity' },
+  { key: 'ram', label: 'RAM' },
+  { key: 'year', label: 'Year' },
+  { key: 'screen', label: 'Screen' },
+] as const;
 
 export const FiltersContent = () => {
+  const { options, selected, priceBounds, priceValue, setSelected, setPrice } =
+    useCatalogFilters();
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       <SearchBar />
 
       <Accordion multiple>
-        <AccordionItem value="price">
-          <AccordionTrigger>
-            <Typography
-              variant="button"
-              as="span"
-            >
-              Price
-            </Typography>
-          </AccordionTrigger>
-          <AccordionContent>
-            <PriceRange />
-          </AccordionContent>
-        </AccordionItem>
-
-        <AccordionItem value="color">
-          <AccordionTrigger>
-            <Typography
-              variant="button"
-              as="span"
-            >
-              Color
-            </Typography>
-          </AccordionTrigger>
-          <AccordionContent>
-            <Checklist
-              items={[]}
-              selectedIds={[]}
-              onChange={noop}
-            />
-          </AccordionContent>
-        </AccordionItem>
-
-        <AccordionItem value="capacity">
-          <AccordionTrigger>
-            <Typography
-              variant="button"
-              as="span"
-            >
-              Capacity
-            </Typography>
-          </AccordionTrigger>
-          <AccordionContent>
-            <Checklist
-              items={[]}
-              selectedIds={[]}
-              onChange={noop}
-            />
-          </AccordionContent>
-        </AccordionItem>
-
-        <AccordionItem value="ram">
-          <AccordionTrigger>
-            <Typography
-              variant="button"
-              as="span"
-            >
-              RAM
-            </Typography>
-          </AccordionTrigger>
-          <AccordionContent>
-            <Checklist
-              items={[]}
-              selectedIds={[]}
-              onChange={noop}
-            />
-          </AccordionContent>
-        </AccordionItem>
-
         <AccordionItem value="category">
           <AccordionTrigger>
             <Typography
@@ -96,48 +38,56 @@ export const FiltersContent = () => {
           </AccordionTrigger>
           <AccordionContent>
             <Checklist
-              items={[]}
-              selectedIds={[]}
-              onChange={noop}
+              items={options.category}
+              selectedIds={selected.category}
+              onChange={(ids) => setSelected('category', ids)}
             />
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="year">
+        <AccordionItem value="price">
           <AccordionTrigger>
             <Typography
               variant="button"
               as="span"
             >
-              Year
+              Price
             </Typography>
           </AccordionTrigger>
           <AccordionContent>
-            <Checklist
-              items={[]}
-              selectedIds={[]}
-              onChange={noop}
+            <PriceRange
+              key={`${priceBounds.min}-${priceBounds.max}`}
+              min={priceBounds.min}
+              max={priceBounds.max}
+              defaultMinPrice={priceValue[0]}
+              defaultMaxPrice={priceValue[1]}
+              onChange={setPrice}
             />
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="screen">
-          <AccordionTrigger>
-            <Typography
-              variant="button"
-              as="span"
-            >
-              Screen
-            </Typography>
-          </AccordionTrigger>
-          <AccordionContent>
-            <Checklist
-              items={[]}
-              selectedIds={[]}
-              onChange={noop}
-            />
-          </AccordionContent>
-        </AccordionItem>
+        {FACETS.map((facet) => (
+          <AccordionItem
+            key={facet.key}
+            value={facet.key}
+          >
+            <AccordionTrigger>
+              <Typography
+                variant="button"
+                as="span"
+              >
+                {facet.label}
+              </Typography>
+            </AccordionTrigger>
+            <AccordionContent>
+              <Checklist
+                items={options[facet.key]}
+                selectedIds={selected[facet.key]}
+                onChange={(ids) => setSelected(facet.key, ids)}
+              />
+            </AccordionContent>
+          </AccordionItem>
+        ))}
       </Accordion>
     </div>
   );
