@@ -22,7 +22,7 @@ export const LanguageSwitcher = ({
     trigger={
       <Button
         className={cn(
-          'flex h-12 w-12 cursor-pointer items-center justify-center rounded-none border border-t-0 border-b-0 border-l-0 border-elements bg-transparent p-0 text-[12px] font-medium text-text shadow-none transition-colors',
+          'flex h-12 w-12 cursor-pointer items-center justify-center rounded-none border border-t-0 border-b-0 border-elements bg-transparent p-0 text-[12px] font-medium text-text shadow-none transition-colors',
           'hover:border-text-secondary hover:bg-transparent',
           'data-popup-open:border-text-secondary data-popup-open:shadow-none',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 focus-visible:ring-inset',
