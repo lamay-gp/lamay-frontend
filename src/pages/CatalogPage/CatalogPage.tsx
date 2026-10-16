@@ -23,8 +23,8 @@ export const CatalogPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <section className="flex-1 py-6">
-        <div className="container mx-auto px-4 tablet:px-8">
+      <section className="flex-1">
+        <div className="container mx-auto">
           <header className="mb-8">
             <Typography
               variant="h1"

@@ -3,8 +3,6 @@ import { useState } from 'react';
 
 import { cn } from '@/lib/utils';
 
-import { Typography } from '../Typography';
-
 type Props = {
   min?: number;
   max?: number;
@@ -90,17 +88,9 @@ export const PriceRange = ({
         className,
       )}
     >
-      <Typography
-        variant="h4"
-        as="h4"
-        className="font-semibold"
-      >
-        Price ($)
-      </Typography>
-
       <div className="flex items-center gap-2">
         <div className="flex items-center border border-input rounded-md px-3 py-1.5 w-full bg-background">
-          <span className="text-muted-foreground text-sm mr-1">from</span>
+          <span className="text-muted-foreground text-sm mr-1">$</span>
           <input
             type="number"
             value={minInput}
@@ -117,7 +107,7 @@ export const PriceRange = ({
         <span className="text-muted-foreground">—</span>
 
         <div className="flex items-center border border-input rounded-md px-3 py-1.5 w-full bg-background">
-          <span className="text-muted-foreground text-sm mr-1">to</span>
+          <span className="text-muted-foreground text-sm mr-1">$</span>
           <input
             type="number"
             value={maxInput}
