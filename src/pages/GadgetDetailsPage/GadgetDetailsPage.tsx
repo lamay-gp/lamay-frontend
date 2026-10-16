@@ -1,4 +1,4 @@
-//import { Loader } from 'lucide-react';
+import { Loader } from 'lucide-react';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router';
 
@@ -8,17 +8,31 @@ import { ProductGallery } from '@/components/organisms/ProductGallery';
 import { ProductInfo } from '@/components/organisms/ProductInfo';
 //import { ProductsSlider } from '@/components/organisms/ProductsSlider';
 import { useGadgetDetailsStore } from '@/stores/gadgetDetailsStore';
+import { useProductsStore } from '@/stores/productsStore';
 import type { Category } from '@/types/Products';
 
 export const GadgetDetailsPage = () => {
   const { category, itemId } = useParams();
   const navigate = useNavigate();
 
+  const products = useProductsStore((state) => state.products);
   const sortedByCategory = useGadgetDetailsStore(
     (state) => state.gadgetsByCategory[category as Category],
   );
+  const isProductsLoading = useProductsStore((state) => state.isLoading);
+  const isGadgetsLoading = useGadgetDetailsStore((state) =>
+    category ? state.loadingCategories.includes(category as Category) : false,
+  );
+  const gadgetError = useGadgetDetailsStore((state) =>
+    category ? state.errors[category as Category] : undefined,
+  );
 
+  const fetchProducts = useProductsStore((state) => state.fetchProducts);
   const fetchGadgets = useGadgetDetailsStore((state) => state.fetchGadgets);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
   useEffect(() => {
     if (category) {
@@ -26,11 +40,27 @@ export const GadgetDetailsPage = () => {
     }
   }, [fetchGadgets, category]);
 
-  // const [isLoading, setIsLoading] = useState(true);
+  if (!category || !itemId) {
+    return <ErrorMessage message="Invalid product URL" />;
+  }
+  if (isProductsLoading || isGadgetsLoading) {
+    return (
+      <div className="flex min-h-60 items-center justify-center">
+        <Loader className="size-8 animate-spin" />
+      </div>
+    );
+  }
+
+  if (gadgetError) {
+    return <ErrorMessage message={gadgetError} />;
+  }
+
   const currentGadget = sortedByCategory?.find((model) => model.id === itemId);
+
   if (!currentGadget) {
     return <ErrorMessage message="Gadget not found" />;
   }
+  const product = products.find((item) => item.itemId === itemId);
   const currentModelImgs = currentGadget?.images || [];
 
   const filteredGadgetsByModel =
@@ -45,16 +75,12 @@ export const GadgetDetailsPage = () => {
       (gadget) => gadget.color === newColor,
     );
 
-    if (!nextGadget) {
+    if (!nextGadget || !product) {
       return <ErrorMessage message="Gadget not found" />;
     }
 
     navigate(`/product/${category}/${nextGadget.id}`);
   };
-
-  if (!category || !itemId) {
-    return <ErrorMessage message="Invalid product URL" />;
-  }
 
   return (
     <div>
@@ -74,7 +100,7 @@ export const GadgetDetailsPage = () => {
 
         <section
           className="container grid grid-cols-1
-        tablet:grid-cols-12 desktop:grid-cols-24 gap-4 tablet:gap-[17px] desktop:gap-16"
+        tablet:grid-cols-12 desktop:grid-cols-24 gap-4 tablet:gap-[17px] desktop:gap-16 pb-7 tablet:pb-8 desktop:pb-10"
         >
           <div className="tablet:col-span-7 desktop:col-span-12 ">
             <ProductGallery images={currentModelImgs} />
@@ -82,29 +108,224 @@ export const GadgetDetailsPage = () => {
 
           <div className="tablet:col-span-5 desktop:col-span-12">
             <ProductInfo
+              productId={product?.id}
               product={currentGadget}
               onColorChange={onColorChange}
             />
           </div>
         </section>
 
-        <section className="container flex flex-col gap-14 tablet:gap-16 desktop:gap-16 tablet:flex-row">
-          <div></div>
+        <section
+          className="container flex flex-col gap-14 tablet:gap-16 desktop:gap-16
+        py-7 tablet:py-8 desktop:py-10 desktop:grid desktop:grid-cols-24"
+        >
+          <div className="desktop:col-span-12">
+            <Typography
+              variant="h3"
+              as="h2"
+              className="mb-4 font-bold tablet:font-extrabold"
+            >
+              About
+            </Typography>
 
-          <div></div>
+            <div className="w-full mb-8 border-b border-elements" />
+
+            <ul>
+              {currentGadget.description.map((section) => (
+                <li key={section.title}>
+                  <Typography
+                    variant="h4"
+                    as="h3"
+                    className="mb-4 font-bold tablet:font-extrabold"
+                  >
+                    {section.title}
+                  </Typography>
+
+                  <Typography
+                    variant="button"
+                    as="p"
+                    className="mb-8 desktop:font-medium text-text-secondary"
+                  >
+                    {section.text}
+                  </Typography>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="desktop:col-span-12">
+            <Typography
+              variant="h3"
+              as="h2"
+              className="mb-4 font-bold tablet:font-extrabold"
+            >
+              Tech specs
+            </Typography>
+
+            <div className="w-full mb-[30px] tablet:mb-[25px] border-b border-elements" />
+
+            <ul className="[&>li:not(:last-child)]:mb-2">
+              <li>
+                <div className="flex justify-between">
+                  <Typography
+                    variant="body"
+                    as="p"
+                    className=" font-medium text-text-secondary"
+                  >
+                    Screen
+                  </Typography>
+                  <Typography
+                    variant="button"
+                    as="p"
+                    className=" text-text"
+                  >
+                    {currentGadget.screen}
+                  </Typography>
+                </div>
+              </li>
+
+              <li>
+                <div className="flex justify-between">
+                  <Typography
+                    variant="body"
+                    as="p"
+                    className=" font-medium text-text-secondary"
+                  >
+                    Resolution
+                  </Typography>
+                  <Typography
+                    variant="button"
+                    as="p"
+                    className=" text-text"
+                  >
+                    {currentGadget.resolution}
+                  </Typography>
+                </div>
+              </li>
+
+              <li>
+                <div className="flex justify-between">
+                  <Typography
+                    variant="body"
+                    as="p"
+                    className=" font-medium text-text-secondary"
+                  >
+                    Processor
+                  </Typography>
+                  <Typography
+                    variant="button"
+                    as="p"
+                    className=" text-text"
+                  >
+                    {currentGadget.processor}
+                  </Typography>
+                </div>
+              </li>
+
+              <li>
+                <div className="flex justify-between">
+                  <Typography
+                    variant="body"
+                    as="p"
+                    className=" font-medium text-text-secondary"
+                  >
+                    RAM
+                  </Typography>
+                  <Typography
+                    variant="button"
+                    as="p"
+                    className=" text-text"
+                  >
+                    {currentGadget.ram}
+                  </Typography>
+                </div>
+              </li>
+
+              <li>
+                <div className="flex justify-between">
+                  <Typography
+                    variant="body"
+                    as="p"
+                    className=" font-medium text-text-secondary"
+                  >
+                    Built in memory
+                  </Typography>
+                  <Typography
+                    variant="button"
+                    as="p"
+                    className=" text-text"
+                  >
+                    {currentGadget.capacity}
+                  </Typography>
+                </div>
+              </li>
+
+              <li>
+                <div className="flex justify-between">
+                  <Typography
+                    variant="body"
+                    as="p"
+                    className=" font-medium text-text-secondary"
+                  >
+                    Camera
+                  </Typography>
+                  <Typography
+                    variant="button"
+                    as="p"
+                    className=" text-text"
+                  >
+                    {currentGadget.camera}
+                  </Typography>
+                </div>
+              </li>
+
+              <li>
+                <div className="flex justify-between">
+                  <Typography
+                    variant="body"
+                    as="p"
+                    className=" font-medium text-text-secondary"
+                  >
+                    Zoom
+                  </Typography>
+                  <Typography
+                    variant="button"
+                    as="p"
+                    className=" text-text"
+                  >
+                    {currentGadget.zoom}
+                  </Typography>
+                </div>
+              </li>
+
+              <li>
+                <div className="flex justify-between">
+                  <Typography
+                    variant="body"
+                    as="p"
+                    className=" font-medium text-text-secondary"
+                  >
+                    Cell
+                  </Typography>
+                  <Typography
+                    variant="button"
+                    as="p"
+                    className=" text-text"
+                  >
+                    {currentGadget.cell.join(', ')}
+                  </Typography>
+                </div>
+              </li>
+            </ul>
+          </div>
         </section>
       </div>
-      {/*<ProductsSlider
-        title="You may also like"
-        products={filteredGadgetsByModel}
-      />*/}
+      {/*<div className="py-7 tablet:py-8 desktop:py-10">
+        <ProductsSlider
+          title="You may also like"
+          products={products}
+        />
+      </div>*/}
     </div>
   );
 };
-
-/*http://localhost:5173/product/phones/apple-iphone-11-128gb-black*/
-
-/*
-https://github.com/superpooperxxx/mate-group-project/blob/master/public/gadgets/img/phones/apple-iphone-11/black/00.webp
-
-"img/phones/apple-iphone-11/black/00.webp",*/
