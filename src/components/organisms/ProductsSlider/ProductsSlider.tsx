@@ -36,7 +36,7 @@ export const ProductsSlider = ({ title, products }: Props) => {
           <Link to={`/catalog`}>
             <Button
               variant="ghost"
-              className="text-button pl-0"
+              className="text-button pl-0 tablet:pl-2.5 cursor-pointer hover:text-button"
             >
               <Typography variant="button">View all</Typography>{' '}
               <ArrowRightIcon />
@@ -45,13 +45,13 @@ export const ProductsSlider = ({ title, products }: Props) => {
         </div>
 
         <div className="flex gap-6">
-          <CarouselPrevious className="static" />
-          <CarouselNext className="static" />
+          <CarouselPrevious className="static cursor-pointer" />
+          <CarouselNext className="static cursor-pointer" />
         </div>
       </div>
       <div className="relative">
-        <div className="h-full w-41 absolute right-0 right-[-4px] bottom-0 bg-linear-to-l from-background to-transparent z-10 pointer-events-none"></div>
-        <CarouselContent className="max-w-60 tablet:max-w-full">
+        <div className="h-full w-41 absolute -right-1 bottom-0 bg-linear-to-l from-background to-transparent z-10 pointer-events-none"></div>
+        <CarouselContent className="max-w-60">
           {products.map((product) => (
             <CarouselItem
               key={product.id}
