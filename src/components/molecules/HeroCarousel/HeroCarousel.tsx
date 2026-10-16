@@ -120,11 +120,11 @@ export const HeroCarousel = ({
           </CarouselContent>
 
           <div className="pointer-events-none absolute inset-y-0 left-4 z-10 flex items-center opacity-0 transition-opacity group-hover:pointer-events-auto group-hover:opacity-100">
-            <CarouselPrevious className="static translate-y-0 transition-transform active:translate-y-0" />
+            <CarouselPrevious className="static translate-y-0 transition-transform active:translate-y-0 cursor-pointer" />
           </div>
 
           <div className="pointer-events-none absolute inset-y-0 right-4 z-10 flex items-center opacity-0 transition-opacity group-hover:pointer-events-auto group-hover:opacity-100">
-            <CarouselNext className="static translate-y-0 transition-transform active:translate-y-0" />
+            <CarouselNext className="static translate-y-0 transition-transform active:translate-y-0 cursor-pointer" />
           </div>
         </Carousel>
       </div>

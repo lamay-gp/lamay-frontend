@@ -22,8 +22,8 @@ export const ShopByCategory = () => {
   ).length;
 
   return (
-    <section>
-      <div className=" py-7 tablet:py-8 desktop:py-10 container">
+    <section className="mb-14 tablet:mb-16 tablet-lg:mb-20">
+      <div className="container">
         <Typography
           variant="h2"
           as="h2"

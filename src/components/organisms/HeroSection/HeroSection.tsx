@@ -13,7 +13,7 @@ export const HeroSection = () => {
             as="h1"
             className="mb-4 tablet-lg:mb-8 desktop:mb-6 tablet-lg:mt-2 desktop:mt-4"
           >
-            Welcome to <span className="text-button">LAMAY</span> Gadgets store!
+            <span className="text-button">LAMAY</span> GADGET STORE
           </Typography>
 
           <div className="flex flex-col gap-4">
