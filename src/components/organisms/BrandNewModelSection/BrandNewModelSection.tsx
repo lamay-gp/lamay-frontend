@@ -11,7 +11,7 @@ export const BrandNewModelSection = () => {
     .slice(0, SLIDER_PRODUCTS_COUNT);
 
   return (
-    <section className="mb-20">
+    <section className="mb-14 tablet:mb-16 tablet-lg:mb-20">
       <div className="container">
         <ProductsSlider
           title="Brand new models"
