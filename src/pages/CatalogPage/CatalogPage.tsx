@@ -4,6 +4,10 @@ import { Link } from 'react-router';
 
 import { Sort } from '@/components/atoms/Sort';
 import { Typography } from '@/components/atoms/Typography';
+import {
+  FiltersSidebar,
+  FiltersTrigger,
+} from '@/components/organisms/FiltersPanel';
 import { cn } from '@/lib/utils';
 import type { SortOption } from '@/types/Products';
 
@@ -52,17 +56,12 @@ export const CatalogPage = () => {
           </header>
 
           <div className="flex flex-col tablet-lg:flex-row gap-8 items-start">
-            <aside className="hidden tablet-lg:flex w-57.5 shrink-0 border border-dashed border-elements rounded-xl p-4 bg-card/30 flex-col items-center justify-center min-h-75 text-center">
-              <Typography
-                variant="body"
-                className="text-text-secondary"
-              >
-                [ Filter panel placeholder ]
-              </Typography>
-            </aside>
+            <FiltersSidebar className="w-57.5 shrink-0" />
 
             <div className="flex-1 w-full flex flex-col gap-6">
-              <div className="flex items-end justify-end">
+              <div className="flex items-end justify-between gap-4 tablet-lg:justify-end">
+                <FiltersTrigger />
+
                 <Sort
                   value={sortBy}
                   onChange={setSortBy}
