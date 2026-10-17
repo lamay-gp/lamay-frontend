@@ -17,13 +17,21 @@ const FACETS = [
   { key: 'screen', label: 'Screen' },
 ] as const;
 
-export const FiltersContent = () => {
+type FiltersContentProps = {
+  // змінюється при «Clear», щоб перемонтувати PriceRange зі скинутими значеннями
+  resetKey?: number;
+};
+
+export const FiltersContent = ({ resetKey = 0 }: FiltersContentProps) => {
   const { options, selected, priceBounds, priceValue, setSelected, setPrice } =
     useCatalogFilters();
 
   return (
     <div className="flex flex-col gap-2">
-      <Accordion multiple>
+      <Accordion
+        multiple
+        defaultValue={['category', 'price']}
+      >
         <AccordionItem value="category">
           <AccordionTrigger>
             <Typography
@@ -53,7 +61,7 @@ export const FiltersContent = () => {
           </AccordionTrigger>
           <AccordionContent>
             <PriceRange
-              key={`${priceBounds.min}-${priceBounds.max}`}
+              key={`${priceBounds.min}-${priceBounds.max}-${resetKey}`}
               min={priceBounds.min}
               max={priceBounds.max}
               defaultMinPrice={priceValue[0]}
