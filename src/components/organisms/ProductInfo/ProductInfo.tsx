@@ -3,14 +3,15 @@ import { ColorSelectorRadio } from '@/components/atoms/ColorSelectorRadio';
 import { ToggleFavouriteButton } from '@/components/atoms/ToggleFavouriteButton';
 import { Typography } from '@/components/atoms/Typography';
 import { ProductPrice } from '@/components/molecules/ProductPrice/ProductPrice';
-import type { Gadget } from '@/types/Products';
+import type { Gadget, Product } from '@/types/Products';
 
 type Props = {
+  productId: Product['id'] | undefined;
   product: Gadget;
   onColorChange: (newColor: string) => void;
 };
 
-export const ProductInfo = ({ product, onColorChange }: Props) => {
+export const ProductInfo = ({ productId, product, onColorChange }: Props) => {
   const currentColor = product?.color ?? '';
 
   return (
@@ -28,7 +29,7 @@ export const ProductInfo = ({ product, onColorChange }: Props) => {
           as="p"
           className="text-icon-border"
         >
-          {`ID: ${802390}`}
+          {`ID: ${productId}`}
         </Typography>
       </div>
 
@@ -73,7 +74,83 @@ export const ProductInfo = ({ product, onColorChange }: Props) => {
           </div>
         </div>
 
-        <div className="shrink-0"></div>
+        <ul className="[&>li:not(:last-child)]:mb-2">
+          <li>
+            <div className="flex justify-between">
+              <Typography
+                variant="small"
+                as="p"
+                className=" text-text-secondary"
+              >
+                Screen
+              </Typography>
+              <Typography
+                variant="small"
+                as="p"
+                className=" text-text  font-bold"
+              >
+                {product.screen}
+              </Typography>
+            </div>
+          </li>
+
+          <li>
+            <div className="flex justify-between">
+              <Typography
+                variant="small"
+                as="p"
+                className=" text-text-secondary"
+              >
+                Resolution
+              </Typography>
+              <Typography
+                variant="small"
+                as="p"
+                className=" text-text  font-bold"
+              >
+                {product.resolution}
+              </Typography>
+            </div>
+          </li>
+
+          <li>
+            <div className="flex justify-between">
+              <Typography
+                variant="small"
+                as="p"
+                className=" text-text-secondary"
+              >
+                Processor
+              </Typography>
+              <Typography
+                variant="small"
+                as="p"
+                className=" text-text  font-bold"
+              >
+                {product.processor}
+              </Typography>
+            </div>
+          </li>
+
+          <li>
+            <div className="flex justify-between">
+              <Typography
+                variant="small"
+                as="p"
+                className=" text-text-secondary"
+              >
+                RAM
+              </Typography>
+              <Typography
+                variant="small"
+                as="p"
+                className=" text-text  font-bold"
+              >
+                {product.ram}
+              </Typography>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   );
