@@ -15,7 +15,7 @@ export const ProductCard = ({ product }: Props) => {
     <article className="bg-card px-4 py-4 rounded-lg flex flex-col items-center justify-between max-w-50 min-w-40 gap-2 ring-0 inset-ring-1 inset-ring-elements w-full relative">
       <ToggleFavouriteButton productId={product.itemId} />
       <Link
-        to={`product/${product.category}/${product.itemId}`}
+        to={`/product/${product.category}/${product.itemId}`}
         className="block w-full"
       >
         <div className="flex flex-col px-0 items-center">

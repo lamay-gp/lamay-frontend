@@ -32,7 +32,7 @@ export const CartPage = () => {
           <Typography
             variant="h1"
             as="h1"
-            className="mt-6 tablet-lg:mt-4 mb-8"
+            className="mt-6 tablet-lg:mt-10 mb-8"
           >
             Cart
           </Typography>

@@ -125,8 +125,10 @@ export const SearchBarHeader = ({
       ref={searchRef}
       className="relative h-full w-full min-w-0 tablet-lg:max-w-125"
     >
-      <InputGroup className={className}>
-        <InputGroupAddon className="mr-1">
+      <InputGroup
+        className={`${className} shadow-none ring-0! focus-within:ring-0!`}
+      >
+        <InputGroupAddon className="mr-1 pl-0">
           <Search className={iconClassName} />
         </InputGroupAddon>
         <InputGroupInput
@@ -165,7 +167,7 @@ export const SearchBarHeader = ({
               {searchResults.length > MAX_PREVIEW_RESULTS && (
                 <Button
                   variant="ghost"
-                  className="w-full cursor-pointer rounded-none border-t border-elements py-3 text-button hover:bg-transparent hover:text-button"
+                  className="w-full cursor-pointer rounded-none py-3 text-button hover:bg-transparent hover:text-button"
                   onClick={goToCatalog}
                 >
                   View all results

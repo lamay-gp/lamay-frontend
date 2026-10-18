@@ -25,7 +25,7 @@ export const ProductGallery = ({ images }: Props) => {
     });
   };
   return (
-    <div className=" grid tablet:grid-cols-7 tablet:col-start-2 desktop:grid-cols-12  desktop:col-start-3 gap-4  mb-10 tablet:mb-16 desktop:mb-20">
+    <div className=" grid tablet:grid-cols-7 tablet:col-start-2 desktop:grid-cols-12  desktop:col-start-3 gap-4">
       <div className="tablet:col-span-6 desktop:col-span-10">
         <ImageZoom>
           <img
@@ -47,7 +47,7 @@ export const ProductGallery = ({ images }: Props) => {
             onClick={() => handleImageSelect(image)}
             aria-label="Show product image"
             aria-pressed={selectedImage === image}
-            className={` h-12.25 w-12.75 rounded-[4px] shrink-0 overflow-hidden cursor-pointer desktop:rounded-2 border hover:border-text tablet:aspect-square tablet:h-auto tablet:w-full ${
+            className={` h-12.25 w-12.75 rounded-lg shrink-0 overflow-hidden cursor-pointer desktop:rounded-2 border hover:border-text tablet:aspect-square tablet:h-auto tablet:w-full ${
               selectedImage === image ? 'border-text' : 'border-elements'
             }`}
           >
