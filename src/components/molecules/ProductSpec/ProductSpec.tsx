@@ -1,11 +1,22 @@
 import { Typography } from '@/components/atoms/Typography';
+import type { TypographyVariant } from '@/components/atoms/Typography/typography-variants';
 import type { ProductSpecification } from '@/types/Products';
 
 type Props = {
   specs: ProductSpecification[];
+  nameVariant?: TypographyVariant;
+  valueVariant?: TypographyVariant;
+  nameWeight?: string;
+  valueWeight?: string;
 };
 
-export const ProductSpec = ({ specs }: Props) => {
+export const ProductSpec = ({
+  nameVariant,
+  valueVariant,
+  nameWeight,
+  valueWeight,
+  specs,
+}: Props) => {
   return (
     <div className="flex flex-col gap-2 items-center w-full py-2">
       {specs.map((spec) => (
@@ -14,14 +25,14 @@ export const ProductSpec = ({ specs }: Props) => {
           className="flex justify-between items-center w-full"
         >
           <Typography
-            variant="small"
-            className="text-text-secondary"
+            variant={nameVariant ?? 'small'}
+            className={`text-text-secondary ${nameWeight ?? ''}`}
           >
             {spec.name}
           </Typography>
           <Typography
-            variant="small"
-            className="text-text font-bold text-right"
+            variant={valueVariant ?? 'small'}
+            className={`text-text ${valueWeight ?? 'font-bold'} text-right`}
           >
             {spec.value}
           </Typography>
