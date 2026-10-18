@@ -7,7 +7,7 @@ import { Typography } from '@/components/atoms/Typography';
 import { ProductSpec } from '@/components/molecules/ProductSpec';
 import { ProductGallery } from '@/components/organisms/ProductGallery';
 import { ProductInfo } from '@/components/organisms/ProductInfo';
-//import { ProductsSlider } from '@/components/organisms/ProductsSlider';
+import { ProductsSlider } from '@/components/organisms/ProductsSlider';
 import { useGadgetDetailsStore } from '@/stores/gadgetDetailsStore';
 import { useProductsStore } from '@/stores/productsStore';
 import type { Category } from '@/types/Products';
@@ -99,23 +99,32 @@ export const GadgetDetailsPage = () => {
         (model) => model.namespaceId === currentGadget.namespaceId,
       )
     : [];
+  console.log(filteredGadgetsByModel);
 
-  const onColorChange = (newColor: string) => {
+  const navigateToVariant = (color: string, capacity: string) => {
     const nextGadget = filteredGadgetsByModel.find(
-      (gadget) => gadget.color === newColor,
+      (gadget) => gadget.color === color && gadget.capacity === capacity,
     );
 
-    if (!nextGadget || !product) {
-      return <ErrorMessage message="Gadget not found" />;
+    if (!nextGadget) {
+      return;
     }
 
     navigate(`/product/${category}/${nextGadget.id}`);
   };
 
+  const onColorChange = (newColor: string) => {
+    navigateToVariant(newColor, currentGadget.capacity);
+  };
+
+  const onCapacityChange = (newCapacity: string) => {
+    navigateToVariant(currentGadget.color, newCapacity);
+  };
+
   return (
-    <div>
+    <div className=" pt-6 bg-[var(--hover)]">
       <div>
-        <section className="container bg-hover ">
+        <section className="container">
           {/* <Breadcrumbs />
 
         <BackButton />*/}
@@ -141,6 +150,7 @@ export const GadgetDetailsPage = () => {
               productId={product?.id}
               product={currentGadget}
               onColorChange={onColorChange}
+              onCapacityChange={onCapacityChange}
             />
           </div>
         </section>
@@ -203,12 +213,14 @@ export const GadgetDetailsPage = () => {
           </div>
         </section>
       </div>
-      {/*<div className="py-7 tablet:py-8 desktop:py-10">
-        <ProductsSlider
-          title="You may also like"
-          products={products}
-        />
-      </div>*/}
+      <section className="mb-14 tablet:mb-16 tablet-lg:mb-20">
+        <div className="container py-7 tablet:py-8 desktop:py-10">
+          <ProductsSlider
+            title="You may also like"
+            products={products}
+          />
+        </div>
+      </section>
     </div>
   );
 };
