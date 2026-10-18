@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 
 import { ErrorMessage } from '@/components/atoms/ErrorMessage';
 import { Typography } from '@/components/atoms/Typography';
+import { ProductSpec } from '@/components/molecules/ProductSpec';
 import { ProductGallery } from '@/components/organisms/ProductGallery';
 import { ProductInfo } from '@/components/organisms/ProductInfo';
 //import { ProductsSlider } from '@/components/organisms/ProductsSlider';
@@ -62,6 +63,40 @@ export const GadgetDetailsPage = () => {
   }
   const product = products.find((item) => item.itemId === itemId);
   const currentModelImgs = currentGadget?.images || [];
+  const params = [
+    {
+      name: 'Screen',
+      value: currentGadget.screen ?? '',
+    },
+    {
+      name: 'Resolution',
+      value: currentGadget.resolution ?? '',
+    },
+    {
+      name: 'Processor',
+      value: currentGadget.processor ?? '',
+    },
+    {
+      name: 'RAM',
+      value: currentGadget.ram ?? '',
+    },
+    {
+      name: 'Built in memory',
+      value: currentGadget.capacity ?? '',
+    },
+    {
+      name: 'Camera',
+      value: currentGadget.camera ?? '',
+    },
+    {
+      name: 'Zoom',
+      value: currentGadget.zoom ?? '',
+    },
+    {
+      name: 'Cell',
+      value: currentGadget.cell.join(', ') ?? '',
+    },
+  ];
 
   const filteredGadgetsByModel =
     currentGadget ?
@@ -100,13 +135,13 @@ export const GadgetDetailsPage = () => {
 
         <section
           className="container grid grid-cols-1
-        tablet:grid-cols-12 desktop:grid-cols-24 gap-4 tablet:gap-[17px] desktop:gap-16 pb-7 tablet:pb-8 desktop:pb-10"
+        tablet:grid-cols-12 desktop:grid-cols-24 gap-4 tablet:gap-[17px] pb-7 tablet:pb-8 desktop:pb-10"
         >
           <div className="tablet:col-span-7 desktop:col-span-12 ">
             <ProductGallery images={currentModelImgs} />
           </div>
 
-          <div className="tablet:col-span-5 desktop:col-span-12">
+          <div className="tablet:col-span-5 desktop:col-span-11 desktop:col-start-14">
             <ProductInfo
               productId={product?.id}
               product={currentGadget}
@@ -116,10 +151,10 @@ export const GadgetDetailsPage = () => {
         </section>
 
         <section
-          className="container flex flex-col gap-14 tablet:gap-16 desktop:gap-16
-        py-7 tablet:py-8 desktop:py-10 desktop:grid desktop:grid-cols-24"
+          className="container flex flex-col gap-14 tablet:gap-16
+        py-7 tablet:py-8 desktop:py-10 desktop:grid desktop:grid-cols-24 desktop:gap-x-0"
         >
-          <div className="desktop:col-span-12">
+          <div className=" min-w-0 desktop:col-span-12">
             <Typography
               variant="h3"
               as="h2"
@@ -153,7 +188,7 @@ export const GadgetDetailsPage = () => {
             </ul>
           </div>
 
-          <div className="desktop:col-span-12">
+          <div className=" min-w-0 desktop:col-span-11 desktop:col-start-14">
             <Typography
               variant="h3"
               as="h2"
@@ -163,160 +198,13 @@ export const GadgetDetailsPage = () => {
             </Typography>
 
             <div className="w-full mb-[30px] tablet:mb-[25px] border-b border-elements" />
-
-            <ul className="[&>li:not(:last-child)]:mb-2">
-              <li>
-                <div className="flex justify-between">
-                  <Typography
-                    variant="body"
-                    as="p"
-                    className=" font-medium text-text-secondary"
-                  >
-                    Screen
-                  </Typography>
-                  <Typography
-                    variant="button"
-                    as="p"
-                    className=" text-text"
-                  >
-                    {currentGadget.screen}
-                  </Typography>
-                </div>
-              </li>
-
-              <li>
-                <div className="flex justify-between">
-                  <Typography
-                    variant="body"
-                    as="p"
-                    className=" font-medium text-text-secondary"
-                  >
-                    Resolution
-                  </Typography>
-                  <Typography
-                    variant="button"
-                    as="p"
-                    className=" text-text"
-                  >
-                    {currentGadget.resolution}
-                  </Typography>
-                </div>
-              </li>
-
-              <li>
-                <div className="flex justify-between">
-                  <Typography
-                    variant="body"
-                    as="p"
-                    className=" font-medium text-text-secondary"
-                  >
-                    Processor
-                  </Typography>
-                  <Typography
-                    variant="button"
-                    as="p"
-                    className=" text-text"
-                  >
-                    {currentGadget.processor}
-                  </Typography>
-                </div>
-              </li>
-
-              <li>
-                <div className="flex justify-between">
-                  <Typography
-                    variant="body"
-                    as="p"
-                    className=" font-medium text-text-secondary"
-                  >
-                    RAM
-                  </Typography>
-                  <Typography
-                    variant="button"
-                    as="p"
-                    className=" text-text"
-                  >
-                    {currentGadget.ram}
-                  </Typography>
-                </div>
-              </li>
-
-              <li>
-                <div className="flex justify-between">
-                  <Typography
-                    variant="body"
-                    as="p"
-                    className=" font-medium text-text-secondary"
-                  >
-                    Built in memory
-                  </Typography>
-                  <Typography
-                    variant="button"
-                    as="p"
-                    className=" text-text"
-                  >
-                    {currentGadget.capacity}
-                  </Typography>
-                </div>
-              </li>
-
-              <li>
-                <div className="flex justify-between">
-                  <Typography
-                    variant="body"
-                    as="p"
-                    className=" font-medium text-text-secondary"
-                  >
-                    Camera
-                  </Typography>
-                  <Typography
-                    variant="button"
-                    as="p"
-                    className=" text-text"
-                  >
-                    {currentGadget.camera}
-                  </Typography>
-                </div>
-              </li>
-
-              <li>
-                <div className="flex justify-between">
-                  <Typography
-                    variant="body"
-                    as="p"
-                    className=" font-medium text-text-secondary"
-                  >
-                    Zoom
-                  </Typography>
-                  <Typography
-                    variant="button"
-                    as="p"
-                    className=" text-text"
-                  >
-                    {currentGadget.zoom}
-                  </Typography>
-                </div>
-              </li>
-
-              <li>
-                <div className="flex justify-between">
-                  <Typography
-                    variant="body"
-                    as="p"
-                    className=" font-medium text-text-secondary"
-                  >
-                    Cell
-                  </Typography>
-                  <Typography
-                    variant="button"
-                    as="p"
-                    className=" text-text"
-                  >
-                    {currentGadget.cell.join(', ')}
-                  </Typography>
-                </div>
-              </li>
-            </ul>
+            <ProductSpec
+              specs={params}
+              nameVariant="body"
+              valueVariant="button"
+              nameWeight="font-medium"
+              valueWeight="font-semibold"
+            />
           </div>
         </section>
       </div>

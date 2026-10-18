@@ -3,6 +3,7 @@ import { ColorSelectorRadio } from '@/components/atoms/ColorSelectorRadio';
 import { ToggleFavouriteButton } from '@/components/atoms/ToggleFavouriteButton';
 import { Typography } from '@/components/atoms/Typography';
 import { ProductPrice } from '@/components/molecules/ProductPrice/ProductPrice';
+import { ProductSpec } from '@/components/molecules/ProductSpec';
 import type { Gadget, Product } from '@/types/Products';
 
 type Props = {
@@ -13,6 +14,24 @@ type Props = {
 
 export const ProductInfo = ({ productId, product, onColorChange }: Props) => {
   const currentColor = product?.color ?? '';
+  const params = [
+    {
+      name: 'Screen',
+      value: product.screen,
+    },
+    {
+      name: 'Resolution',
+      value: product.resolution,
+    },
+    {
+      name: 'Processor',
+      value: product.processor,
+    },
+    {
+      name: 'RAM',
+      value: product.ram,
+    },
+  ];
 
   return (
     <div className=" flex flex-col">
@@ -33,7 +52,7 @@ export const ProductInfo = ({ productId, product, onColorChange }: Props) => {
         </Typography>
       </div>
 
-      <div className="desktop:pr-56">
+      <div className="desktop:pr-48">
         <ColorSelectorRadio
           currentColor={currentColor || ''}
           colorRange={product?.colorsAvailable || []}
@@ -74,83 +93,7 @@ export const ProductInfo = ({ productId, product, onColorChange }: Props) => {
           </div>
         </div>
 
-        <ul className="[&>li:not(:last-child)]:mb-2">
-          <li>
-            <div className="flex justify-between">
-              <Typography
-                variant="small"
-                as="p"
-                className=" text-text-secondary"
-              >
-                Screen
-              </Typography>
-              <Typography
-                variant="small"
-                as="p"
-                className=" text-text  font-bold"
-              >
-                {product.screen}
-              </Typography>
-            </div>
-          </li>
-
-          <li>
-            <div className="flex justify-between">
-              <Typography
-                variant="small"
-                as="p"
-                className=" text-text-secondary"
-              >
-                Resolution
-              </Typography>
-              <Typography
-                variant="small"
-                as="p"
-                className=" text-text  font-bold"
-              >
-                {product.resolution}
-              </Typography>
-            </div>
-          </li>
-
-          <li>
-            <div className="flex justify-between">
-              <Typography
-                variant="small"
-                as="p"
-                className=" text-text-secondary"
-              >
-                Processor
-              </Typography>
-              <Typography
-                variant="small"
-                as="p"
-                className=" text-text  font-bold"
-              >
-                {product.processor}
-              </Typography>
-            </div>
-          </li>
-
-          <li>
-            <div className="flex justify-between">
-              <Typography
-                variant="small"
-                as="p"
-                className=" text-text-secondary"
-              >
-                RAM
-              </Typography>
-              <Typography
-                variant="small"
-                as="p"
-                className=" text-text  font-bold"
-              >
-                {product.ram}
-              </Typography>
-            </div>
-          </li>
-        </ul>
+        <ProductSpec specs={params} />
       </div>
     </div>
   );
