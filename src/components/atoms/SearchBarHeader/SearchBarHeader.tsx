@@ -1,6 +1,14 @@
 import { Search } from 'lucide-react';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type KeyboardEvent,
+} from 'react';
+import { useLocation, useNavigate, useSearchParams } from 'react-router';
 
 import { Button } from '@/components/ui/Button/button';
 import {
@@ -30,9 +38,26 @@ export const SearchBarHeader = ({
 }: SearchBarHeaderProps) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const isCatalogPage = pathname === '/catalog';
 
-  const [query, setQuery] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const urlQuery = searchParams.get('query') ?? '';
+  const [localQuery, setLocalQuery] = useState('');
+
+  const query = isCatalogPage ? urlQuery : localQuery;
+  const setUrlQuery = (value: string) => {
+    setSearchParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        if (value.trim()) next.set('query', value);
+        else next.delete('query');
+        return next;
+      },
+      { replace: true },
+    );
+  };
+
+  const [isFocusedInput, setIsFocusedInput] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
 
   const trimmedQuery = query.trim();
@@ -45,23 +70,26 @@ export const SearchBarHeader = ({
   );
   const previewResults = searchResults.slice(0, MAX_PREVIEW_RESULTS);
 
-  const isCatalogPage = pathname === '/catalog';
-  const isDropdownVisible = isOpen && !isCatalogPage && Boolean(debouncedQuery);
+  const isDropdownVisible =
+    isFocusedInput && !isCatalogPage && Boolean(debouncedQuery);
 
   const closeSearch = useCallback(() => {
-    setIsOpen(false);
-    setQuery('');
+    setIsFocusedInput(false);
+    if (!isCatalogPage) setLocalQuery('');
     onFocusChange?.(false);
-  }, [onFocusChange]);
+  }, [onFocusChange, isCatalogPage]);
 
   const goTo = (path: string) => {
     closeSearch();
     navigate(path);
   };
 
+  const goToCatalog = () =>
+    goTo(`/catalog?query=${encodeURIComponent(trimmedQuery)}`);
+
   //обробник кліку поза пошуком
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isFocusedInput) return;
 
     const handlePointerDown = (event: PointerEvent) => {
       if (!searchRef.current?.contains(event.target as Node)) closeSearch();
@@ -69,13 +97,27 @@ export const SearchBarHeader = ({
 
     document.addEventListener('pointerdown', handlePointerDown);
     return () => document.removeEventListener('pointerdown', handlePointerDown);
-  }, [isOpen, closeSearch]);
+  }, [isFocusedInput, closeSearch]);
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Escape') closeSearch();
-    if (event.key === 'Enter' && trimmedQuery) {
-      goTo(`/catalog?query=${encodeURIComponent(trimmedQuery)}`);
+    if (event.key === 'Enter' && trimmedQuery && !isCatalogPage) {
+      goToCatalog();
     }
+  };
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+
+    if (isCatalogPage) setUrlQuery(value);
+    else setLocalQuery(value);
+
+    setIsFocusedInput(true);
+  };
+
+  const handleFocus = () => {
+    onFocusChange?.(true);
+    setIsFocusedInput(true);
   };
 
   return (
@@ -90,14 +132,8 @@ export const SearchBarHeader = ({
         <InputGroupInput
           placeholder="Search products..."
           value={query}
-          onChange={(e) => {
-            setQuery(e.target.value);
-            setIsOpen(Boolean(e.target.value.trim()));
-          }}
-          onFocus={() => {
-            onFocusChange?.(true);
-            if (trimmedQuery) setIsOpen(true);
-          }}
+          onChange={handleChange}
+          onFocus={handleFocus}
           onKeyDown={handleKeyDown}
           role="combobox"
           aria-expanded={isDropdownVisible}
@@ -130,9 +166,7 @@ export const SearchBarHeader = ({
                 <Button
                   variant="ghost"
                   className="w-full cursor-pointer rounded-none border-t border-elements py-3 text-button hover:bg-transparent hover:text-button"
-                  onClick={() =>
-                    goTo(`/catalog?query=${encodeURIComponent(trimmedQuery)}`)
-                  }
+                  onClick={goToCatalog}
                 >
                   View all results
                 </Button>

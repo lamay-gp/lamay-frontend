@@ -3,8 +3,9 @@ import { NavLink } from 'react-router';
 
 import { Typography } from '@/components/atoms/Typography';
 import { Button } from '@/components/ui/Button/button';
+import { cn } from '@/lib/utils';
 
-const logo = `${import.meta.env.BASE_URL}logo/lamay-logo.svg`;
+const logo = `${import.meta.env.BASE_URL}logo/lamay-logo-header-420.png`;
 
 export const Footer = () => {
   const scrollToTop = () => {
@@ -21,7 +22,7 @@ export const Footer = () => {
           <img
             src={logo}
             alt="LAMAY logo"
-            className="h-7 w-auto"
+            className="h-5.5 w-auto"
           />
         </NavLink>
 
@@ -67,24 +68,33 @@ export const Footer = () => {
           </NavLink>
         </nav>
 
-        <div className="flex items-center gap-4 tablet:justify-self-end">
-          <Typography
-            variant="uppercase"
-            as="span"
-            className="text-(--color-text-secondary)"
-          >
-            Back to top
-          </Typography>
-
+        <div className="flex items-center tablet:justify-self-end">
           <Button
             type="button"
-            variant="outline"
-            size="icon"
-            aria-label="Back to top"
-            className="rounded-full"
+            variant="ghost"
             onClick={scrollToTop}
+            className={cn(
+              'group cursor-pointer h-auto gap-3 rounded-none p-2',
+              'text-(--color-text-secondary)',
+              'hover:bg-transparent hover:text-black',
+              'active:scale-95 active:text-black',
+              'focus-visible:ring-1 focus-visible:ring-black',
+            )}
           >
-            <ChevronUp />
+            <Typography
+              variant="uppercase"
+              as="span"
+            >
+              Back to top
+            </Typography>
+            <span
+              className={cn(
+                'flex size-8 items-center justify-center rounded-full border border-elements transition-colors',
+                'group-hover:border-black group-active:border-black group-active:bg-black group-active:text-white',
+              )}
+            >
+              <ChevronUp className="size-4" />
+            </span>
           </Button>
         </div>
       </div>
