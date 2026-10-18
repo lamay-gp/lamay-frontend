@@ -207,7 +207,25 @@ export const useFilteredProducts = (sortBy?: SortOption) => {
         matchesPrice(product, searchParams),
     );
 
-    return sortBy ? [...filtered].sort(bySortOption(sortBy)) : filtered;
+    const sorted = sortBy ? [...filtered].sort(bySortOption(sortBy)) : filtered;
+
+    const words = (searchParams.get('query') ?? '')
+      .toLowerCase()
+      .split(/\s+/)
+      .filter(Boolean);
+
+    if (words.length === 0) return sorted;
+
+    const isMatch = (product: Product) => {
+      const name = product.name.toLowerCase();
+      return words.every((word) => name.includes(word));
+    };
+
+    // співпадіння нагору
+    return [
+      ...sorted.filter(isMatch),
+      ...sorted.filter((product) => !isMatch(product)),
+    ];
   }, [products, searchParams, sortBy]);
 };
 
