@@ -76,7 +76,7 @@ export const CatalogPage = () => {
                 <>
                   <div
                     ref={gridRef}
-                    className="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] justify-items-center gap-4"
+                    className="grid grid-cols-[repeat(auto-fill,minmax(170px,1fr))] justify-items-center gap-4"
                   >
                     {shownProducts.map((product) => (
                       <ProductCard
