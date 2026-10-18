@@ -37,7 +37,7 @@ export const ToggleFavouriteButton: React.FC<Props> = ({
     <Button
       variant="default"
       className={cn(
-        'cursor-pointer',
+        'w-7! h-7! px-1 cursor-pointer absolute bg-white top-2 right-2',
         size === 'sm' ? 'size-10' : 'size-12',
         isFavorite ? 'border-elements' : 'border-icon-border',
       )}
@@ -47,9 +47,7 @@ export const ToggleFavouriteButton: React.FC<Props> = ({
     >
       <Heart
         className={
-          isFavorite ?
-            'size-3.5 fill-secondary-accent text-secondary-accent'
-          : 'size-3.5 text-text'
+          isFavorite ? 'size-4 fill-button text-button' : 'size-4 text-button'
         }
       />
     </Button>

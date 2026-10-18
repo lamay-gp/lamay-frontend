@@ -59,7 +59,7 @@ export const CatalogPage = () => {
               )}
 
               {!isLoading && !errorMessage && visibleProducts.length > 0 && (
-                <div className="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] justify-items-center gap-4">
+                <div className="grid grid-cols-[repeat(auto-fill,minmax(170px,1fr))] justify-items-center gap-4">
                   {visibleProducts.map((product) => (
                     <ProductCard
                       key={product.id}

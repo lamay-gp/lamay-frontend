@@ -12,7 +12,8 @@ type Props = {
 
 export const ProductCard = ({ product }: Props) => {
   return (
-    <article className="bg-card px-4 py-4 rounded-lg flex flex-col items-center max-w-50 min-w-45 gap-2 ring-0 inset-ring-1 inset-ring-elements w-full">
+    <article className="bg-card px-4 py-4 rounded-lg flex flex-col items-center justify-between max-w-50 min-w-40 gap-2 ring-0 inset-ring-1 inset-ring-elements w-full relative">
+      <ToggleFavouriteButton productId={product.itemId} />
       <Link
         to={`/product/${product.category}/${product.itemId}`}
         className="block w-full"
@@ -40,18 +41,8 @@ export const ProductCard = ({ product }: Props) => {
         </div>
       </Link>
       <hr className="h-px bg-elements w-full" />
-      {/*<div className="w-full px-0">
-        <ProductSpec
-          specs={[
-            { name: 'Screen', value: product.screen },
-            { name: 'Capacity', value: product.capacity },
-            { name: 'RAM', value: product.ram },
-          ]}
-        />
-      </div>*/}
-      <div className="grid w-full grid-cols-[minmax(0,1fr)_auto] gap-2 px-0">
+      <div className="w-full">
         <AddToCartButton productId={product.itemId} />
-        <ToggleFavouriteButton productId={product.itemId} />
       </div>
     </article>
   );
