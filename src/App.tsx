@@ -15,7 +15,9 @@ export const App = () => {
   return (
     <div className="min-h-screen grid grid-rows grid-rows-[auto_1fr_auto] grid-cols-[minmax(0,1fr)]">
       <Header />
-      <Outlet />
+      <main className="pt-6 tablet:pt-8">
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );

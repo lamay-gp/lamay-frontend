@@ -14,7 +14,7 @@ export const ProductCard = ({ product }: Props) => {
   return (
     <article className="bg-card px-4 py-4 rounded-lg flex flex-col items-center max-w-50 min-w-45 gap-2 ring-0 inset-ring-1 inset-ring-elements w-full">
       <Link
-        to={`product/${product.category}/${product.itemId}`}
+        to={`/product/${product.category}/${product.itemId}`}
         className="block w-full"
       >
         <div className="flex flex-col px-0 items-center">

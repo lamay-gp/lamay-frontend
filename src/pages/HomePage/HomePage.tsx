@@ -5,11 +5,11 @@ import { ShopByCategory } from '@/components/organisms/ShopByCategory';
 
 export const HomePage = () => {
   return (
-    <main>
+    <>
       <HeroSection />
       <BrandNewModelSection />
       <ShopByCategory />
       <HotPricesSection />
-    </main>
+    </>
   );
 };
