@@ -62,3 +62,8 @@ export type CartItem = {
 
 export type SortOption =
   'price-asc' | 'price-desc' | 'title' | 'age-desc' | 'age-asc';
+
+export type BreadcrumbData = {
+  label: string;
+  to?: string;
+};

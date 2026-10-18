@@ -1,5 +1,6 @@
 import cartIsEmpty from '@/assets/images/cart-is-empty.png';
 import { Typography } from '@/components/atoms/Typography';
+import { Breadcrumbs } from '@/components/molecules/Breadcrumbs';
 import { CartCheckout } from '@/components/molecules/CartCheckout';
 import { CartItemList } from '@/components/organisms/CartItemList';
 import { Button } from '@/components/ui/Button/button';
@@ -23,11 +24,15 @@ export const CartPage = () => {
   return (
     <section className="mb-14 tablet:mb-16 tablet-lg:mb-20">
       <div className="container">
+        <Breadcrumbs
+          items={[{ label: 'Home', to: '/' }, { label: 'Cart' }]}
+          className="mt-6"
+        />
         <div className="flex justify-between items-center">
           <Typography
             variant="h1"
             as="h1"
-            className="mt-6 tablet-lg:mt-4 mb-8"
+            className="mt-6 tablet-lg:mt-10 mb-8"
           >
             Cart
           </Typography>
