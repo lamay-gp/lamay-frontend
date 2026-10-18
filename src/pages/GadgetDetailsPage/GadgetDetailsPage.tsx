@@ -145,7 +145,7 @@ export const GadgetDetailsPage = () => {
 
         <section
           className="container grid grid-cols-1
-        tablet:grid-cols-12 desktop:grid-cols-24 gap-4 tablet:gap-[17px] pb-7 tablet:pb-8 desktop:pb-10"
+        tablet:grid-cols-12 desktop:grid-cols-24 gap-4 tablet:gap-4 mb-14 tablet:mb-16 desktop:mb-20"
         >
           <div className="tablet:col-span-7 desktop:col-span-12 ">
             <ProductGallery images={currentModelImgs} />
@@ -160,10 +160,7 @@ export const GadgetDetailsPage = () => {
           </div>
         </section>
 
-        <section
-          className="container flex flex-col gap-14 tablet:gap-16
-        py-7 tablet:py-8 desktop:py-10 desktop:grid desktop:grid-cols-24 desktop:gap-x-0"
-        >
+        <section className="container flex flex-col gap-14 tablet:gap-16 desktop:grid desktop:grid-cols-24 desktop:gap-x-0 mb-14 tablet:mb-16 desktop:mb-20">
           <div className=" min-w-0 desktop:col-span-12">
             <Typography
               variant="h3"
@@ -207,7 +204,7 @@ export const GadgetDetailsPage = () => {
               Tech specs
             </Typography>
 
-            <div className="w-full mb-[30px] tablet:mb-[25px] border-b border-elements" />
+            <div className="w-full mb-7.5 tablet:mb-6.25 border-b border-elements" />
             <ProductSpec
               specs={params}
               nameVariant="body"

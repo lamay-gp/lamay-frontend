@@ -30,12 +30,12 @@ export const FavouritesPage = () => {
           items={[{ label: 'Home', to: '/' }, { label: 'Favourites' }]}
           className="mt-6"
         />
-        <div className="flex items-end justify-between gap-3">
+        <div className="flex items-center justify-between gap-3">
           <div className="min-w-0">
             <Typography
               variant="h1"
               as="h1"
-              className="mb-2 tablet-lg:mb-3 tablet-lg:mt-2 desktop:mt-8"
+              className="mb-2 tablet-lg:mb-3 mt-6 tablet-lg:mt-10"
             >
               Favourites
             </Typography>
