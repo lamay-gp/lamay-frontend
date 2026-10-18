@@ -1,3 +1,5 @@
+import { useSearchParams } from 'react-router';
+
 import { ErrorMessage } from '@/components/atoms/ErrorMessage';
 import { Loader } from '@/components/atoms/Loader';
 import { Sort } from '@/components/atoms/Sort';
@@ -8,17 +10,29 @@ import {
   FiltersTrigger,
 } from '@/components/organisms/FiltersPanel';
 import { ProductCard } from '@/components/organisms/ProductCard';
+import { Button } from '@/components/ui/Button/button';
 import { useCatalogSort, useFilteredProducts } from '@/hooks/useCatalogFilters';
+import { useGridColumns } from '@/hooks/useGridColumns';
+import { useLoadMore } from '@/hooks/useLoadMore';
 import { useProductsStore } from '@/stores/productsStore';
 
 export const CatalogPage = () => {
   const { sortBy, setSortBy } = useCatalogSort();
-  const visibleProducts = useFilteredProducts(sortBy);
+  const filteredProducts = useFilteredProducts(sortBy);
+
+  // будь-яка зміна фільтрів чи сортування змінює цей рядок і скидає показ
+  const [searchParams] = useSearchParams();
+  const { gridRef, columns } = useGridColumns();
+  const {
+    visibleItems: shownProducts,
+    hasMore,
+    loadMore,
+  } = useLoadMore(filteredProducts, columns, searchParams.toString());
 
   const isLoading = useProductsStore((state) => state.isLoading);
   const errorMessage = useProductsStore((state) => state.errorMessage);
 
-  const modelsCount = visibleProducts.length;
+  const modelsCount = filteredProducts.length;
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -63,18 +77,35 @@ export const CatalogPage = () => {
                 <ErrorMessage message={errorMessage} />
               )}
 
-              {!isLoading && !errorMessage && visibleProducts.length > 0 && (
-                <div className="grid grid-cols-[repeat(auto-fill,minmax(170px,1fr))] justify-items-center gap-4">
-                  {visibleProducts.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                    />
-                  ))}
-                </div>
+              {!isLoading && !errorMessage && filteredProducts.length > 0 && (
+                <>
+                  <div
+                    ref={gridRef}
+                    className="grid grid-cols-[repeat(auto-fill,minmax(170px,1fr))] justify-items-center gap-4"
+                  >
+                    {shownProducts.map((product) => (
+                      <ProductCard
+                        key={product.id}
+                        product={product}
+                      />
+                    ))}
+                  </div>
+
+                  {hasMore && (
+                    <Button
+                      type="button"
+                      variant="primaryAction"
+                      size="lg"
+                      className="self-center w-auto px-10"
+                      onClick={loadMore}
+                    >
+                      Load more
+                    </Button>
+                  )}
+                </>
               )}
 
-              {!isLoading && !errorMessage && visibleProducts.length === 0 && (
+              {!isLoading && !errorMessage && filteredProducts.length === 0 && (
                 <Typography
                   variant="body"
                   className="text-center text-text-secondary"
