@@ -2,6 +2,7 @@ import { ErrorMessage } from '@/components/atoms/ErrorMessage';
 import { Loader } from '@/components/atoms/Loader';
 import { Sort } from '@/components/atoms/Sort';
 import { Typography } from '@/components/atoms/Typography';
+import { Breadcrumbs } from '@/components/molecules/Breadcrumbs';
 import {
   FiltersSidebar,
   FiltersTrigger,
@@ -23,6 +24,10 @@ export const CatalogPage = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <section className="flex-1 overflow-x-clip overflow-y-visible mb-14 tablet:mb-16 tablet-lg:mb-20">
         <div className="container mx-auto">
+          <Breadcrumbs
+            items={[{ label: 'Home', to: '/' }, { label: 'Catalog' }]}
+            className="mt-6 mb-6"
+          />
           <header className="mb-8">
             <Typography
               variant="h1"
