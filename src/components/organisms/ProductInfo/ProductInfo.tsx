@@ -3,15 +3,35 @@ import { ColorSelectorRadio } from '@/components/atoms/ColorSelectorRadio';
 import { ToggleFavouriteButton } from '@/components/atoms/ToggleFavouriteButton';
 import { Typography } from '@/components/atoms/Typography';
 import { ProductPrice } from '@/components/molecules/ProductPrice/ProductPrice';
-import type { Gadget } from '@/types/Products';
+import { ProductSpec } from '@/components/molecules/ProductSpec';
+import type { Gadget, Product } from '@/types/Products';
 
 type Props = {
+  productId: Product['id'] | undefined;
   product: Gadget;
   onColorChange: (newColor: string) => void;
 };
 
-export const ProductInfo = ({ product, onColorChange }: Props) => {
+export const ProductInfo = ({ productId, product, onColorChange }: Props) => {
   const currentColor = product?.color ?? '';
+  const params = [
+    {
+      name: 'Screen',
+      value: product.screen,
+    },
+    {
+      name: 'Resolution',
+      value: product.resolution,
+    },
+    {
+      name: 'Processor',
+      value: product.processor,
+    },
+    {
+      name: 'RAM',
+      value: product.ram,
+    },
+  ];
 
   return (
     <div className=" flex flex-col">
@@ -28,11 +48,11 @@ export const ProductInfo = ({ product, onColorChange }: Props) => {
           as="p"
           className="text-icon-border"
         >
-          {`ID: ${802390}`}
+          {`ID: ${productId}`}
         </Typography>
       </div>
 
-      <div className="desktop:pr-56">
+      <div className="desktop:pr-48">
         <ColorSelectorRadio
           currentColor={currentColor || ''}
           colorRange={product?.colorsAvailable || []}
@@ -73,7 +93,7 @@ export const ProductInfo = ({ product, onColorChange }: Props) => {
           </div>
         </div>
 
-        <div className="shrink-0"></div>
+        <ProductSpec specs={params} />
       </div>
     </div>
   );
