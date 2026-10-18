@@ -33,7 +33,7 @@ export const BurgerMenu = () => {
           <Button
             variant="ghost"
             aria-label="Open menu"
-            className="h-12 w-12 rounded-none  border-elements p-0 border-b-0"
+            className="h-12 w-12 rounded-none border-elements p-0 border-b-0"
           />
         }
       >
@@ -50,7 +50,7 @@ export const BurgerMenu = () => {
             to="/"
             aria-label="home"
             onClick={close}
-            className="pl-4"
+            className="px-4"
           >
             <img
               src="/logo/lamay-logo-header-420.png"
@@ -63,7 +63,7 @@ export const BurgerMenu = () => {
             variant="ghost"
             aria-label="Close menu"
             onClick={close}
-            className="h-12 w-12 rounded-none border-l border-elements p-0"
+            className="h-12 w-12 rounded-none border-l border-elements border-b-0 border-t-0 border-r-0 p-0"
           >
             <XIcon className="size-5" />
           </Button>
@@ -92,11 +92,11 @@ export const BurgerMenu = () => {
           ))}
         </nav>
 
-        <div className="flex h-16 shrink-0 border-t-2 border-elements">
+        <div className="flex h-16 shrink-0 border-t border-elements">
           <div className="flex flex-1">
             <LanguageSwitcher
               className="h-full w-full border-0"
-              contentClassName="w-(--anchor-width) translate-x-[2px] min-w-0 rounded-none border-2 border-l-0 ring-0 shadow-none"
+              contentClassName="w-(--anchor-width) translate-x-[1px] min-w-0 rounded-none border border-l-0 ring-0 shadow-none"
               contentProps={{
                 side: 'top',
                 align: 'start',
@@ -113,7 +113,7 @@ export const BurgerMenu = () => {
               aria-label={label}
               onClick={close}
               className={({ isActive }) =>
-                `relative flex flex-1 items-center justify-center border-l-2 border-elements ${
+                `relative flex flex-1 items-center justify-center border-l border-elements ${
                   isActive ?
                     'after:absolute after:right-0 after:bottom-0 after:left-0 after:h-0.75 after:bg-black'
                   : ''

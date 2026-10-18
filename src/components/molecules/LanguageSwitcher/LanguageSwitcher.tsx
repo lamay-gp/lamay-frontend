@@ -22,9 +22,9 @@ export const LanguageSwitcher = ({
     trigger={
       <Button
         className={cn(
-          'flex h-12 w-12 cursor-pointer items-center justify-center rounded-none border border-t-0 border-b-0 border-elements bg-transparent p-0 text-[12px] font-medium text-text shadow-none transition-colors',
-          'hover:border-text-secondary hover:bg-transparent',
-          'data-popup-open:border-text-secondary data-popup-open:shadow-none',
+          'flex h-12 w-12 cursor-pointer items-center justify-center rounded-none border border-t-0 border-b-0 border-l-0 border-elements bg-transparent p-0 text-[12px] font-medium text-text shadow-none transition-colors',
+          'hover:ring-0 hover:inset-ring-1 hover:inset-ring-elements hover:border-transparent hover:bg-transparent',
+          'ata-popup-open:shadow-none',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 focus-visible:ring-inset',
           'desktop:h-16 desktop:w-16 desktop:text-sm',
           className,
@@ -39,7 +39,7 @@ export const LanguageSwitcher = ({
     )}
   >
     <DropdownMenuItem
-      className="flex h-12 cursor-pointer items-center justify-center rounded-none p-0 text-[12px] font-medium focus:bg-hover focus:text-text desktop:h-16 desktop:text-[14px]"
+      className="flex h-15.75 tablet:w-full tablet:h-12 cursor-pointer items-center justify-center rounded-none p-0 text-[12px] font-medium focus:bg-hover focus:text-text desktop:h-16 desktop:text-[14px] border-t hover:ring-0 hover:inset-ring-1 hover:inset-ring-elements"
       onClick={() => {
         // TODO: implement language change
       }}

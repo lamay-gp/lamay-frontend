@@ -2,6 +2,7 @@ import favouriteIsEmpty from '@/assets/images/favorites-is-empty.png';
 import { ErrorMessage } from '@/components/atoms/ErrorMessage';
 import { Loader } from '@/components/atoms/Loader';
 import { Typography } from '@/components/atoms/Typography';
+import { Breadcrumbs } from '@/components/molecules/Breadcrumbs';
 import { ProductCard } from '@/components/organisms/ProductCard';
 import { Button } from '@/components/ui/Button/button';
 import { useFavouritesStore } from '@/stores/favouritesStore';
@@ -25,12 +26,16 @@ export const FavouritesPage = () => {
   return (
     <section className="mb-14 tablet:mb-16 tablet-lg:mb-20">
       <div className="container">
-        <div className="flex items-end justify-between gap-3">
+        <Breadcrumbs
+          items={[{ label: 'Home', to: '/' }, { label: 'Favourites' }]}
+          className="mt-6"
+        />
+        <div className="flex items-center justify-between gap-3">
           <div className="min-w-0">
             <Typography
               variant="h1"
               as="h1"
-              className="mb-2 tablet-lg:mb-3 tablet-lg:mt-2 desktop:mt-8"
+              className="mb-2 tablet-lg:mb-3 mt-6 tablet-lg:mt-10"
             >
               Favourites
             </Typography>
