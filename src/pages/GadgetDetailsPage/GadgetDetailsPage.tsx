@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 
 import { ErrorMessage } from '@/components/atoms/ErrorMessage';
 import { Typography } from '@/components/atoms/Typography';
+import { Breadcrumbs } from '@/components/molecules/Breadcrumbs';
 import { ProductGallery } from '@/components/organisms/ProductGallery';
 import { ProductInfo } from '@/components/organisms/ProductInfo';
 //import { ProductsSlider } from '@/components/organisms/ProductsSlider';
@@ -56,12 +57,22 @@ export const GadgetDetailsPage = () => {
     return <ErrorMessage message="Invalid product URL" />;
   }
 
+  const categoryLabel = category.charAt(0).toUpperCase() + category.slice(1);
+
   return (
     <div>
       <div>
         <section className="container">
+          <Breadcrumbs
+            items={[
+              { label: 'Home', to: '/' },
+              { label: categoryLabel, to: `/catalog?category=${category}` },
+              { label: currentGadget.name },
+            ]}
+            className="mt-6 mb-6"
+          />
           {/* <Breadcrumbs />
-
+  
         <BackButton />*/}
           <Typography
             variant="h2"
