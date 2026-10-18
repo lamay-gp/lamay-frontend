@@ -28,12 +28,7 @@ export const GadgetDetailsPage = () => {
     category ? state.errors[category as Category] : undefined,
   );
 
-  const fetchProducts = useProductsStore((state) => state.fetchProducts);
   const fetchGadgets = useGadgetDetailsStore((state) => state.fetchGadgets);
-
-  useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
 
   useEffect(() => {
     if (category) {
@@ -120,7 +115,7 @@ export const GadgetDetailsPage = () => {
   return (
     <div>
       <div>
-        <section className="container">
+        <section className="container bg-hover ">
           {/* <Breadcrumbs />
 
         <BackButton />*/}
