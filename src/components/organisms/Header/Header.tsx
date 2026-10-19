@@ -1,6 +1,6 @@
 import { Grid2X2, X } from 'lucide-react';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router';
 
 import { SearchBarHeader } from '@/components/atoms/SearchBarHeader';
@@ -28,6 +28,22 @@ export const Header = () => {
     (sum, item) => sum + item.quantity,
     0,
   );
+
+  const [isAnimating, setIsAnimating] = useState(false);
+  const prevCountRef = useRef(totalCartCount);
+
+  useEffect(() => {
+    if (prevCountRef.current !== totalCartCount) {
+      setIsAnimating(true);
+
+      const timer = setTimeout(() => {
+        setIsAnimating(false);
+      }, 2000);
+
+      prevCountRef.current = totalCartCount;
+      return () => clearTimeout(timer);
+    }
+  }, [totalCartCount]);
 
   return (
     <header className="sticky top-0 z-50 flex h-12 w-full items-center justify-between tablet-lg:gap-4 bg-background shadow-[0_2px_6px_-2px_var(--elements)] desktop:h-16 desktop:gap-6">
@@ -150,7 +166,12 @@ export const Header = () => {
                 <Icon className="h-3.5 w-4.5 desktop:h-4.5" />
 
                 {isCart && totalCartCount > 0 && (
-                  <span className="absolute -top-2 -right-2.5 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-button text-[10px] font-bold text-white animate-pulse shadow-sm">
+                  <span
+                    className={cn(
+                      'absolute -top-2 -right-2.5 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-button text-[10px] font-bold text-white shadow-sm transition-all',
+                      isAnimating && 'animate-pulse scale-110',
+                    )}
+                  >
                     {totalCartCount}
                   </span>
                 )}
