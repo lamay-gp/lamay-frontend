@@ -1,8 +1,9 @@
-import { Loader } from 'lucide-react';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router';
 
+import { BackButton } from '@/components/atoms/BackButton';
 import { ErrorMessage } from '@/components/atoms/ErrorMessage';
+import { Loader } from '@/components/atoms/Loader';
 import { Typography } from '@/components/atoms/Typography';
 import { Breadcrumbs } from '@/components/molecules/Breadcrumbs';
 import { ProductSpec } from '@/components/molecules/ProductSpec';
@@ -43,7 +44,7 @@ export const GadgetDetailsPage = () => {
   if (isProductsLoading || isGadgetsLoading) {
     return (
       <div className="flex min-h-60 items-center justify-center">
-        <Loader className="size-8 animate-spin" />
+        <Loader />
       </div>
     );
   }
@@ -139,7 +140,11 @@ export const GadgetDetailsPage = () => {
             ]}
             className="mb-6 tablet:mb-10"
           />
-          {/* <BackButton />*/}
+
+          <div className="mb-6 desktop:mb-4 ">
+            <BackButton />
+          </div>
+
           <Typography
             variant="h2"
             as="h1"
@@ -184,7 +189,7 @@ export const GadgetDetailsPage = () => {
                 <li key={section.title}>
                   <Typography
                     variant="h4"
-                    as="h3"
+                    as="p"
                     className="mb-4 font-bold tablet:font-extrabold"
                   >
                     {section.title}
