@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import cartIsEmpty from '@/assets/images/cart-is-empty.png';
 import { BackButton } from '@/components/atoms/BackButton';
 import { Typography } from '@/components/atoms/Typography';
@@ -9,6 +11,9 @@ import { useCartStore } from '@/stores/cartStore';
 import { useProductsStore } from '@/stores/productsStore';
 
 export const CartPage = () => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'cartPage',
+  });
   const products = useProductsStore((state) => state.products);
 
   const cartItems = useCartStore((state) => state.cartItems);
@@ -26,7 +31,7 @@ export const CartPage = () => {
     <section className="mb-14 tablet:mb-16 tablet-lg:mb-20">
       <div className="container">
         <Breadcrumbs
-          items={[{ label: 'Home', to: '/' }, { label: 'Cart' }]}
+          items={[{ label: 'home', to: '/' }, { label: 'cart' }]}
           className="mb-4 tablet:mb-6"
         />
 
@@ -40,7 +45,7 @@ export const CartPage = () => {
             as="h1"
             className="mb-8"
           >
-            Cart
+            {t('title')}
           </Typography>
           {hasCartItems && (
             <Button
@@ -48,7 +53,7 @@ export const CartPage = () => {
               className="p-5"
               onClick={() => clearCart()}
             >
-              <Typography variant="button">Clear all</Typography>
+              <Typography variant="button">{t('clearBtn')}</Typography>
             </Button>
           )}
         </div>
@@ -65,10 +70,10 @@ export const CartPage = () => {
           >
             <img
               src={cartIsEmpty}
-              alt="Your cart is empty"
+              alt={t('cartEmptyAlt')}
               className="mx-auto max-w-80 tablet:max-w-90"
             />
-            You cart is empty.
+            {t('cartEmpty')}
           </Typography>
         }
       </div>

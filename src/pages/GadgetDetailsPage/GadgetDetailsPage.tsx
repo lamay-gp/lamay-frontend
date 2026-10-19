@@ -1,5 +1,6 @@
 import { MoveRight } from 'lucide-react';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate, useParams } from 'react-router';
 
 import productNotFound from '@/assets/images/product-not-found.png';
@@ -16,9 +17,14 @@ import { Button } from '@/components/ui/Button/button';
 import { useGadgetDetailsStore } from '@/stores/gadgetDetailsStore';
 import { useProductsStore } from '@/stores/productsStore';
 import type { Category } from '@/types/Products';
+import { formatCapacity } from '@/utils/formatCapacity';
 import { normalizeColor } from '@/utils/getColorHex';
 
 export const GadgetDetailsPage = () => {
+  const { t, i18n } = useTranslation('', {
+    keyPrefix: 'gadgetDetails',
+  });
+
   const { category, itemId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -51,7 +57,7 @@ export const GadgetDetailsPage = () => {
   }, [location.pathname]);
 
   if (!category || !itemId) {
-    return <ErrorMessage message="Invalid product URL" />;
+    return <ErrorMessage message={t('invalidUrlError')} />;
   }
   if (isProductsLoading || isGadgetsLoading) {
     return (
@@ -78,17 +84,17 @@ export const GadgetDetailsPage = () => {
           >
             <img
               src={productNotFound}
-              alt="Your favourites list is empty"
+              alt={t('notFoundErrorAlt')}
               className="mx-auto max-w-80 tablet:max-w-90 mb-4"
             />
-            Product not found.
+            {t('notFoundError')}
           </Typography>
           <Link to="/">
             <Button
               variant="primaryAction"
               className="w-fit mb-4 group p-5"
             >
-              Go to Home
+              {t('goHome')}
               <MoveRight className="duration-300 group-hover:translate-x-1" />
             </Button>
           </Link>
@@ -112,39 +118,22 @@ export const GadgetDetailsPage = () => {
 
   const product = products.find((item) => item.itemId === itemId);
   const currentModelImgs = currentGadget?.images || [];
+
   const params = [
+    { name: t('screen'), value: currentGadget.screen ?? '' },
+    { name: t('resolution'), value: currentGadget.resolution ?? '' },
+    { name: t('processor'), value: currentGadget.processor ?? '' },
     {
-      name: 'Screen',
-      value: currentGadget.screen ?? '',
+      name: t('ram'),
+      value: formatCapacity(currentGadget.ram ?? '', i18n.language),
     },
     {
-      name: 'Resolution',
-      value: currentGadget.resolution ?? '',
+      name: t('builtInMemory'),
+      value: formatCapacity(currentGadget.capacity ?? '', i18n.language),
     },
-    {
-      name: 'Processor',
-      value: currentGadget.processor ?? '',
-    },
-    {
-      name: 'RAM',
-      value: currentGadget.ram ?? '',
-    },
-    {
-      name: 'Built in memory',
-      value: currentGadget.capacity ?? '',
-    },
-    {
-      name: 'Camera',
-      value: currentGadget.camera ?? '',
-    },
-    {
-      name: 'Zoom',
-      value: currentGadget.zoom ?? '',
-    },
-    {
-      name: 'Cell',
-      value: currentGadget.cell.join(', ') ?? '',
-    },
+    { name: t('camera'), value: currentGadget.camera ?? '' },
+    { name: t('zoom'), value: currentGadget.zoom ?? '' },
+    { name: t('cell'), value: currentGadget.cell.join(', ') ?? '' },
   ];
 
   const filteredGadgetsByModel =
@@ -175,11 +164,6 @@ export const GadgetDetailsPage = () => {
   const onCapacityChange = (newCapacity: string) => {
     navigateToVariant(currentGadget.color, newCapacity);
   };
-  if (!category || !itemId) {
-    return <ErrorMessage message="Invalid product URL" />;
-  }
-
-  const categoryLabel = category.charAt(0).toUpperCase() + category.slice(1);
 
   return (
     <div className=" bg-hover">
@@ -187,8 +171,8 @@ export const GadgetDetailsPage = () => {
         <section className="container px-0">
           <Breadcrumbs
             items={[
-              { label: 'Home', to: '/' },
-              { label: categoryLabel, to: `/catalog?category=${category}` },
+              { label: 'home', to: '/' },
+              { label: category, to: `/catalog?category=${category}` },
               { label: currentGadget.name },
             ]}
             className="mb-4 tablet:mb-6"
@@ -235,7 +219,7 @@ export const GadgetDetailsPage = () => {
               as="h2"
               className="mb-4 font-bold tablet:font-extrabold"
             >
-              About
+              {t('about')}
             </Typography>
 
             <div className="w-full mb-8 border-b border-elements" />
@@ -269,7 +253,7 @@ export const GadgetDetailsPage = () => {
               as="h2"
               className="mb-4 font-bold tablet:font-extrabold"
             >
-              Tech specs
+              {t('techSpecs')}
             </Typography>
 
             <div className="w-full mb-[30px] tablet:mb-[25px] border-b border-elements" />
@@ -286,7 +270,7 @@ export const GadgetDetailsPage = () => {
       <section className="mb-14 tablet:mb-16 tablet-lg:mb-20">
         <div className="container py-7 tablet:py-8 desktop:py-10">
           <ProductsSlider
-            title="You may also like"
+            title={t('alsoLikeTitle')}
             products={alsoLikedProducts}
           />
         </div>

@@ -1,5 +1,6 @@
 import { ArrowUpDown } from 'lucide-react';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { cn } from '@/lib/utils';
 import type { SortOption } from '@/types/Products';
@@ -13,14 +14,6 @@ import {
 } from '../../ui/select';
 import { Typography } from '../Typography';
 
-const SORT_OPTIONS: { value: SortOption; label: string }[] = [
-  { value: 'price-asc', label: 'Cheapest first' },
-  { value: 'price-desc', label: 'Expensive first' },
-  { value: 'title', label: 'Alphabetically' },
-  { value: 'age-desc', label: 'Newest first' },
-  { value: 'age-asc', label: 'Oldest first' },
-];
-
 type SortProps = {
   value: SortOption;
   onChange: (value: SortOption) => void;
@@ -28,6 +21,16 @@ type SortProps = {
 };
 
 export const Sort: React.FC<SortProps> = ({ value, onChange, className }) => {
+  const { t } = useTranslation('', { keyPrefix: 'components.atoms.sort' });
+
+  const SORT_OPTIONS = [
+    { value: 'price-asc', label: t('cheapestFirst') },
+    { value: 'price-desc', label: t('expensiveFirst') },
+    { value: 'title', label: t('alphabetically') },
+    { value: 'age-desc', label: t('newestFirst') },
+    { value: 'age-asc', label: t('oldestFirst') },
+  ] as const;
+
   return (
     <div className={cn('flex flex-col gap-2', className)}>
       <div className="flex items-center justify-end gap-2">
@@ -36,7 +39,7 @@ export const Sort: React.FC<SortProps> = ({ value, onChange, className }) => {
           as="span"
           className="text-text-secondary"
         >
-          Sort by
+          {t('labelSort')}
         </Typography>
         <ArrowUpDown className="size-4 text-text-secondary" />
       </div>
@@ -48,7 +51,7 @@ export const Sort: React.FC<SortProps> = ({ value, onChange, className }) => {
       >
         <SelectTrigger className="w-full h-10">
           <SelectValue
-            placeholder="Select sorting"
+            placeholder={t('placeholderSort')}
             className="justify-end text-right"
           />
         </SelectTrigger>

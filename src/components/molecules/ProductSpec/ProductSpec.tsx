@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next';
+
 import { Typography } from '@/components/atoms/Typography';
 import type { TypographyVariant } from '@/components/atoms/Typography/typography-variants';
 import type { ProductSpecification } from '@/types/Products';
+import { formatCapacity } from '@/utils/formatCapacity';
 
 type Props = {
   specs: ProductSpecification[];
@@ -17,6 +20,8 @@ export const ProductSpec = ({
   valueWeight,
   specs,
 }: Props) => {
+  const { i18n } = useTranslation();
+
   return (
     <div className="flex flex-col gap-2 items-center w-full py-2">
       {specs.map((spec) => (
@@ -34,7 +39,7 @@ export const ProductSpec = ({
             variant={valueVariant ?? 'small'}
             className={`text-text ${valueWeight ?? 'font-bold'} text-right`}
           >
-            {spec.value}
+            {formatCapacity(spec.value, i18n.language)}
           </Typography>
         </div>
       ))}

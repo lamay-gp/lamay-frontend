@@ -92,7 +92,8 @@ export const PriceRange = ({
         <div className="flex items-center border border-input rounded-md px-2 py-1.5 w-full bg-background">
           <span className="text-muted-foreground text-sm mr-0.5">$</span>
           <input
-            type="number"
+            type="text"
+            inputMode="numeric"
             value={minInput}
             min={min}
             max={max}
@@ -109,7 +110,8 @@ export const PriceRange = ({
         <div className="flex items-center border border-input rounded-md px-2 py-1.5 w-full bg-background">
           <span className="text-muted-foreground text-sm mr-0.5">$</span>
           <input
-            type="number"
+            type="text"
+            inputMode="numeric"
             value={maxInput}
             min={min}
             max={max}

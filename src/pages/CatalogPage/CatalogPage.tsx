@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router';
 
 import { ErrorMessage } from '@/components/atoms/ErrorMessage';
@@ -18,6 +19,9 @@ import { useLoadMore } from '@/hooks/useLoadMore';
 import { useProductsStore } from '@/stores/productsStore';
 
 export const CatalogPage = () => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'catalogPage',
+  });
   const { sortBy, setSortBy } = useCatalogSort();
   const filteredProducts = useFilteredProducts(sortBy);
 
@@ -47,7 +51,7 @@ export const CatalogPage = () => {
       <section className="flex-1 overflow-x-clip overflow-y-visible mb-14 tablet:mb-16 tablet-lg:mb-20">
         <div className="container mx-auto">
           <Breadcrumbs
-            items={[{ label: 'Home', to: '/' }, { label: 'Catalog' }]}
+            items={[{ label: 'home', to: '/' }, { label: 'catalog' }]}
             className="mt-6 mb-6"
           />
           <header className="mb-8">
@@ -56,13 +60,13 @@ export const CatalogPage = () => {
               as="h1"
               className="mb-2 text-text"
             >
-              Catalog
+              {t('title')}
             </Typography>
             <Typography
               variant="body"
               className="text-text-secondary"
             >
-              {modelsCount} models
+              {t('countModel', { count: modelsCount })}
             </Typography>
           </header>
 
@@ -107,7 +111,7 @@ export const CatalogPage = () => {
                       className="self-center w-auto px-10"
                       onClick={loadMore}
                     >
-                      Load more
+                      {t('loadMoreBtn')}
                     </Button>
                   )}
                 </>
@@ -118,7 +122,7 @@ export const CatalogPage = () => {
                   variant="body"
                   className="text-center text-text-secondary"
                 >
-                  No products
+                  {t('noProducts')}
                 </Typography>
               )}
             </div>

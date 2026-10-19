@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 
 import { Typography } from '@/components/atoms/Typography';
@@ -16,6 +17,9 @@ export const CategoryCard = ({
   gadgetCount,
   imgUrl,
 }: Props) => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.molecules.categoryCard',
+  });
   const catalogUrl = `/catalog?category=${category}`;
 
   return (
@@ -45,7 +49,7 @@ export const CategoryCard = ({
         as="p"
         className="text-text-secondary"
       >
-        {`${gadgetCount} models`}
+        {t('gadgetCount', { count: gadgetCount })}
       </Typography>
     </article>
   );

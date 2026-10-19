@@ -1,12 +1,17 @@
+import { useTranslation } from 'react-i18next';
+
 import categoryAccessories from '@/assets/images/category-accessories-desktop.png';
 import categoryPhones from '@/assets/images/category-phones-desktop.png';
 import categoryTablets from '@/assets/images/category-tablets-desktop.png';
 import { Typography } from '@/components/atoms/Typography';
-// eslint-disable-next-line import/no-unresolved
 import { CategoryCard } from '@/components/molecules/CategoryCard';
 import { useProductsStore } from '@/stores/productsStore';
 
 export const ShopByCategory = () => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.organisms.shopByCategory',
+  });
+
   const products = useProductsStore((state) => state.products);
 
   const phoneCount = products.filter(
@@ -29,12 +34,12 @@ export const ShopByCategory = () => {
           as="h2"
           className="mb-6"
         >
-          Shop by category
+          {t('title')}
         </Typography>
         <ul className="flex flex-col gap-8  tablet:flex-row tablet:gap-4">
           <li className="min-w-0 tablet:flex-1">
             <CategoryCard
-              title="Mobile phones"
+              title={t('mobileCardTitle')}
               category="phones"
               gadgetCount={phoneCount}
               imgUrl={categoryPhones}
@@ -42,7 +47,7 @@ export const ShopByCategory = () => {
           </li>
           <li className="min-w-0 tablet:flex-1">
             <CategoryCard
-              title="Tablets"
+              title={t('tabletCardTitle')}
               category="tablets"
               gadgetCount={tabletCount}
               imgUrl={categoryTablets}
@@ -50,7 +55,7 @@ export const ShopByCategory = () => {
           </li>
           <li className="min-w-0 tablet:flex-1">
             <CategoryCard
-              title="Accessories"
+              title={t('accessoriesCardTitle')}
               category="accessories"
               gadgetCount={accessoryCount}
               imgUrl={categoryAccessories}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { ImageZoom } from '@/components/kibo-ui/image-zoom';
 
@@ -10,6 +11,7 @@ type Props = {
 };
 
 export const ProductGallery = ({ images }: Props) => {
+  const { t } = useTranslation('', { keyPrefix: 'components.organisms' });
   const [selection, setSelection] = useState({
     firstImage: images[0],
     selectedImage: images[0],
@@ -45,7 +47,7 @@ export const ProductGallery = ({ images }: Props) => {
             key={image}
             type="button"
             onClick={() => handleImageSelect(image)}
-            aria-label="Show product image"
+            aria-label={t('productGallery')}
             aria-pressed={selectedImage === image}
             className={` h-12.25 w-12.75 rounded-lg shrink-0 overflow-hidden cursor-pointer desktop:rounded-2 border hover:border-text tablet:aspect-square tablet:h-auto tablet:w-full ${
               selectedImage === image ? 'border-text' : 'border-elements'
