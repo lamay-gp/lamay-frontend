@@ -12,6 +12,7 @@ import { ProductInfo } from '@/components/organisms/ProductInfo';
 import { useGadgetDetailsStore } from '@/stores/gadgetDetailsStore';
 import { useProductsStore } from '@/stores/productsStore';
 import type { Category } from '@/types/Products';
+import { normalizeColor } from '@/utils/getColorHex';
 
 export const GadgetDetailsPage = () => {
   const { category, itemId } = useParams();
@@ -102,8 +103,12 @@ export const GadgetDetailsPage = () => {
     : [];
 
   const onColorChange = (newColor: string) => {
+    if (!product) return;
+
     const nextGadget = filteredGadgetsByModel.find(
-      (gadget) => gadget.color === newColor,
+      (gadget) =>
+        normalizeColor(gadget.color) === normalizeColor(newColor) &&
+        gadget.capacity === product.capacity,
     );
 
     if (!nextGadget || !product) {
