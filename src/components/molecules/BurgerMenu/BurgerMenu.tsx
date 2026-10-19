@@ -53,7 +53,7 @@ export const BurgerMenu = () => {
             className="px-4"
           >
             <img
-              src="/logo/lamay-logo-header-420.png"
+              src={`${import.meta.env.BASE_URL}logo/lamay-logo-header-420.png`}
               alt="Lamay"
               className="h-4 w-auto tablet-lg:h-5.5"
             />
