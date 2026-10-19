@@ -32,10 +32,10 @@ export const CartPage = () => {
       <div className="container">
         <Breadcrumbs
           items={[{ label: 'home', to: '/' }, { label: 'cart' }]}
-          className="mt-6"
+          className="mb-4 tablet:mb-6"
         />
 
-        <div className="mb-6 tablet:mb-4 ">
+        <div className="mb-6 tablet:mb-10">
           <BackButton />
         </div>
 
@@ -43,7 +43,7 @@ export const CartPage = () => {
           <Typography
             variant="h1"
             as="h1"
-            className="mt-6 tablet-lg:mt-10 mb-8"
+            className="mb-8"
           >
             {t('title')}
           </Typography>
@@ -63,11 +63,18 @@ export const CartPage = () => {
             <CartItemList cartProducts={cartProducts} />
             <CartCheckout />
           </div>
-        : <img
-            src={cartIsEmpty}
-            alt={t('cartEmptyAlt')}
-            className="mx-auto max-w-80 mt-15 tablet:max-w-120"
-          />
+        : <Typography
+            variant="h4"
+            as="h4"
+            className="text-center text-text-secondary"
+          >
+            <img
+              src={cartIsEmpty}
+              alt={t('cartEmptyAlt')}
+              className="mx-auto max-w-80 tablet:max-w-90"
+            />
+            {t('cartEmpty')}
+          </Typography>
         }
       </div>
     </section>

@@ -1,5 +1,4 @@
 import { Filter } from 'lucide-react';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Typography } from '@/components/atoms/Typography';
@@ -13,29 +12,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/Sheet/sheet';
-import {
-  useCatalogFilters,
-  useFilteredProducts,
-} from '@/hooks/useCatalogFilters';
+import { useFilteredProducts } from '@/hooks/useCatalogFilters';
+import { useFiltersReset } from '@/hooks/useFiltersReset';
 import { cn } from '@/lib/utils';
 
 import { FiltersContent } from './FiltersContent';
 
 type FiltersPanelProps = {
   className?: string;
-};
-
-/* скидання фільтрів + перемонтування PriceRange (він тримає власний стан) */
-const useFiltersReset = () => {
-  const [resetKey, setResetKey] = useState(0);
-  const { hasActiveFilters, clearFilters } = useCatalogFilters();
-
-  const handleClear = () => {
-    clearFilters();
-    setResetKey((key) => key + 1);
-  };
-
-  return { resetKey, hasActiveFilters, handleClear };
 };
 
 /* < tablet-lg: кнопка, що відкриває фільтри у висувній панелі */

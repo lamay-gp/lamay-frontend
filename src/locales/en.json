@@ -140,7 +140,9 @@
     "about": "About",
     "techSpecs": "Tech specs",
     "invalidUrlError": "Invalid product URL",
-    "notFoundError": "Gadget not found",
+    "notFoundError": "Product not found.",
+    "notFoundErrorAlt": "Product not found.",
+    "goHome": "Go to Home",
     "screen": "Screen",
     "resolution": "Resolution",
     "processor": "Processor",
@@ -151,5 +153,9 @@
     "cell": "Cell",
     "alsoLikeTitle": "You may also like"
   },
-  "notFoundPage": "Not found page"
+  "notFoundPage": {
+    "notFound": "Page not found",
+    "notFoundAlt": "Page not found",
+    "goHome": "Go to Home"
+  }
 }

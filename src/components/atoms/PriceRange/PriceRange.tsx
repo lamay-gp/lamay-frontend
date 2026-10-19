@@ -84,13 +84,13 @@ export const PriceRange = ({
   return (
     <div
       className={cn(
-        'flex flex-col gap-4 w-full p-4 bg-card rounded-lg border border-border',
+        'flex flex-col gap-4 w-full p-3 bg-card rounded-lg border border-border',
         className,
       )}
     >
-      <div className="flex items-center gap-2">
-        <div className="flex items-center border border-input rounded-md px-3 py-1.5 w-full bg-background">
-          <span className="text-muted-foreground text-sm mr-1">$</span>
+      <div className="flex items-center gap-1.5">
+        <div className="flex items-center border border-input rounded-md px-2 py-1.5 w-full bg-background">
+          <span className="text-muted-foreground text-sm mr-0.5">$</span>
           <input
             type="text"
             inputMode="numeric"
@@ -101,14 +101,14 @@ export const PriceRange = ({
             onChange={handleMinChange}
             onFocus={handleMinFocus}
             onBlur={handleMinBlur}
-            className="w-full bg-transparent outline-none text-sm font-medium"
+            className="w-full min-w-0 bg-transparent outline-none text-sm font-medium [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           />
         </div>
 
         <span className="text-muted-foreground">—</span>
 
-        <div className="flex items-center border border-input rounded-md px-3 py-1.5 w-full bg-background">
-          <span className="text-muted-foreground text-sm mr-1">$</span>
+        <div className="flex items-center border border-input rounded-md px-2 py-1.5 w-full bg-background">
+          <span className="text-muted-foreground text-sm mr-0.5">$</span>
           <input
             type="text"
             inputMode="numeric"
@@ -118,7 +118,7 @@ export const PriceRange = ({
             step={step}
             onChange={handleMaxChange}
             onBlur={handleMaxBlur}
-            className="w-full bg-transparent outline-none text-sm font-medium"
+            className="w-full min-w-0 bg-transparent outline-none text-sm font-medium [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           />
         </div>
       </div>

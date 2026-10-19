@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import favouriteIsEmpty from '@/assets/images/favorites-is-empty.png';
+import { BackButton } from '@/components/atoms/BackButton';
 import { ErrorMessage } from '@/components/atoms/ErrorMessage';
 import { Loader } from '@/components/atoms/Loader';
 import { Typography } from '@/components/atoms/Typography';
@@ -34,14 +35,19 @@ export const FavouritesPage = () => {
       <div className="container">
         <Breadcrumbs
           items={[{ label: 'home', to: '/' }, { label: 'favourites' }]}
-          className="mt-6"
+          className="mb-4 tablet:mb-6"
         />
+
+        <div className="mb-6 tablet:mb-10">
+          <BackButton />
+        </div>
+
         <div className="flex items-center justify-between gap-3">
           <div className="min-w-0">
             <Typography
               variant="h1"
               as="h1"
-              className="mb-2 tablet-lg:mb-3 mt-6 tablet-lg:mt-10"
+              className="mb-2 tablet-lg:mb-3"
             >
               {t('title')}
             </Typography>
@@ -80,13 +86,14 @@ export const FavouritesPage = () => {
 
         {!isLoading && !errorMessage && !hasFavouritesItems && (
           <Typography
-            variant="body"
-            className="mt-8 text-center text-text-secondary"
+            variant="h4"
+            as="h4"
+            className="text-center text-text-secondary"
           >
             <img
               src={favouriteIsEmpty}
               alt={t('favouritesEmptyAlt')}
-              className="mx-auto max-w-80 mt-15 tablet:max-w-120"
+              className="mx-auto max-w-80 tablet:max-w-90"
             />
             {t('favouritesEmpty')}
           </Typography>

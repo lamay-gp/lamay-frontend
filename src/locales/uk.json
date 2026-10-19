@@ -150,7 +150,9 @@
     "about": "Про товар",
     "techSpecs": "Технічні характеристики",
     "invalidUrlError": "Некоректна URL-адреса товару",
-    "notFoundError": "Гаджет не знайдено",
+    "notFoundError": "Гаджет не знайдено.",
+    "notFoundErrorAlt": "Гаджет не знайдено.",
+    "goHome": "На головну",
     "screen": "Екран",
     "resolution": "Роздільна здатність",
     "processor": "Процесор",
@@ -161,5 +163,9 @@
     "cell": "Акумулятор",
     "alsoLikeTitle": "Вам також може сподобатися"
   },
-  "notFoundPage": "Сторінку не знайдено"
+  "notFoundPage": {
+    "notFound": "Сторінку не знайдено",
+    "notFoundAlt": "Сторінку не знайдено",
+    "goHome": "Перейти на головну"
+  }
 }

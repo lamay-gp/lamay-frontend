@@ -183,6 +183,52 @@
       padding-inline: 32px;
     }
   }
+
+  /* тонкий приглушений скролбар, видно лише при наведенні на блок */
+  .scrollbar-subtle {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+
+  .scrollbar-subtle:hover {
+    scrollbar-color: var(--color-icon-border) transparent;
+  }
+
+  /* Chrome, Edge, Safari: точніший контроль через ::-webkit-scrollbar */
+  @supports selector(::-webkit-scrollbar) {
+    .scrollbar-subtle,
+    .scrollbar-subtle:hover {
+      scrollbar-width: auto;
+      scrollbar-color: auto;
+    }
+
+    .scrollbar-subtle::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .scrollbar-subtle::-webkit-scrollbar-button {
+      display: none;
+    }
+
+    .scrollbar-subtle::-webkit-scrollbar-track {
+      background: transparent;
+      margin-block: 8px;
+    }
+
+    /* прозорі рамки + padding-box роблять видиму частину повзунка коротшою;
+       колір лише через background-color, бо shorthand скидає background-clip */
+    .scrollbar-subtle::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      background-clip: padding-box;
+      border-block: 24px solid transparent;
+      border-radius: 9999px;
+      min-height: 72px;
+    }
+
+    .scrollbar-subtle:hover::-webkit-scrollbar-thumb {
+      background-color: var(--color-icon-border);
+    }
+  }
 }
 
 @font-face {
