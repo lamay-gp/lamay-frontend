@@ -134,7 +134,6 @@ export const HeroCarousel = ({
         <div
           role="group"
           className="mt-3 flex w-full justify-center gap-2"
-          aria-label="Прогрес каруселі"
         >
           {slides.map((slide, index) => {
             const isCurrent = index === activeIndex;

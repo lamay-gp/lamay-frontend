@@ -1,4 +1,5 @@
 import { AlertCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { Button } from '@/components/ui/Button/button';
 import { cn } from '@/lib/utils';
@@ -6,18 +7,17 @@ import { cn } from '@/lib/utils';
 import { Typography } from '../Typography';
 
 type Props = {
-  title?: string;
+  // title?: string; з файлу перекладів берем
   message: string;
   onRetry?: () => void;
   className?: string;
 };
 
-export const ErrorMessage = ({
-  title = 'Something went wrong',
-  message,
-  onRetry,
-  className = '',
-}: Props) => {
+export const ErrorMessage = ({ message, onRetry, className = '' }: Props) => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.atoms.errorMessage',
+  });
+
   return (
     <div
       className={cn(
@@ -32,7 +32,7 @@ export const ErrorMessage = ({
           as="h4"
           className="font-semibold"
         >
-          {title}
+          {t('title')}
         </Typography>
       </div>
 
@@ -51,7 +51,7 @@ export const ErrorMessage = ({
           size="sm"
           className="mt-2"
         >
-          Try again
+          {t('retryBtn')}
         </Button>
       )}
     </div>

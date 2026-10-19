@@ -1,0 +1,155 @@
+{
+  "navigation": {
+    "home": "Home",
+    "catalog": "Catalog",
+    "favourites": "Favourites",
+    "shoppingCart": "Shopping cart"
+  },
+  "components": {
+    "atoms": {
+      "addToCartBtn": {
+        "linkToCard": "Go to cart",
+        "linkToCardAria": "Go to cart",
+        "linkAddToCart": "Add to cart",
+        "linkAddToCartAria": "Add to cart"
+      },
+      "backBtn": "Back",
+      "errorMessage": {
+        "title": "Something went wrong",
+        "retryBtn": "Try again"
+      },
+      "searchBarHeader": {
+        "inputPlaceholder": "Search products...",
+        "allResults": "View all results",
+        "notFound": "No products found"
+      },
+      "sort": {
+        "labelSort": "Sort by",
+        "placeholderSort": "Select sorting",
+        "cheapestFirst": "Cheapest first",
+        "expensiveFirst": "Expensive first",
+        "alphabetically": "Alphabetically",
+        "newestFirst": "Newest first",
+        "oldestFirst": "Oldest first"
+      },
+      "toggleFavouritesBtn": {
+        "ariaRemoveFrom": "Remove from favorites",
+        "ariaAddTo": "Add to favorites"
+      }
+    },
+    "molecules": {
+      "breadcrumbs": {
+        "home": "Home",
+        "cart": "Cart",
+        "catalog": "Catalog",
+        "phones": "Phones",
+        "tablets": "Tablets",
+        "accessories": "Accessories",
+        "favourites": "Favourites"
+      },
+      "burgerMenu": {
+        "ariaOpen": "Open menu",
+        "ariaClose": "Close menu",
+        "ariaLogo": "Home"
+      },
+      "cartCheckout": {
+        "total_one": "Total for {{count}} item",
+        "total_other": "Total for {{count}} items",
+        "checkoutBtn": "Checkout",
+        "ariaCheckout": "Checkout"
+      },
+      "categoryCard": {
+        "gadgetCount_one": "{{count}} model",
+        "gadgetCount_other": "{{count}} models"
+      }
+    },
+    "organisms": {
+      "brandNewProdTitle": "Brand new models",
+      "filterContent": {
+        "category": "Category",
+        "price": "Price",
+        "color": "Color",
+        "capacity": "Capacity",
+        "ram": "RAM",
+        "year": "Year",
+        "screen": "Screen",
+        "phones": "Phones",
+        "tablets": "Tablets",
+        "accessories": "Accessories"
+      },
+      "filterPanel": {
+        "title": "Filters",
+        "openFilters": "Open filters",
+        "clearBtn": "Clear",
+        "item_one": "{{count}} item",
+        "item_other": "{{count}} items"
+      },
+      "footer": {
+        "github": "Github",
+        "contacts": "Contacts",
+        "rights": "Rights",
+        "backToTopBtn": "Back to top"
+      },
+      "heroSection": {
+        "welcome": "GADGET STORE",
+        "catalogBtn": "Products Catalog",
+        "halloweenBannerAlt": "Halloween sale",
+        "salesBannerAlt": "Sales"
+      },
+      "hotPricesSectiontitle": "Hot prices",
+      "productGallery": "Show product image",
+      "productInfo": {
+        "availableColors": "Available colors",
+        "selectCapacity": "Select capacity",
+        "screen": "Screen",
+        "resolution": "Resolution",
+        "processor": "Processor",
+        "ram": "RAM"
+      },
+      "productSliderViewAll": "View all",
+      "shopByCategory": {
+        "title": "Shop by category",
+        "mobileCardTitle": "Mobile phones",
+        "tabletCardTitle": "Tablets",
+        "accessoriesCardTitle": "Accessories"
+      }
+    }
+  },
+  "cartPage": {
+    "title": "Cart",
+    "clearBtn": "Clear all",
+    "cartEmpty": "Your cart is empty",
+    "cartEmptyAlt": "Cart is empty"
+  },
+  "catalogPage": {
+    "title": "Catalog",
+    "countModel_one": "{{count}} model",
+    "countModel_other": "{{count}} models",
+    "loadMoreBtn": "Load more",
+    "noProducts": "No products"
+  },
+  "favouritesPage": {
+    "title": "Favourites",
+    "item_one": "{{count}} item",
+    "item_other": "{{count}} items",
+    "clearBtn": "Clear all",
+    "favouritesEmpty": "You haven't added any favourites yet.",
+    "favouritesEmptyAlt": "Your favourites list is empty"
+  },
+  "gadgetDetails": {
+    "about": "About",
+    "techSpecs": "Tech specs",
+    "invalidUrlError": "Invalid product URL",
+    "notFoundError": "Gadget not found",
+    "screen": "Screen",
+    "resolution": "Resolution",
+    "processor": "Processor",
+    "ram": "RAM",
+    "builtInMemory": "Built-in memory",
+    "camera": "Camera",
+    "zoom": "Zoom",
+    "cell": "Cell",
+    "alsoLikeTitle": "You may also like"
+  },
+  "notFoundPage": "Not found page"
+}

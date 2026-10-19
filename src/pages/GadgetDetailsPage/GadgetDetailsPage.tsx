@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router';
 
 import { BackButton } from '@/components/atoms/BackButton';
@@ -13,8 +14,13 @@ import { ProductsSlider } from '@/components/organisms/ProductsSlider';
 import { useGadgetDetailsStore } from '@/stores/gadgetDetailsStore';
 import { useProductsStore } from '@/stores/productsStore';
 import type { Category } from '@/types/Products';
+import { formatCapacity } from '@/utils/formatCapacity';
 
 export const GadgetDetailsPage = () => {
+  const { t, i18n } = useTranslation('', {
+    keyPrefix: 'gadgetDetails',
+  });
+
   const { category, itemId } = useParams();
   const navigate = useNavigate();
 
@@ -39,7 +45,7 @@ export const GadgetDetailsPage = () => {
   }, [fetchGadgets, category]);
 
   if (!category || !itemId) {
-    return <ErrorMessage message="Invalid product URL" />;
+    return <ErrorMessage message={t('invalidUrlError')} />;
   }
   if (isProductsLoading || isGadgetsLoading) {
     return (
@@ -56,43 +62,27 @@ export const GadgetDetailsPage = () => {
   const currentGadget = sortedByCategory?.find((model) => model.id === itemId);
 
   if (!currentGadget) {
-    return <ErrorMessage message="Gadget not found" />;
+    return <ErrorMessage message={t('notFoundError')} />;
   }
+
   const product = products.find((item) => item.itemId === itemId);
   const currentModelImgs = currentGadget?.images || [];
+
   const params = [
+    { name: t('screen'), value: currentGadget.screen ?? '' },
+    { name: t('resolution'), value: currentGadget.resolution ?? '' },
+    { name: t('processor'), value: currentGadget.processor ?? '' },
     {
-      name: 'Screen',
-      value: currentGadget.screen ?? '',
+      name: t('ram'),
+      value: formatCapacity(currentGadget.ram ?? '', i18n.language),
     },
     {
-      name: 'Resolution',
-      value: currentGadget.resolution ?? '',
+      name: t('builtInMemory'),
+      value: formatCapacity(currentGadget.capacity ?? '', i18n.language),
     },
-    {
-      name: 'Processor',
-      value: currentGadget.processor ?? '',
-    },
-    {
-      name: 'RAM',
-      value: currentGadget.ram ?? '',
-    },
-    {
-      name: 'Built in memory',
-      value: currentGadget.capacity ?? '',
-    },
-    {
-      name: 'Camera',
-      value: currentGadget.camera ?? '',
-    },
-    {
-      name: 'Zoom',
-      value: currentGadget.zoom ?? '',
-    },
-    {
-      name: 'Cell',
-      value: currentGadget.cell.join(', ') ?? '',
-    },
+    { name: t('camera'), value: currentGadget.camera ?? '' },
+    { name: t('zoom'), value: currentGadget.zoom ?? '' },
+    { name: t('cell'), value: currentGadget.cell.join(', ') ?? '' },
   ];
 
   const filteredGadgetsByModel =
@@ -101,7 +91,6 @@ export const GadgetDetailsPage = () => {
         (model) => model.namespaceId === currentGadget.namespaceId,
       )
     : [];
-  console.log(filteredGadgetsByModel);
 
   const navigateToVariant = (color: string, capacity: string) => {
     const nextGadget = filteredGadgetsByModel.find(
@@ -122,11 +111,6 @@ export const GadgetDetailsPage = () => {
   const onCapacityChange = (newCapacity: string) => {
     navigateToVariant(currentGadget.color, newCapacity);
   };
-  if (!category || !itemId) {
-    return <ErrorMessage message="Invalid product URL" />;
-  }
-
-  const categoryLabel = category.charAt(0).toUpperCase() + category.slice(1);
 
   return (
     <div className=" bg-[var(--hover)]">
@@ -134,8 +118,8 @@ export const GadgetDetailsPage = () => {
         <section className="container">
           <Breadcrumbs
             items={[
-              { label: 'Home', to: '/' },
-              { label: categoryLabel, to: `/catalog?category=${category}` },
+              { label: 'home', to: '/' },
+              { label: category, to: `/catalog?category=${category}` },
               { label: currentGadget.name },
             ]}
             className="mb-6 tablet:mb-10"
@@ -179,7 +163,7 @@ export const GadgetDetailsPage = () => {
               as="h2"
               className="mb-4 font-bold tablet:font-extrabold"
             >
-              About
+              {t('about')}
             </Typography>
 
             <div className="w-full mb-8 border-b border-elements" />
@@ -213,7 +197,7 @@ export const GadgetDetailsPage = () => {
               as="h2"
               className="mb-4 font-bold tablet:font-extrabold"
             >
-              Tech specs
+              {t('techSpecs')}
             </Typography>
 
             <div className="w-full mb-7.5 tablet:mb-6.25 border-b border-elements" />
@@ -230,7 +214,7 @@ export const GadgetDetailsPage = () => {
       <section className="mb-14 tablet:mb-16 tablet-lg:mb-20">
         <div className="container py-7 tablet:py-8 desktop:py-10">
           <ProductsSlider
-            title="You may also like"
+            title={t('alsoLikeTitle')}
             products={products}
           />
         </div>

@@ -1,4 +1,5 @@
 import { ArrowRightIcon } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 
 import { Typography } from '@/components/atoms/Typography';
@@ -24,6 +25,10 @@ export const ProductsSlider = ({
   products,
   goTo = '/catalog',
 }: Props) => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.organisms',
+  });
+
   return (
     <Carousel
       opts={{
@@ -43,7 +48,9 @@ export const ProductsSlider = ({
               variant="ghost"
               className="text-button pl-0 tablet:pl-2.5 cursor-pointer hover:text-button"
             >
-              <Typography variant="button">View all</Typography>{' '}
+              <Typography variant="button">
+                {t('productSliderViewAll')}
+              </Typography>{' '}
               <ArrowRightIcon />
             </Button>
           </Link>

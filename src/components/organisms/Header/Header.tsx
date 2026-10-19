@@ -1,5 +1,6 @@
 import { Grid2X2, X } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router';
 
 import { SearchBarHeader } from '@/components/atoms/SearchBarHeader';
@@ -20,6 +21,7 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   );
 
 export const Header = () => {
+  const { t } = useTranslation();
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const cartItems = useCartStore((state) => state.cartItems);
   const totalCartCount = cartItems.reduce(
@@ -80,7 +82,7 @@ export const Header = () => {
         </NavLink>
 
         <nav className="hidden h-full shrink-0 items-center gap-6 text-[14px] font-extrabold tablet-lg:flex desktop:gap-10 desktop:mr-0 desktop:text-[16px]">
-          {NAV_LINKS.map(({ to, label, ...linkProps }) => {
+          {NAV_LINKS.map(({ to, labelKey, ...linkProps }) => {
             const isCatalog = to === '/catalog';
 
             return (
@@ -98,7 +100,7 @@ export const Header = () => {
                 {...linkProps}
               >
                 {isCatalog && <Grid2X2 className="size-4" />}
-                <Typography variant="button">{label}</Typography>
+                <Typography variant="button">{t(labelKey)}</Typography>
               </NavLink>
             );
           })}
@@ -128,14 +130,14 @@ export const Header = () => {
           contentClassName="shadow-none"
         />
 
-        {ACTION_LINKS.map(({ to, label, icon: Icon }) => {
+        {ACTION_LINKS.map(({ to, labelKey, icon: Icon }) => {
           const isCart = to === '/cart';
 
           return (
             <NavLink
               key={to}
               to={to}
-              aria-label={label}
+              aria-label={t(labelKey)}
               className={({ isActive }) =>
                 cn(
                   'relative flex h-12 w-12 shrink-0 items-center justify-center border border-t-0 border-l-0 border-b-0 border-elements hover:ring-0 hover:inset-ring-1 hover:inset-ring-elements transition-colors desktop:h-16 desktop:w-16',

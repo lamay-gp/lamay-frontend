@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Typography } from '@/components/atoms/Typography';
 import { Button } from '@/components/ui/Button/button';
 import {
@@ -13,6 +15,9 @@ import { useProductsStore } from '@/stores/productsStore';
 import { ProductPrice } from '../ProductPrice/ProductPrice';
 
 export const CartCheckout = () => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.molecules.cartCheckout',
+  });
   const cartItems = useCartStore((state) => state.cartItems);
   const products = useProductsStore((state) => state.products);
 
@@ -46,7 +51,9 @@ export const CartCheckout = () => {
           />
         </CardTitle>
         <CardDescription>
-          <Typography variant="body">Total for {totalItems} items</Typography>
+          <Typography variant="body">
+            {t('total', { count: totalItems })}
+          </Typography>
         </CardDescription>
       </CardHeader>
       <hr className="h-px bg-elements w-full" />
@@ -54,9 +61,9 @@ export const CartCheckout = () => {
         <Button
           variant="primaryAction"
           className="py-3.5 h-auto"
-          aria-label="Checkout"
+          aria-label={t('ariaCheckout')}
         >
-          <Typography variant="button">Checkout</Typography>
+          <Typography variant="button">{t('checkoutBtn')}</Typography>
         </Button>
       </CardFooter>
     </Card>

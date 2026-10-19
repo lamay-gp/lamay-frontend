@@ -1,5 +1,6 @@
 import { Filter } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Typography } from '@/components/atoms/Typography';
 import { Button } from '@/components/ui/Button/button';
@@ -39,6 +40,10 @@ const useFiltersReset = () => {
 
 /* < tablet-lg: кнопка, що відкриває фільтри у висувній панелі */
 export const FiltersTrigger = ({ className }: FiltersPanelProps) => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.organisms.filterPanel',
+  });
+
   const { resetKey, hasActiveFilters, handleClear } = useFiltersReset();
   const itemsCount = useFilteredProducts().length;
 
@@ -51,7 +56,7 @@ export const FiltersTrigger = ({ className }: FiltersPanelProps) => {
             as="span"
             className="text-(--color-text-secondary)"
           >
-            Filters
+            {t('title')}
           </Typography>
 
           <SheetTrigger
@@ -76,7 +81,7 @@ export const FiltersTrigger = ({ className }: FiltersPanelProps) => {
                 variant="h3"
                 as="span"
               >
-                Filters
+                {t('title')}
               </Typography>
             </SheetTitle>
           </SheetHeader>
@@ -94,7 +99,7 @@ export const FiltersTrigger = ({ className }: FiltersPanelProps) => {
                   size="lg"
                   className="flex-1"
                 >
-                  {itemsCount} {itemsCount === 1 ? 'item' : 'items'}
+                  {t('item', { count: itemsCount })}
                 </Button>
               }
             />
@@ -106,7 +111,7 @@ export const FiltersTrigger = ({ className }: FiltersPanelProps) => {
               disabled={!hasActiveFilters}
               onClick={handleClear}
             >
-              Clear
+              {t('clearBtn')}
             </Button>
           </SheetFooter>
         </SheetContent>
@@ -117,6 +122,9 @@ export const FiltersTrigger = ({ className }: FiltersPanelProps) => {
 
 /* >= tablet-lg: постійний сайдбар збоку */
 export const FiltersSidebar = ({ className }: FiltersPanelProps) => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.organisms.filterPanel',
+  });
   const { resetKey, hasActiveFilters, handleClear } = useFiltersReset();
 
   return (
@@ -126,7 +134,7 @@ export const FiltersSidebar = ({ className }: FiltersPanelProps) => {
           variant="h3"
           as="h2"
         >
-          Filters
+          {t('title')}
         </Typography>
 
         {hasActiveFilters && (
@@ -137,7 +145,7 @@ export const FiltersSidebar = ({ className }: FiltersPanelProps) => {
             className="px-0"
             onClick={handleClear}
           >
-            Clear
+            {t('clearBtn')}
           </Button>
         )}
       </div>

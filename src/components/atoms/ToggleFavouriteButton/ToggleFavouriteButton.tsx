@@ -1,5 +1,6 @@
 import { cn } from 'cn';
 import { Heart } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { Button } from '@/components/ui/Button/button';
 import { useFavouritesStore } from '@/stores/favouritesStore';
@@ -16,6 +17,9 @@ export const ToggleFavouriteButton: React.FC<Props> = ({
   productId,
   size = 'sm',
 }) => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.stoms.toggleFavouritesBtn',
+  });
   const favouriteIds = useFavouritesStore((state) => state.favouriteIds);
   const addToFavourites = useFavouritesStore((state) => state.addToFavourites);
   const removeFromFavourites = useFavouritesStore(
@@ -41,7 +45,7 @@ export const ToggleFavouriteButton: React.FC<Props> = ({
         size === 'sm' ? 'w-7 h-7 px-1 absolute top-2 right-2' : 'size-12',
         isFavorite ? 'border-elements' : 'border-icon-border',
       )}
-      aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+      aria-label={isFavorite ? t('ariaRemoveFrom') : t('ariaAddTo')}
       aria-pressed={isFavorite}
       onClick={handleClick}
     >
