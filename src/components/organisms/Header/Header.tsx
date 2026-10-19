@@ -1,6 +1,6 @@
 import { Grid2X2, X } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router';
 
 import { SearchBarHeader } from '@/components/atoms/SearchBarHeader';
