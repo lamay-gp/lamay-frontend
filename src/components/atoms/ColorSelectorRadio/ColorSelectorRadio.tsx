@@ -41,9 +41,9 @@ export const ColorSelectorRadio = ({
                 '--swatch-color': getColorHex(color),
               } as React.CSSProperties
             }
-            className="relative shrink-0 size-8 rounded-full border border-elements !bg-transparent p-0 shadow-none
-            after:absolute after:inset-px after:rounded-full  after:bg-[var(--swatch-color)]
-            after:content-[''] transition-colors hover:border-icon-border data-[state=checked]:border-text  data-[state=checked]:border focus-visible:ring-1 focus-visible:ring-text"
+            className="relative shrink-0 size-8 rounded-full border border-elements bg-transparent! p-0 shadow-none
+            after:absolute after:inset-px after:rounded-full  after:bg-(--swatch-color)
+            after:content-[''] after:size-6 after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 transition-colors hover:border-icon-border data-[state=checked]:border-text data-[state=checked]:border focus-visible:ring-1 focus-visible:ring-text"
           />
         </div>
       ))}
