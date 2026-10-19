@@ -1,6 +1,8 @@
+import { MoveRight } from 'lucide-react';
 import { useEffect } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router';
+import { Link, useLocation, useNavigate, useParams } from 'react-router';
 
+import productNotFound from '@/assets/images/product-not-found.png';
 import { BackButton } from '@/components/atoms/BackButton';
 import { ErrorMessage } from '@/components/atoms/ErrorMessage';
 import { Loader } from '@/components/atoms/Loader';
@@ -10,6 +12,7 @@ import { ProductSpec } from '@/components/molecules/ProductSpec';
 import { ProductGallery } from '@/components/organisms/ProductGallery';
 import { ProductInfo } from '@/components/organisms/ProductInfo';
 import { ProductsSlider } from '@/components/organisms/ProductsSlider';
+import { Button } from '@/components/ui/Button/button';
 import { useGadgetDetailsStore } from '@/stores/gadgetDetailsStore';
 import { useProductsStore } from '@/stores/productsStore';
 import type { Category } from '@/types/Products';
@@ -64,7 +67,33 @@ export const GadgetDetailsPage = () => {
   const currentGadget = sortedByCategory?.find((model) => model.id === itemId);
 
   if (!currentGadget) {
-    return <ErrorMessage message="Gadget not found" />;
+    return (
+      <section className="pt-10">
+        <div className="container flex flex-col gap-8 items-center">
+          <Typography
+            variant="h4"
+            as="h4"
+            className="text-center text-text-secondary"
+          >
+            <img
+              src={productNotFound}
+              alt="Your favourites list is empty"
+              className="mx-auto max-w-80 tablet:max-w-90 mb-4"
+            />
+            Product not found.
+          </Typography>
+          <Link to="/">
+            <Button
+              variant="primaryAction"
+              className="w-fit mb-4 group p-5"
+            >
+              Go to Home
+              <MoveRight className="duration-300 group-hover:translate-x-1" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+    );
   }
 
   const alsoLikedProducts = products
@@ -150,25 +179,25 @@ export const GadgetDetailsPage = () => {
   const categoryLabel = category.charAt(0).toUpperCase() + category.slice(1);
 
   return (
-    <div className=" bg-[var(--hover)]">
+    <div className=" bg-hover">
       <div>
-        <section className="container">
+        <section className="container px-0">
           <Breadcrumbs
             items={[
               { label: 'Home', to: '/' },
               { label: categoryLabel, to: `/catalog?category=${category}` },
               { label: currentGadget.name },
             ]}
-            className="mb-6 tablet:mb-10"
+            className="mb-4 tablet:mb-6"
           />
 
-          <div className="mb-6 desktop:mb-4 ">
+          <div className="mb-6 tablet:mb-10 ">
             <BackButton />
           </div>
 
           <Typography
             variant="h2"
-            as="h1"
+            as="h2"
             className="mb-6 tablet:mb-8 desktop:mb-10"
           >
             {currentGadget?.name}
