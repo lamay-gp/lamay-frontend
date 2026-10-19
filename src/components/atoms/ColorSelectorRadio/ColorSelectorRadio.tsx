@@ -2,6 +2,7 @@ import {
   RadioGroup,
   RadioGroupItem,
 } from '@/components/ui/Radio-group/radio-group';
+import { getColorHex, normalizeColor } from '@/utils/getColorHex';
 
 import type React from 'react';
 
@@ -16,9 +17,13 @@ export const ColorSelectorRadio = ({
   onColorChange,
   currentColor,
 }: Props) => {
+  const activeColor =
+    colorRange.find(
+      (color) => normalizeColor(color) === normalizeColor(currentColor),
+    ) ?? '';
   return (
     <RadioGroup
-      value={currentColor}
+      value={activeColor}
       onValueChange={onColorChange}
       className="mb-6 flex w-fit flex-row gap-2"
     >
@@ -33,7 +38,7 @@ export const ColorSelectorRadio = ({
             aria-label={color}
             style={
               {
-                '--swatch-color': color,
+                '--swatch-color': getColorHex(color),
               } as React.CSSProperties
             }
             className="relative shrink-0 size-8 rounded-full border border-elements !bg-transparent p-0 shadow-none
