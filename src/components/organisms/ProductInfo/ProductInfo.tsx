@@ -10,6 +10,7 @@ type Props = {
   productId: Product['id'] | undefined;
   product: Gadget;
   onColorChange: (newColor: string) => void;
+  onCapacityChange?: (newCapacity: string) => void;
 };
 
 export const ProductInfo = ({ productId, product, onColorChange }: Props) => {
