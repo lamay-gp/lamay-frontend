@@ -28,7 +28,7 @@ export const Header = () => {
   );
 
   return (
-    <header className="sticky top-0 z-50 flex h-12 w-full items-center justify-between tablet-lg:gap-4 bg-background shadow-[0px_1px_0px_0px_var(--elements)] desktop:h-16 desktop:gap-6">
+    <header className="sticky top-0 z-50 flex h-12 w-full items-center justify-between tablet-lg:gap-4 bg-background shadow-[0_2px_6px_-2px_var(--elements)] desktop:h-16 desktop:gap-6">
       <div className="flex shrink-0 items-center h-full tablet-lg:gap-4 desktop:gap-6">
         {isSearchFocused && (
           <div className="flex size-12 shrink-0 items-center justify-center tablet-lg:hidden">

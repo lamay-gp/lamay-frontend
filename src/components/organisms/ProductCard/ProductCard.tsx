@@ -12,7 +12,7 @@ type Props = {
 
 export const ProductCard = ({ product }: Props) => {
   return (
-    <article className="bg-card px-4 py-4 rounded-lg flex flex-col items-center justify-between max-w-50 min-w-40 gap-2 ring-0 inset-ring-1 inset-ring-elements w-full relative">
+    <article className="bg-card px-4 py-4 rounded-lg flex flex-col items-center justify-between max-w-50 min-w-40 gap-2 ring-0 inset-ring-1 inset-ring-elements w-full relative duration-300 hover:scale-105">
       <ToggleFavouriteButton productId={product.itemId} />
       <Link
         to={`/product/${product.category}/${product.itemId}`}
