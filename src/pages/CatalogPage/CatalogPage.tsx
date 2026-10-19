@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSearchParams } from 'react-router';
 
 import { ErrorMessage } from '@/components/atoms/ErrorMessage';
@@ -33,6 +34,13 @@ export const CatalogPage = () => {
   const errorMessage = useProductsStore((state) => state.errorMessage);
 
   const modelsCount = filteredProducts.length;
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant',
+    });
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
