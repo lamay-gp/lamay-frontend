@@ -1,4 +1,5 @@
 import { AddToCartButton } from '@/components/atoms/AddToCartButton';
+import { CapacitySelectorRadio } from '@/components/atoms/CapacitySelectorRadio';
 import { ColorSelectorRadio } from '@/components/atoms/ColorSelectorRadio';
 import { ToggleFavouriteButton } from '@/components/atoms/ToggleFavouriteButton';
 import { Typography } from '@/components/atoms/Typography';
@@ -10,10 +11,15 @@ type Props = {
   productId: Product['id'] | undefined;
   product: Gadget;
   onColorChange: (newColor: string) => void;
+  onCapacityChange: (newCapacity: string) => void;
 };
 
-export const ProductInfo = ({ productId, product, onColorChange }: Props) => {
-  const currentColor = product?.color ?? '';
+export const ProductInfo = ({
+  productId,
+  product,
+  onColorChange,
+  onCapacityChange,
+}: Props) => {
   const params = [
     {
       name: 'Screen',
@@ -54,19 +60,28 @@ export const ProductInfo = ({ productId, product, onColorChange }: Props) => {
 
       <div className="desktop:pr-48">
         <ColorSelectorRadio
-          currentColor={currentColor || ''}
+          currentColor={product.color || ''}
           colorRange={product?.colorsAvailable || []}
           onColorChange={onColorChange}
         />
         <div className="w-full mb-6 border-b border-elements" />
-        <Typography
-          variant="small"
-          as="h3"
-          className=" text-text-secondary"
-        >
-          Select capacity
-        </Typography>
-        <div className="mb-6">Radibutton</div>
+        <div className="mb-2">
+          <Typography
+            variant="small"
+            as="h3"
+            className="text-text-secondary"
+          >
+            Select capacity
+          </Typography>
+        </div>
+
+        <div className="mb-6">
+          <CapacitySelectorRadio
+            currentCapacity={product?.capacity || ''}
+            capacityRange={product?.capacityAvailable || []}
+            onCapacityChange={onCapacityChange}
+          />
+        </div>
         <div className="w-full mb-8 border-b border-elements" />
 
         <div className="mb-4">

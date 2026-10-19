@@ -37,8 +37,8 @@ export const ToggleFavouriteButton: React.FC<Props> = ({
     <Button
       variant="default"
       className={cn(
-        'w-7! h-7! px-1 cursor-pointer absolute bg-white top-2 right-2',
-        size === 'sm' ? 'size-10' : 'size-12',
+        'cursor-pointer bg-white',
+        size === 'sm' ? 'w-7 h-7 px-1 absolute top-2 right-2' : 'size-12',
         isFavorite ? 'border-elements' : 'border-icon-border',
       )}
       aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
