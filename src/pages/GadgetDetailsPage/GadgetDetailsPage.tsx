@@ -1,14 +1,15 @@
-import { Loader } from 'lucide-react';
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 
+import { BackButton } from '@/components/atoms/BackButton';
 import { ErrorMessage } from '@/components/atoms/ErrorMessage';
+import { Loader } from '@/components/atoms/Loader';
 import { Typography } from '@/components/atoms/Typography';
 import { Breadcrumbs } from '@/components/molecules/Breadcrumbs';
 import { ProductSpec } from '@/components/molecules/ProductSpec';
 import { ProductGallery } from '@/components/organisms/ProductGallery';
 import { ProductInfo } from '@/components/organisms/ProductInfo';
-//import { ProductsSlider } from '@/components/organisms/ProductsSlider';
+import { ProductsSlider } from '@/components/organisms/ProductsSlider';
 import { useGadgetDetailsStore } from '@/stores/gadgetDetailsStore';
 import { useProductsStore } from '@/stores/productsStore';
 import type { Category } from '@/types/Products';
@@ -17,6 +18,7 @@ import { normalizeColor } from '@/utils/getColorHex';
 export const GadgetDetailsPage = () => {
   const { category, itemId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const products = useProductsStore((state) => state.products);
   const sortedByCategory = useGadgetDetailsStore(
@@ -38,13 +40,20 @@ export const GadgetDetailsPage = () => {
     }
   }, [fetchGadgets, category]);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, [location.pathname]);
+
   if (!category || !itemId) {
     return <ErrorMessage message="Invalid product URL" />;
   }
   if (isProductsLoading || isGadgetsLoading) {
     return (
       <div className="flex min-h-60 items-center justify-center">
-        <Loader className="size-8 animate-spin" />
+        <Loader />
       </div>
     );
   }
@@ -58,6 +67,20 @@ export const GadgetDetailsPage = () => {
   if (!currentGadget) {
     return <ErrorMessage message="Gadget not found" />;
   }
+
+  const alsoLikedProducts = products
+    .filter(
+      (product) =>
+        product.category === category &&
+        !product.itemId.includes(currentGadget.namespaceId),
+    )
+    .sort(
+      (a, b) =>
+        Math.abs(a.price - currentGadget.priceDiscount) -
+        Math.abs(b.price - currentGadget.priceDiscount),
+    )
+    .slice(0, 10);
+
   const product = products.find((item) => item.itemId === itemId);
   const currentModelImgs = currentGadget?.images || [];
   const params = [
@@ -123,11 +146,14 @@ export const GadgetDetailsPage = () => {
   const onCapacityChange = (newCapacity: string) => {
     navigateToVariant(currentGadget.color, newCapacity);
   };
+  if (!category || !itemId) {
+    return <ErrorMessage message="Invalid product URL" />;
+  }
 
   const categoryLabel = category.charAt(0).toUpperCase() + category.slice(1);
 
   return (
-    <div>
+    <div className=" bg-[var(--hover)]">
       <div>
         <section className="container">
           <Breadcrumbs
@@ -136,11 +162,13 @@ export const GadgetDetailsPage = () => {
               { label: categoryLabel, to: `/catalog?category=${category}` },
               { label: currentGadget.name },
             ]}
-            className="mt-6 mb-6"
+            className="mb-6 tablet:mb-10"
           />
-          {/* <Breadcrumbs />
-  
-        <BackButton />*/}
+
+          <div className="mb-6 desktop:mb-4 ">
+            <BackButton />
+          </div>
+
           <Typography
             variant="h2"
             as="h1"
@@ -188,7 +216,7 @@ export const GadgetDetailsPage = () => {
                 <li key={section.title}>
                   <Typography
                     variant="h4"
-                    as="h3"
+                    as="p"
                     className="mb-4 font-bold tablet:font-extrabold"
                   >
                     {section.title}
@@ -226,12 +254,14 @@ export const GadgetDetailsPage = () => {
           </div>
         </section>
       </div>
-      {/*<div className="py-7 tablet:py-8 desktop:py-10">
-        <ProductsSlider
-          title="You may also like"
-          products={products}
-        />
-      </div>*/}
+      <section className="mb-14 tablet:mb-16 tablet-lg:mb-20">
+        <div className="container py-7 tablet:py-8 desktop:py-10">
+          <ProductsSlider
+            title="You may also like"
+            products={alsoLikedProducts}
+          />
+        </div>
+      </section>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { Button } from '@base-ui/react';
 import { XIcon } from 'lucide-react';
+import { Link } from 'react-router';
 
 import { Typography } from '@/components/atoms/Typography';
 import { useCartStore } from '@/stores/cartStore';
@@ -29,19 +30,25 @@ export const CartItem = ({ product }: Props) => {
         >
           <XIcon className="text-icon-border" />
         </Button>
-        <div className="w-20 h-20 flex items-center justify-center mr-4 tablet:mr-6">
-          <img
-            src={`${import.meta.env.VITE_GADGETS_URL}/${product.image}`}
-            alt={product.name}
-            className="h-16.5"
-          />
-        </div>
-        <Typography
-          variant="h4"
-          as="h4"
+        <Link
+          to={`/product/${product.category}/${product.itemId}`}
+          className="flex items-center group"
         >
-          {product.name}
-        </Typography>
+          <div className="w-20 h-20 flex items-center justify-center mr-4 tablet:mr-6">
+            <img
+              src={`${import.meta.env.VITE_GADGETS_URL}/${product.image}`}
+              alt={product.name}
+              className="h-16.5"
+            />
+          </div>
+          <Typography
+            variant="h4"
+            as="h4"
+            className="duration-300 group-hover:text-muted-foreground"
+          >
+            {product.name}
+          </Typography>
+        </Link>
       </div>
       <div className="flex items-center w-full justify-between desktop:w-auto desktop:gap-x-14">
         <QuantitySelector

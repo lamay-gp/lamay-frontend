@@ -35,6 +35,7 @@ export const ShopByCategory = () => {
           <li className="min-w-0 tablet:flex-1">
             <CategoryCard
               title="Mobile phones"
+              category="phones"
               gadgetCount={phoneCount}
               imgUrl={categoryPhones}
             />
@@ -42,6 +43,7 @@ export const ShopByCategory = () => {
           <li className="min-w-0 tablet:flex-1">
             <CategoryCard
               title="Tablets"
+              category="tablets"
               gadgetCount={tabletCount}
               imgUrl={categoryTablets}
             />
@@ -49,6 +51,7 @@ export const ShopByCategory = () => {
           <li className="min-w-0 tablet:flex-1">
             <CategoryCard
               title="Accessories"
+              category="accessories"
               gadgetCount={accessoryCount}
               imgUrl={categoryAccessories}
             />

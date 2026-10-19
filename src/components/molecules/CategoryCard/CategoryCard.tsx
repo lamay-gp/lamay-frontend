@@ -1,17 +1,26 @@
 import { Link } from 'react-router';
 
 import { Typography } from '@/components/atoms/Typography';
+import type { Category } from '@/types/Products';
 
 type Props = {
   title: string;
+  category: Category;
   gadgetCount: number;
   imgUrl: string;
 };
 
-export const CategoryCard = ({ title, gadgetCount, imgUrl }: Props) => {
+export const CategoryCard = ({
+  title,
+  category,
+  gadgetCount,
+  imgUrl,
+}: Props) => {
+  const catalogUrl = `/catalog?category=${category}`;
+
   return (
     <article className="group">
-      <Link to="/catalog">
+      <Link to={catalogUrl}>
         <div className="rounded-lg overflow-hidden mb-6">
           <img
             className="aspect-squarew-full object-cover group-hover:scale-110 duration-300"
@@ -21,11 +30,11 @@ export const CategoryCard = ({ title, gadgetCount, imgUrl }: Props) => {
         </div>
       </Link>
 
-      <Link to="/catalog">
+      <Link to={catalogUrl}>
         <Typography
           variant="h4"
           as="h4"
-          className="mb-1"
+          className="mb-1 duration-300 group-hover:text-muted-foreground"
         >
           {title}
         </Typography>

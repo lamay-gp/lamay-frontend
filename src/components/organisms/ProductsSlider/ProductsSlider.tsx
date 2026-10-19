@@ -17,8 +17,13 @@ import { ProductCard } from '../ProductCard';
 type Props = {
   title: string;
   products: Product[];
+  goTo?: string;
 };
-export const ProductsSlider = ({ title, products }: Props) => {
+export const ProductsSlider = ({
+  title,
+  products,
+  goTo = '/catalog',
+}: Props) => {
   return (
     <Carousel
       opts={{
@@ -33,7 +38,7 @@ export const ProductsSlider = ({ title, products }: Props) => {
           >
             {title}
           </Typography>
-          <Link to={`/catalog`}>
+          <Link to={goTo}>
             <Button
               variant="ghost"
               className="text-button pl-0 tablet:pl-2.5 cursor-pointer hover:text-button"
@@ -51,7 +56,7 @@ export const ProductsSlider = ({ title, products }: Props) => {
       </div>
       <div className="relative">
         <div className="h-full w-41 absolute -right-1 bottom-0 bg-linear-to-l from-background to-transparent z-10 pointer-events-none"></div>
-        <CarouselContent>
+        <CarouselContent viewportClassName="py-2.5 px-2">
           {products.map((product) => (
             <CarouselItem
               key={product.id}

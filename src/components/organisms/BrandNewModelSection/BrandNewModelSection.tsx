@@ -16,6 +16,7 @@ export const BrandNewModelSection = () => {
         <ProductsSlider
           title="Brand new models"
           products={brandNewProducts}
+          goTo="/catalog?sort=age-desc"
         />
       </div>
     </section>
