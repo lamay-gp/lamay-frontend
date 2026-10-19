@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 
 import { BackButton } from '@/components/atoms/BackButton';
 import { ErrorMessage } from '@/components/atoms/ErrorMessage';
@@ -17,6 +17,7 @@ import type { Category } from '@/types/Products';
 export const GadgetDetailsPage = () => {
   const { category, itemId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const products = useProductsStore((state) => state.products);
   const sortedByCategory = useGadgetDetailsStore(
@@ -37,6 +38,13 @@ export const GadgetDetailsPage = () => {
       fetchGadgets(category as Category);
     }
   }, [fetchGadgets, category]);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, [location.pathname]);
 
   if (!category || !itemId) {
     return <ErrorMessage message="Invalid product URL" />;
