@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/Button/button';
 export const NotFoundPage = () => {
   const { t } = useTranslation('', { keyPrefix: 'notFoundPage' });
   return (
-    <section className="pt-10">
+    <section className="pt-20">
       <div className="container flex flex-col gap-8 items-center">
         <Typography
           variant="h4"

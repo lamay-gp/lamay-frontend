@@ -83,7 +83,7 @@ export const CatalogPage = () => {
                 />
               </div>
 
-              {isLoading && <Loader />}
+              {isLoading && <Loader className="mt-40" />}
 
               {!isLoading && errorMessage && (
                 <ErrorMessage message={errorMessage} />

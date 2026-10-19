@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 
 import { Typography } from '@/components/atoms/Typography';
+import { Skeleton } from '@/components/ui/skeleton';
+import { useProductsStore } from '@/stores/productsStore';
 import type { Category } from '@/types/Products';
 
 type Props = {
@@ -21,6 +23,8 @@ export const CategoryCard = ({
     keyPrefix: 'components.molecules.categoryCard',
   });
   const catalogUrl = `/catalog?category=${category}`;
+
+  const isLoading = useProductsStore((state) => state.isLoading);
 
   return (
     <article className="group">
@@ -44,13 +48,16 @@ export const CategoryCard = ({
         </Typography>
       </Link>
 
-      <Typography
-        variant="button"
-        as="p"
-        className="text-text-secondary"
-      >
-        {t('gadgetCount', { count: gadgetCount })}
-      </Typography>
+      {isLoading ?
+        <Skeleton className="w-20 h-5 rounded-lg bg-border" />
+      : <Typography
+          variant="button"
+          as="p"
+          className="text-text-secondary"
+        >
+          {t('gadgetCount', { count: gadgetCount })}
+        </Typography>
+      }
     </article>
   );
 };

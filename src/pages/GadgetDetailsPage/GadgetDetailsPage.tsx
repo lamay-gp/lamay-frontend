@@ -75,7 +75,7 @@ export const GadgetDetailsPage = () => {
 
   if (!currentGadget) {
     return (
-      <section className="pt-10">
+      <section className="pt-25">
         <div className="container flex flex-col gap-8 items-center">
           <Typography
             variant="h4"
@@ -168,107 +168,113 @@ export const GadgetDetailsPage = () => {
   return (
     <div className=" bg-hover">
       <div>
-        <section className="container px-0">
-          <Breadcrumbs
-            items={[
-              { label: 'home', to: '/' },
-              { label: category, to: `/catalog?category=${category}` },
-              { label: currentGadget.name },
-            ]}
-            className="mb-4 tablet:mb-6"
-          />
+        <section className="">
+          <div className="container">
+            <Breadcrumbs
+              items={[
+                { label: 'home', to: '/' },
+                { label: category, to: `/catalog?category=${category}` },
+                { label: currentGadget.name },
+              ]}
+              className="mb-4 tablet:mb-6"
+            />
 
-          <div className="mb-6 tablet:mb-10 ">
-            <BackButton />
+            <div className="mb-6 tablet:mb-10 ">
+              <BackButton />
+            </div>
+
+            <Typography
+              variant="h2"
+              as="h2"
+              className="mb-6 tablet:mb-8 desktop:mb-10"
+            >
+              {currentGadget?.name}
+            </Typography>
           </div>
+        </section>
 
-          <Typography
-            variant="h2"
-            as="h2"
-            className="mb-6 tablet:mb-8 desktop:mb-10"
+        <section className="mb-10 tablet:mb-16 desktop:mb-20">
+          <div
+            className="container grid grid-cols-1
+        tablet:grid-cols-12 desktop:grid-cols-24 gap-4 tablet:gap-4.25"
           >
-            {currentGadget?.name}
-          </Typography>
-        </section>
+            <div className="tablet:col-span-7 desktop:col-span-12 ">
+              <ProductGallery images={currentModelImgs} />
+            </div>
 
-        <section
-          className="container grid grid-cols-1
-        tablet:grid-cols-12 desktop:grid-cols-24 gap-4 tablet:gap-[17px] pb-7 tablet:pb-8 desktop:pb-10"
-        >
-          <div className="tablet:col-span-7 desktop:col-span-12 ">
-            <ProductGallery images={currentModelImgs} />
-          </div>
-
-          <div className="tablet:col-span-5 desktop:col-span-11 desktop:col-start-14">
-            <ProductInfo
-              productId={product?.id}
-              product={currentGadget}
-              onColorChange={onColorChange}
-              onCapacityChange={onCapacityChange}
-            />
+            <div className="tablet:col-span-5 desktop:col-span-11 desktop:col-start-14">
+              <ProductInfo
+                productId={product?.id}
+                product={currentGadget}
+                onColorChange={onColorChange}
+                onCapacityChange={onCapacityChange}
+              />
+            </div>
           </div>
         </section>
 
-        <section
-          className="container flex flex-col gap-14 tablet:gap-16
-        py-7 tablet:py-8 desktop:py-10 desktop:grid desktop:grid-cols-24 desktop:gap-x-0"
-        >
-          <div className=" min-w-0 desktop:col-span-12">
-            <Typography
-              variant="h3"
-              as="h2"
-              className="mb-4 font-bold tablet:font-extrabold"
-            >
-              {t('about')}
-            </Typography>
+        <section className="mb-10 tablet:mb-16 desktop:mb-20">
+          <div
+            className="container flex flex-col gap-14 tablet:gap-16
+        desktop:grid desktop:grid-cols-24 desktop:gap-x-0"
+          >
+            <div className="min-w-0 desktop:col-span-12">
+              <Typography
+                variant="h3"
+                as="h2"
+                className="mb-4 font-bold tablet:font-extrabold"
+              >
+                {t('about')}
+              </Typography>
 
-            <div className="w-full mb-8 border-b border-elements" />
+              <div className="w-full mb-8 border-b border-elements" />
 
-            <ul>
-              {currentGadget.description.map((section) => (
-                <li key={section.title}>
-                  <Typography
-                    variant="h4"
-                    as="p"
-                    className="mb-4 font-bold tablet:font-extrabold"
-                  >
-                    {section.title}
-                  </Typography>
+              <ul>
+                {currentGadget.description.map((section) => (
+                  <li key={section.title}>
+                    <Typography
+                      variant="h4"
+                      as="p"
+                      className="mb-4 font-bold tablet:font-extrabold"
+                    >
+                      {section.title}
+                    </Typography>
 
-                  <Typography
-                    variant="button"
-                    as="p"
-                    className="mb-8 desktop:font-medium text-text-secondary"
-                  >
-                    {section.text}
-                  </Typography>
-                </li>
-              ))}
-            </ul>
-          </div>
+                    <Typography
+                      variant="button"
+                      as="p"
+                      className="mb-8 desktop:font-medium text-text-secondary"
+                    >
+                      {section.text}
+                    </Typography>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          <div className=" min-w-0 desktop:col-span-11 desktop:col-start-14">
-            <Typography
-              variant="h3"
-              as="h2"
-              className="mb-4 font-bold tablet:font-extrabold"
-            >
-              {t('techSpecs')}
-            </Typography>
+            <div className=" min-w-0 desktop:col-span-11 desktop:col-start-14">
+              <Typography
+                variant="h3"
+                as="h2"
+                className="mb-4 font-bold tablet:font-extrabold"
+              >
+                {t('techSpecs')}
+              </Typography>
 
-            <div className="w-full mb-[30px] tablet:mb-[25px] border-b border-elements" />
-            <ProductSpec
-              specs={params}
-              nameVariant="body"
-              valueVariant="button"
-              nameWeight="font-medium"
-              valueWeight="font-semibold"
-            />
+              <div className="w-full mb-8 tablet:mb-6 border-b border-elements" />
+              <ProductSpec
+                specs={params}
+                nameVariant="body"
+                valueVariant="button"
+                nameWeight="font-medium"
+                valueWeight="font-semibold"
+              />
+            </div>
           </div>
         </section>
       </div>
       <section className="mb-14 tablet:mb-16 tablet-lg:mb-20">
-        <div className="container py-7 tablet:py-8 desktop:py-10">
+        <div className="container">
           <ProductsSlider
             title={t('alsoLikeTitle')}
             products={alsoLikedProducts}

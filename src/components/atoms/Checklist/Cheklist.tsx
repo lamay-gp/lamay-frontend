@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 
+import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
+import { useProductsStore } from '@/stores/productsStore';
 import type { ChecklistItem, Product } from '@/types/Products';
 
 import { Typography } from '../Typography';
@@ -39,6 +41,8 @@ export const Checklist = <T extends string = string>({
     }
   };
 
+  const isLoading = useProductsStore((state) => state.isLoading);
+
   return (
     <div
       className={cn(
@@ -57,34 +61,42 @@ export const Checklist = <T extends string = string>({
       )}
 
       <div className="flex flex-col gap-2">
-        {itemsWithCounts.map((item) => {
-          const isChecked = selectedIds.includes(item.id);
+        {isLoading ?
+          Array.from({ length: Math.max(items.length, 3) }, (_, index) => (
+            <Skeleton
+              key={`checklist-skeleton-${index}`}
+              className="h-5 w-full"
+            />
+          ))
+        : itemsWithCounts.map((item) => {
+            const isChecked = selectedIds.includes(item.id);
 
-          return (
-            <label
-              key={item.id}
-              className="flex items-center justify-between cursor-pointer group text-sm text-foreground select-none"
-            >
-              <div className="flex items-center gap-2.5">
-                <input
-                  type="checkbox"
-                  checked={isChecked}
-                  onChange={() => handleCheckboxChange(item.id)}
-                  className="size-4 rounded border-input text-button focus:ring-button cursor-pointer accent-button]"
-                />
-                <span className="group-hover:text-button transition-colors capitalize">
-                  {item.label}
-                </span>
-              </div>
+            return (
+              <label
+                key={item.id}
+                className="flex items-center justify-between cursor-pointer group text-sm text-foreground select-none"
+              >
+                <div className="flex items-center gap-2.5">
+                  <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={() => handleCheckboxChange(item.id)}
+                    className="size-4 rounded border-input text-button focus:ring-button cursor-pointer accent-button"
+                  />
+                  <span className="group-hover:text-button transition-colors capitalize">
+                    {item.label}
+                  </span>
+                </div>
 
-              {item.count !== undefined && (
-                <span className="text-muted-foreground text-xs">
-                  {item.count}
-                </span>
-              )}
-            </label>
-          );
-        })}
+                {item.count !== undefined && (
+                  <span className="text-muted-foreground text-xs">
+                    {item.count}
+                  </span>
+                )}
+              </label>
+            );
+          })
+        }
       </div>
     </div>
   );
