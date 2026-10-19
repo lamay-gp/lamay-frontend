@@ -66,6 +66,20 @@ export const GadgetDetailsPage = () => {
   if (!currentGadget) {
     return <ErrorMessage message="Gadget not found" />;
   }
+
+  const alsoLikedProducts = products
+    .filter(
+      (product) =>
+        product.category === category &&
+        !product.itemId.includes(currentGadget.namespaceId),
+    )
+    .sort(
+      (a, b) =>
+        Math.abs(a.price - currentGadget.priceDiscount) -
+        Math.abs(b.price - currentGadget.priceDiscount),
+    )
+    .slice(0, 10);
+
   const product = products.find((item) => item.itemId === itemId);
   const currentModelImgs = currentGadget?.images || [];
   const params = [
@@ -109,7 +123,6 @@ export const GadgetDetailsPage = () => {
         (model) => model.namespaceId === currentGadget.namespaceId,
       )
     : [];
-  console.log(filteredGadgetsByModel);
 
   const navigateToVariant = (color: string, capacity: string) => {
     const nextGadget = filteredGadgetsByModel.find(
@@ -239,7 +252,7 @@ export const GadgetDetailsPage = () => {
         <div className="container py-7 tablet:py-8 desktop:py-10">
           <ProductsSlider
             title="You may also like"
-            products={products}
+            products={alsoLikedProducts}
           />
         </div>
       </section>
