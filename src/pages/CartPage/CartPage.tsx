@@ -1,4 +1,5 @@
 import cartIsEmpty from '@/assets/images/cart-is-empty.png';
+import { BackButton } from '@/components/atoms/BackButton';
 import { Typography } from '@/components/atoms/Typography';
 import { Breadcrumbs } from '@/components/molecules/Breadcrumbs';
 import { CartCheckout } from '@/components/molecules/CartCheckout';
@@ -28,6 +29,11 @@ export const CartPage = () => {
           items={[{ label: 'Home', to: '/' }, { label: 'Cart' }]}
           className="mt-6"
         />
+
+        <div className="mb-6 tablet:mb-4 ">
+          <BackButton />
+        </div>
+
         <div className="flex justify-between items-center">
           <Typography
             variant="h1"
