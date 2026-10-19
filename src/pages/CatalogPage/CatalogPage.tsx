@@ -59,7 +59,7 @@ export const CatalogPage = () => {
           </header>
 
           <div className="flex flex-col tablet-lg:flex-row gap-8 items-start">
-            <FiltersSidebar className="w-57.5 shrink-0 self-start sticky top-16 max-h-[calc(100vh-5rem)] overflow-y-auto desktop:top-20 desktop:max-h-[calc(100vh-6rem)]" />
+            <FiltersSidebar className="w-57.5 shrink-0 self-start sticky top-16 max-h-[calc(100vh-5rem)] overflow-y-auto scrollbar-subtle pr-2 desktop:top-20 desktop:max-h-[calc(100vh-6rem)]" />
 
             <div className="flex-1 w-full flex flex-col gap-6">
               <div className="flex items-end justify-between gap-4 tablet-lg:justify-end">
