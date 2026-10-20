@@ -3,6 +3,7 @@ import { Heart } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 import { Button } from '@/components/ui/Button/button';
+import { toast } from '@/components/ui/toast';
 import { useFavouritesStore } from '@/stores/favouritesStore';
 import type { Product } from '@/types/Products';
 
@@ -31,8 +32,18 @@ export const ToggleFavouriteButton: React.FC<Props> = ({
   const handleClick = () => {
     if (isFavorite) {
       removeFromFavourites(productId);
+      toast.add({
+        title: 'Removed from favorites',
+        description: 'The item has been removed from your wishlist.',
+        type: 'warning',
+      });
     } else {
       addToFavourites(productId);
+      toast.add({
+        title: 'Added to favorites',
+        description: 'The item has been saved to your wishlist.',
+        type: 'success',
+      });
       console.log(favouriteIds);
     }
   };
