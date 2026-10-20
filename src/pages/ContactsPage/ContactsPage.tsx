@@ -47,9 +47,9 @@ export const ContactsPage = () => {
   return (
     <section className="container bg-hover py-10">
       <Typography
-        variant="h2"
+        variant="h1"
         as="h1"
-        className="mb-10 desktop:mb-0 text-center text-button font-normal"
+        className="mb-10 desktop:mb-0 text-center text-button font-semibold"
       >
         LAMAY STUDIO
       </Typography>
