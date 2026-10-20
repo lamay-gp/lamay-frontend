@@ -1,5 +1,6 @@
 import { Grid2X2, X } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router';
 
 import { SearchBarHeader } from '@/components/atoms/SearchBarHeader';
@@ -20,12 +21,29 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   );
 
 export const Header = () => {
+  const { t } = useTranslation();
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const cartItems = useCartStore((state) => state.cartItems);
   const totalCartCount = cartItems.reduce(
     (sum, item) => sum + item.quantity,
     0,
   );
+
+  const [isAnimating, setIsAnimating] = useState(false);
+  const prevCountRef = useRef(totalCartCount);
+
+  useEffect(() => {
+    if (prevCountRef.current !== totalCartCount) {
+      setIsAnimating(true);
+
+      const timer = setTimeout(() => {
+        setIsAnimating(false);
+      }, 2000);
+
+      prevCountRef.current = totalCartCount;
+      return () => clearTimeout(timer);
+    }
+  }, [totalCartCount]);
 
   return (
     <header className="sticky top-0 z-50 flex h-12 w-full items-center justify-between tablet-lg:gap-4 bg-background shadow-[0_2px_6px_-2px_var(--elements)] desktop:h-16 desktop:gap-6">
@@ -80,7 +98,7 @@ export const Header = () => {
         </NavLink>
 
         <nav className="hidden h-full shrink-0 items-center gap-6 text-[14px] font-extrabold tablet-lg:flex desktop:gap-10 desktop:mr-0 desktop:text-[16px]">
-          {NAV_LINKS.map(({ to, label, ...linkProps }) => {
+          {NAV_LINKS.map(({ to, labelKey, ...linkProps }) => {
             const isCatalog = to === '/catalog';
 
             return (
@@ -98,7 +116,7 @@ export const Header = () => {
                 {...linkProps}
               >
                 {isCatalog && <Grid2X2 className="size-4" />}
-                <Typography variant="button">{label}</Typography>
+                <Typography variant="button">{t(labelKey)}</Typography>
               </NavLink>
             );
           })}
@@ -128,14 +146,14 @@ export const Header = () => {
           contentClassName="shadow-none"
         />
 
-        {ACTION_LINKS.map(({ to, label, icon: Icon }) => {
+        {ACTION_LINKS.map(({ to, labelKey, icon: Icon }) => {
           const isCart = to === '/cart';
 
           return (
             <NavLink
               key={to}
               to={to}
-              aria-label={label}
+              aria-label={t(labelKey)}
               className={({ isActive }) =>
                 cn(
                   'relative flex h-12 w-12 shrink-0 items-center justify-center border border-t-0 border-l-0 border-b-0 border-elements hover:ring-0 hover:inset-ring-1 hover:inset-ring-elements transition-colors desktop:h-16 desktop:w-16',
@@ -148,7 +166,12 @@ export const Header = () => {
                 <Icon className="h-3.5 w-4.5 desktop:h-4.5" />
 
                 {isCart && totalCartCount > 0 && (
-                  <span className="absolute -top-2 -right-2.5 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-button text-[10px] font-bold text-white animate-pulse shadow-sm">
+                  <span
+                    className={cn(
+                      'absolute -top-2 -right-2.5 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-button text-[10px] font-bold text-white shadow-sm transition-all',
+                      isAnimating && 'animate-pulse scale-110',
+                    )}
+                  >
                     {totalCartCount}
                   </span>
                 )}

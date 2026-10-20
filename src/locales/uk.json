@@ -1,0 +1,171 @@
+{
+  "navigation": {
+    "home": "Головна",
+    "catalog": "Каталог",
+    "favourites": "Обране",
+    "shoppingCart": "Кошик"
+  },
+  "components": {
+    "atoms": {
+      "addToCartBtn": {
+        "linkToCard": "Перейти до кошика",
+        "linkToCardAria": "Перейти до кошика",
+        "linkAddToCart": "Додати до кошика",
+        "linkAddToCartAria": "Додати до кошика"
+      },
+      "backBtn": "Назад",
+      "errorMessage": {
+        "title": "Щось пішло не так",
+        "retryBtn": "Спробувати ще раз"
+      },
+      "searchBarHeader": {
+        "inputPlaceholder": "Пошук товарів...",
+        "allResults": "Переглянути всі результати",
+        "notFound": "Товарів не знайдено"
+      },
+      "sort": {
+        "labelSort": "Сортувати за",
+        "placeholderSort": "Оберіть сортування",
+        "cheapestFirst": "Дешевші",
+        "expensiveFirst": "Дорожчі",
+        "alphabetically": "За алфавітом",
+        "newestFirst": "Новіші",
+        "oldestFirst": "Старіші"
+      },
+      "toggleFavouritesBtn": {
+        "ariaRemoveFrom": "Видалити з обраного",
+        "ariaAddTo": "Додати до обраного"
+      }
+    },
+    "molecules": {
+      "breadcrumbs": {
+        "home": "Головна",
+        "cart": "Кошик",
+        "catalog": "Каталог",
+        "phones": "Телефони",
+        "tablets": "Планшети",
+        "accessories": "Аксесуари",
+        "favourites": "Обране"
+      },
+      "burgerMenu": {
+        "ariaOpen": "Відкрити меню",
+        "ariaClose": "Закрити меню",
+        "ariaLogo": "Головна"
+      },
+      "cartCheckout": {
+        "total_one": "Всього за {{count}} товар",
+        "total_few": "Всього за {{count}} товари",
+        "total_many": "Всього за {{count}} товарів",
+        "total_other": "Всього за {{count}} товари",
+        "checkoutBtn": "Оформити замовлення",
+        "ariaCheckout": "Оформити замовлення"
+      },
+      "categoryCard": {
+        "gadgetCount_one": "{{count}} модель",
+        "gadgetCount_few": "{{count}} моделі",
+        "gadgetCount_many": "{{count}} моделей",
+        "gadgetCount_other": "{{count}} моделі"
+      }
+    },
+    "organisms": {
+      "brandNewProdTitle": "Нові моделі",
+      "filterContent": {
+        "category": "Категорія",
+        "price": "Ціна",
+        "color": "Колір",
+        "capacity": "Обсяг пам’яті",
+        "ram": "Оперативна пам’ять",
+        "year": "Рік випуску",
+        "screen": "Екран",
+        "phones": "Телефони",
+        "tablets": "Планшети",
+        "accessories": "Аксесуари"
+      },
+      "filterPanel": {
+        "title": "Фільтри",
+        "openFilters": "Відкрити фільтри",
+        "clearBtn": "Очистити",
+        "item_one": "{{count}} товар",
+        "item_few": "{{count}} товари",
+        "item_many": "{{count}} товарів",
+        "item_other": "{{count}} товари"
+      },
+      "footer": {
+        "github": "GitHub",
+        "contacts": "Контакти",
+        "rights": "Усі права захищено",
+        "backToTopBtn": "Нагору"
+      },
+      "heroSection": {
+        "welcome": "МАГАЗИН ГАДЖЕТІВ",
+        "catalogBtn": "Каталог товарів",
+        "halloweenBannerAlt": "Розпродаж до Гелловіну",
+        "salesBannerAlt": "Розпродаж"
+      },
+      "hotPricesSectiontitle": "Гарячі ціни",
+      "productGallery": "Показати зображення товару",
+      "productInfo": {
+        "availableColors": "Доступні кольори",
+        "selectCapacity": "Оберіть обсяг пам’яті",
+        "screen": "Екран",
+        "resolution": "Роздільна здатність",
+        "processor": "Процесор",
+        "ram": "Оперативна пам’ять"
+      },
+      "productSliderViewAll": "Переглянути всі",
+      "shopByCategory": {
+        "title": "Обирайте за категорією",
+        "mobileCardTitle": "Мобільні телефони",
+        "tabletCardTitle": "Планшети",
+        "accessoriesCardTitle": "Аксесуари"
+      }
+    }
+  },
+  "cartPage": {
+    "title": "Кошик",
+    "clearBtn": "Очистити все",
+    "cartEmpty": "Ваш кошик порожній",
+    "cartEmptyAlt": "Кошик порожній"
+  },
+  "catalogPage": {
+    "title": "Каталог",
+    "countModel_one": "{{count}} модель",
+    "countModel_few": "{{count}} моделі",
+    "countModel_many": "{{count}} моделей",
+    "countModel_other": "{{count}} моделі",
+    "loadMoreBtn": "Завантажити ще",
+    "noProducts": "Товарів не знайдено"
+  },
+  "favouritesPage": {
+    "title": "Обране",
+    "item_one": "{{count}} товар",
+    "item_few": "{{count}} товари",
+    "item_many": "{{count}} товарів",
+    "item_other": "{{count}} товари",
+    "clearBtn": "Очистити все",
+    "favouritesEmpty": "Ви ще не додали нічого до обраного.",
+    "favouritesEmptyAlt": "Список обраного порожній."
+  },
+  "gadgetDetails": {
+    "about": "Про товар",
+    "techSpecs": "Технічні характеристики",
+    "invalidUrlError": "Некоректна URL-адреса товару",
+    "notFoundError": "Гаджет не знайдено.",
+    "notFoundErrorAlt": "Гаджет не знайдено.",
+    "goHome": "На головну",
+    "screen": "Екран",
+    "resolution": "Роздільна здатність",
+    "processor": "Процесор",
+    "ram": "Оперативна пам’ять",
+    "builtInMemory": "Вбудована пам’ять",
+    "camera": "Камера",
+    "zoom": "Зум",
+    "cell": "Акумулятор",
+    "alsoLikeTitle": "Вам також може сподобатися"
+  },
+  "notFoundPage": {
+    "notFound": "Сторінку не знайдено",
+    "notFoundAlt": "Сторінку не знайдено",
+    "goHome": "Перейти на головну"
+  }
+}

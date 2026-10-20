@@ -1,4 +1,7 @@
+import { useTranslation } from 'react-i18next';
+
 import favouriteIsEmpty from '@/assets/images/favorites-is-empty.png';
+import { BackButton } from '@/components/atoms/BackButton';
 import { ErrorMessage } from '@/components/atoms/ErrorMessage';
 import { Loader } from '@/components/atoms/Loader';
 import { Typography } from '@/components/atoms/Typography';
@@ -9,6 +12,9 @@ import { useFavouritesStore } from '@/stores/favouritesStore';
 import { useProductsStore } from '@/stores/productsStore';
 
 export const FavouritesPage = () => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'favouritesPage',
+  });
   const favouriteIds = useFavouritesStore((state) => state.favouriteIds);
   const products = useProductsStore((state) => state.products);
 
@@ -22,28 +28,33 @@ export const FavouritesPage = () => {
   const errorMessage = useProductsStore((state) => state.errorMessage);
 
   const hasFavouritesItems = favouriteProducts.length > 0;
+  const favouritesCount = favouriteProducts.length;
 
   return (
     <section className="mb-14 tablet:mb-16 tablet-lg:mb-20">
       <div className="container">
         <Breadcrumbs
-          items={[{ label: 'Home', to: '/' }, { label: 'Favourites' }]}
-          className="mt-6"
+          items={[{ label: 'home', to: '/' }, { label: 'favourites' }]}
+          className="mb-4 tablet:mb-6"
         />
+
+        <div className="mb-6 tablet:mb-10">
+          <BackButton />
+        </div>
+
         <div className="flex items-center justify-between gap-3">
           <div className="min-w-0">
             <Typography
               variant="h1"
               as="h1"
-              className="mb-2 tablet-lg:mb-3 mt-6 tablet-lg:mt-10"
+              className="mb-2 tablet-lg:mb-3"
             >
-              Favourites
+              {t('title')}
             </Typography>
 
             <Typography variant="body">
               <span className="text-text-secondary">
-                {favouriteProducts.length}{' '}
-                {favouriteProducts.length === 1 ? 'item' : 'items'}
+                {t('item', { count: favouritesCount })}
               </span>
             </Typography>
           </div>
@@ -54,12 +65,12 @@ export const FavouritesPage = () => {
               className="p-3 desktop:p-5"
               onClick={clearFavourites}
             >
-              <Typography variant="button">Clear all</Typography>
+              <Typography variant="button">{t('clearBtn')}</Typography>
             </Button>
           )}
         </div>
 
-        {isLoading && <Loader />}
+        {isLoading && <Loader className="mt-40" />}
 
         {!isLoading && errorMessage && <ErrorMessage message={errorMessage} />}
 
@@ -75,15 +86,16 @@ export const FavouritesPage = () => {
 
         {!isLoading && !errorMessage && !hasFavouritesItems && (
           <Typography
-            variant="body"
-            className="mt-8 text-center text-text-secondary"
+            variant="h4"
+            as="h4"
+            className="text-center text-text-secondary"
           >
             <img
               src={favouriteIsEmpty}
-              alt="Your favourites list is empty"
-              className="mx-auto max-w-80 mt-15 tablet:max-w-120"
+              alt={t('favouritesEmptyAlt')}
+              className="mx-auto max-w-80 tablet:max-w-90"
             />
-            You haven&apos;t added any favourites yet.
+            {t('favouritesEmpty')}
           </Typography>
         )}
       </div>

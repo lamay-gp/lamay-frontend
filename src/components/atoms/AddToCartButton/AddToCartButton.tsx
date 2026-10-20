@@ -1,4 +1,5 @@
 import { cn } from 'cn';
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router';
 
 import { Button } from '@/components/ui/Button/button';
@@ -17,6 +18,9 @@ export const AddToCartButton: React.FC<Props> = ({
   productId,
   size = 'sm',
 }) => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.atoms.addToCartBtn',
+  });
   const cartItems = useCartStore((state) => state.cartItems);
   const addToCart = useCartStore((state) => state.addToCart);
 
@@ -35,9 +39,9 @@ export const AddToCartButton: React.FC<Props> = ({
       <NavLink
         to="/cart"
         className={cn(buttonVariants({ variant: 'primaryAction' }), className)}
-        aria-label="Go to cart"
+        aria-label={t('linkToCard')}
       >
-        Go to cart
+        {t('linkToCard')}
       </NavLink>
     );
   }
@@ -45,10 +49,10 @@ export const AddToCartButton: React.FC<Props> = ({
     <Button
       variant="primaryAction"
       className={className}
-      aria-label="Add to cart"
+      aria-label={t('linkAddToCartAria')}
       onClick={() => addToCart(productId)}
     >
-      Add to cart
+      {t('linkAddToCart')}
     </Button>
   );
 };

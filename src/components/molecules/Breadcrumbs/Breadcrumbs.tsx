@@ -1,5 +1,6 @@
 import { House } from 'lucide-react';
 import { Fragment } from 'react/jsx-runtime';
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router';
 
 import { Typography } from '@/components/atoms/Typography';
@@ -19,6 +20,16 @@ type Props = {
 };
 
 export const Breadcrumbs = ({ items, className }: Props) => {
+  const { t, i18n } = useTranslation('', {
+    keyPrefix: 'components.molecules.breadcrumbs',
+  });
+
+  const getLabel = (label: string) => {
+    const fullKey = `components.molecules.breadcrumbs.${label}`;
+
+    return i18n.exists(fullKey) ? t(label) : label;
+  };
+
   return (
     <Breadcrumb className={className}>
       <BreadcrumbList>
@@ -46,7 +57,7 @@ export const Breadcrumbs = ({ items, className }: Props) => {
                         as="span"
                         className="font-bold text-text"
                       >
-                        {item.label}
+                        {getLabel(item.label)}
                       </Typography>
                     }
                   </BreadcrumbLink>
@@ -58,7 +69,7 @@ export const Breadcrumbs = ({ items, className }: Props) => {
                         as="span"
                         className="text-text-secondary font-normal"
                       >
-                        {item.label}
+                        {getLabel(item.label)}
                       </Typography>
                     }
                   </BreadcrumbPage>

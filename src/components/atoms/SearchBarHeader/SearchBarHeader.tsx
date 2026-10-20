@@ -8,6 +8,7 @@ import {
   type ChangeEvent,
   type KeyboardEvent,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate, useSearchParams } from 'react-router';
 
 import { Button } from '@/components/ui/Button/button';
@@ -36,6 +37,9 @@ export const SearchBarHeader = ({
   iconClassName,
   onFocusChange,
 }: SearchBarHeaderProps) => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.atoms.searchBarHeader',
+  });
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const isCatalogPage = pathname === '/catalog';
@@ -132,7 +136,7 @@ export const SearchBarHeader = ({
           <Search className={iconClassName} />
         </InputGroupAddon>
         <InputGroupInput
-          placeholder="Search products..."
+          placeholder={t('inputPlaceholder')}
           value={query}
           onChange={handleChange}
           onFocus={handleFocus}
@@ -170,12 +174,12 @@ export const SearchBarHeader = ({
                   className="w-full cursor-pointer rounded-none py-3 text-button hover:bg-transparent hover:text-button"
                   onClick={goToCatalog}
                 >
-                  View all results
+                  {t('allResults')}
                 </Button>
               )}
             </>
           : <p className="px-4 py-3 text-sm text-text-secondary">
-              No products found
+              {t('notFound')}
             </p>
           }
         </div>

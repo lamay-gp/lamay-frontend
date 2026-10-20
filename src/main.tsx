@@ -4,6 +4,8 @@ import { RouterProvider } from 'react-router/dom';
 
 import { router } from '@/router';
 
+import './config/i18n';
+
 import '@/index.css';
 
 createRoot(document.getElementById('root')!).render(

@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Dropdown } from '@/components/atoms/Dropdown';
 import { Button } from '@/components/ui/Button/button';
 import { DropdownMenuItem } from '@/components/ui/Dropdown-menu/dropdown-menu';
@@ -15,36 +17,44 @@ export const LanguageSwitcher = ({
   className,
   contentClassName,
   contentProps,
-}: LanguageSwitcherProps) => (
-  <Dropdown
-    modal={false}
-    contentProps={contentProps}
-    trigger={
-      <Button
-        className={cn(
-          'flex h-12 w-12 cursor-pointer items-center justify-center rounded-none border border-t-0 border-b-0 border-l-0 border-elements bg-transparent p-0 text-[12px] font-medium text-text shadow-none transition-colors',
-          'hover:ring-0 hover:inset-ring-1 hover:inset-ring-elements hover:border-transparent hover:bg-transparent',
-          'ata-popup-open:shadow-none',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 focus-visible:ring-inset',
-          'desktop:h-16 desktop:w-16 desktop:text-sm',
-          className,
-        )}
-      >
-        EN
-      </Button>
-    }
-    contentClassName={cn(
-      'w-12 min-w-12 rounded-none border border-t-0 border-elements p-0 shadow-none ring-0 desktop:w-16 desktop:min-w-16',
-      contentClassName,
-    )}
-  >
-    <DropdownMenuItem
-      className="flex h-15.75 tablet:w-full tablet:h-12 cursor-pointer items-center justify-center rounded-none p-0 text-[12px] font-medium focus:bg-hover focus:text-text desktop:h-16 desktop:text-[14px] border-t hover:ring-0 hover:inset-ring-1 hover:inset-ring-elements"
-      onClick={() => {
-        // TODO: implement language change
-      }}
+}: LanguageSwitcherProps) => {
+  const { i18n } = useTranslation();
+  const currentLang = i18n.language ? i18n.language.toUpperCase() : 'EN';
+  const nextLang = currentLang === 'EN' ? 'UK' : 'EN';
+
+  const handleLanguageChange = (lang: string) => {
+    i18n.changeLanguage(lang.toLowerCase());
+  };
+
+  return (
+    <Dropdown
+      modal={false}
+      contentProps={contentProps}
+      trigger={
+        <Button
+          className={cn(
+            'flex h-12 w-12 cursor-pointer items-center justify-center rounded-none border border-t-0 border-b-0 border-l-0 border-elements bg-transparent p-0 text-[12px] font-medium text-text shadow-none transition-colors',
+            'hover:ring-0 hover:inset-ring-1 hover:inset-ring-elements hover:border-transparent hover:bg-transparent',
+            'ata-popup-open:shadow-none',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 focus-visible:ring-inset',
+            'desktop:h-16 desktop:w-16 desktop:text-sm',
+            className,
+          )}
+        >
+          {currentLang}
+        </Button>
+      }
+      contentClassName={cn(
+        'w-12 min-w-12 rounded-none border border-t-0 border-elements p-0 shadow-none ring-0 desktop:w-16 desktop:min-w-16',
+        contentClassName,
+      )}
     >
-      UA
-    </DropdownMenuItem>
-  </Dropdown>
-);
+      <DropdownMenuItem
+        className="flex h-15.75 tablet:w-full tablet:h-12 cursor-pointer items-center justify-center rounded-none p-0 text-[12px] font-medium focus:bg-hover focus:text-text desktop:h-16 desktop:text-[14px] border-t hover:ring-0 hover:inset-ring-1 hover:inset-ring-elements"
+        onClick={() => handleLanguageChange(nextLang)}
+      >
+        {nextLang}
+      </DropdownMenuItem>
+    </Dropdown>
+  );
+};

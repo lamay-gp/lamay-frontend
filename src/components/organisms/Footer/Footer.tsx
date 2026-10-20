@@ -1,4 +1,5 @@
 import { ChevronUp } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router';
 
 import { Typography } from '@/components/atoms/Typography';
@@ -8,6 +9,10 @@ import { cn } from '@/lib/utils';
 const logo = `${import.meta.env.BASE_URL}logo/lamay-logo-header-420.png`;
 
 export const Footer = () => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.organisms.footer',
+  });
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -37,7 +42,7 @@ export const Footer = () => {
               variant="uppercase"
               as="span"
             >
-              Github
+              {t('github')}
             </Typography>
           </a>
 
@@ -49,7 +54,7 @@ export const Footer = () => {
               variant="uppercase"
               as="span"
             >
-              Contacts
+              {t('contacts')}
             </Typography>
           </NavLink>
 
@@ -62,7 +67,7 @@ export const Footer = () => {
               variant="uppercase"
               as="span"
             >
-              Rights
+              {t('rights')}
             </Typography>
           </NavLink>
         </nav>
@@ -84,7 +89,7 @@ export const Footer = () => {
               variant="uppercase"
               as="span"
             >
-              Back to top
+              {t('backToTopBtn')}
             </Typography>
             <span
               className={cn(

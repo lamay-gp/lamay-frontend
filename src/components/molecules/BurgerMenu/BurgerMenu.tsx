@@ -1,5 +1,6 @@
 import { MenuIcon, XIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router';
 
 import { Typography } from '@/components/atoms/Typography';
@@ -9,6 +10,12 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/Sheet/sheet';
 import { ACTION_LINKS, NAV_LINKS } from '@/config/navigation';
 
 export const BurgerMenu = () => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.molecules.burgerMenu',
+  });
+
+  const { t: tNav } = useTranslation('');
+
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
@@ -32,7 +39,7 @@ export const BurgerMenu = () => {
         render={
           <Button
             variant="ghost"
-            aria-label="Open menu"
+            aria-label={t('ariaOpen')}
             className="h-12 w-12 rounded-none border-elements p-0 border-b-0"
           />
         }
@@ -48,7 +55,7 @@ export const BurgerMenu = () => {
         <div className="flex h-12 shrink-0 items-center justify-between shadow-[0px_1px_0px_0px_var(--elements)]">
           <NavLink
             to="/"
-            aria-label="home"
+            aria-label={t('ariaLogo')}
             onClick={close}
             className="px-4"
           >
@@ -61,7 +68,7 @@ export const BurgerMenu = () => {
 
           <Button
             variant="ghost"
-            aria-label="Close menu"
+            aria-label={t('ariaClose')}
             onClick={close}
             className="h-12 w-12 rounded-none border-l border-elements border-b-0 border-t-0 border-r-0 p-0"
           >
@@ -70,7 +77,7 @@ export const BurgerMenu = () => {
         </div>
 
         <nav className="flex flex-1 flex-col items-center justify-center gap-6">
-          {NAV_LINKS.map(({ to, label, ...rest }) => (
+          {NAV_LINKS.map(({ to, labelKey, ...rest }) => (
             <NavLink
               key={to}
               to={to}
@@ -86,7 +93,7 @@ export const BurgerMenu = () => {
                 variant="button"
                 as="span"
               >
-                {label}
+                {tNav(labelKey)}
               </Typography>
             </NavLink>
           ))}
@@ -106,11 +113,11 @@ export const BurgerMenu = () => {
             />
           </div>
 
-          {ACTION_LINKS.map(({ to, label, icon: Icon }) => (
+          {ACTION_LINKS.map(({ to, labelKey, icon: Icon }) => (
             <NavLink
               key={to}
               to={to}
-              aria-label={label}
+              aria-label={t(labelKey)}
               onClick={close}
               className={({ isActive }) =>
                 `relative flex flex-1 items-center justify-center border-l border-elements ${

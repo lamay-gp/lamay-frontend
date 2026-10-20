@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { AddToCartButton } from '@/components/atoms/AddToCartButton';
 import { CapacitySelectorRadio } from '@/components/atoms/CapacitySelectorRadio';
 import { ColorSelectorRadio } from '@/components/atoms/ColorSelectorRadio';
@@ -20,21 +22,25 @@ export const ProductInfo = ({
   onColorChange,
   onCapacityChange,
 }: Props) => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.organisms.productInfo',
+  });
+
   const params = [
     {
-      name: 'Screen',
+      name: t('screen'),
       value: product.screen,
     },
     {
-      name: 'Resolution',
+      name: t('resolution'),
       value: product.resolution,
     },
     {
-      name: 'Processor',
+      name: t('processor'),
       value: product.processor,
     },
     {
-      name: 'RAM',
+      name: t('ram'),
       value: product.ram,
     },
   ];
@@ -47,7 +53,7 @@ export const ProductInfo = ({
           as="h3"
           className=" text-text-secondary"
         >
-          Available colors
+          {t('availableColors')}
         </Typography>
         <Typography
           variant="uppercase"
@@ -71,7 +77,7 @@ export const ProductInfo = ({
             as="h3"
             className="text-text-secondary"
           >
-            Select capacity
+            {t('selectCapacity')}
           </Typography>
         </div>
 
