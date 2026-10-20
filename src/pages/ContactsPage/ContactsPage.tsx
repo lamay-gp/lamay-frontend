@@ -4,7 +4,7 @@ const teamMembers = [
   {
     name: 'Yaroslav',
     role: 'Creative Developer',
-    image: '/public/avatars/Yaroslav.webp',
+    image: 'avatars/Yaroslav.webp',
     github: 'https://github.com/bakugan228',
     rotate: '-rotate-3',
     position: 'desktop:col-start-1 desktop:row-start-1 desktop:translate-y-12',
@@ -12,7 +12,7 @@ const teamMembers = [
   {
     name: 'Lena',
     role: 'Project Manager',
-    image: '/public/avatars/Lena.webp',
+    image: 'avatars/Lena.webp',
     github: 'https://github.com/olenabokhan1121',
     rotate: 'rotate-2',
     position: 'desktop:col-start-3 desktop:row-start-1 desktop:translate-y-12',
@@ -20,7 +20,7 @@ const teamMembers = [
   {
     name: 'Anton',
     role: 'Tech Lead',
-    image: '/public/avatars/Anton.webp',
+    image: 'avatars/Anton.webp',
     github: 'https://github.com/AchekcSs',
     rotate: '-rotate-2',
     position: 'desktop:col-start-2 desktop:row-start-2',
@@ -28,7 +28,7 @@ const teamMembers = [
   {
     name: 'Anna',
     role: 'Redesign Developer',
-    image: '/public/avatars/Anna.webp',
+    image: 'avatars/Anna.webp',
     github: 'https://github.com/annavas03',
     rotate: 'rotate-3',
     position: 'desktop:col-start-1 desktop:row-start-3 desktop:-translate-y-12',
@@ -36,7 +36,7 @@ const teamMembers = [
   {
     name: 'Maksym',
     role: 'Features Developer',
-    image: '/public/avatars/Max.webp',
+    image: 'avatars/Max.webp',
     github: 'https://github.com/YatskuliakMa',
     rotate: '-rotate-2',
     position:
@@ -58,13 +58,13 @@ export const ContactsPage = () => {
         {teamMembers.map((member) => (
           <article
             key={member.name}
-            className={`mx-auto w-full max-w-50 ${member.position}`}
+            className={`mx-auto w-full max-w-60 ${member.position}`}
           >
             <div
               className={`overflow-hidden rounded-xl bg-white shadow-lg transition-transform duration-300 hover:rotate-0 hover:scale-105 ${member.rotate}`}
             >
               <img
-                src={member.image}
+                src={`${import.meta.env.BASE_URL}${member.image}`}
                 alt={member.name}
                 className="aspect-4/5 w-full object-cover"
               />
@@ -85,7 +85,7 @@ export const ContactsPage = () => {
                 <a
                   href={member.github}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="inline-block text-button transition-colors hover:underline"
                 >
                   GitHub ↗
