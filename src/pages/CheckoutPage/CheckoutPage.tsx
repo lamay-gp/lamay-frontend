@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 import { Loader } from '@/components/atoms/Loader';
-import CheckoutForm1 from '@/components/checkout-form-1';
+import CheckoutForm1 from '@/components/ui/CheckoutForm1/checkout-form-1';
 import { useCartStore } from '@/stores/cartStore';
 
 export const CheckoutPage = () => {

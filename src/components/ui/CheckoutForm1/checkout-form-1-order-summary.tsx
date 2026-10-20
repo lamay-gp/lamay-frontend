@@ -9,8 +9,8 @@ import { Separator } from '@/components/ui/separator';
 import { useCartStore } from '@/stores/cartStore';
 import { useProductsStore } from '@/stores/productsStore';
 
-import { Typography } from './atoms/Typography';
-import { ProductPrice } from './molecules/ProductPrice/ProductPrice';
+import { Typography } from '../../atoms/Typography';
+import { ProductPrice } from '../../molecules/ProductPrice/ProductPrice';
 
 type CheckoutForm1OrderSummaryProps = {
   promoCode: string;
