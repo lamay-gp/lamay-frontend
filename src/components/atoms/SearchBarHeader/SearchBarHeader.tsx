@@ -4,7 +4,6 @@ import {
   useEffect,
   useMemo,
   useRef,
-  useState,
   type ChangeEvent,
   type KeyboardEvent,
 } from 'react';
@@ -26,7 +25,10 @@ import { SearchResultItem } from './SearchResultItem';
 type SearchBarHeaderProps = {
   className?: string;
   iconClassName?: string;
-  onFocusChange?: (isFocused: boolean) => void;
+  isFocused: boolean;
+  onFocusChange: (isFocused: boolean) => void;
+  localQuery: string;
+  onLocalQueryChange: (value: string) => void;
 };
 
 const MAX_PREVIEW_RESULTS = 3;
@@ -35,7 +37,10 @@ const DEBOUNCE_MS = 300;
 export const SearchBarHeader = ({
   className,
   iconClassName,
+  isFocused,
   onFocusChange,
+  localQuery,
+  onLocalQueryChange,
 }: SearchBarHeaderProps) => {
   const { t } = useTranslation('', {
     keyPrefix: 'components.atoms.searchBarHeader',
@@ -46,7 +51,6 @@ export const SearchBarHeader = ({
 
   const [searchParams, setSearchParams] = useSearchParams();
   const urlQuery = searchParams.get('query') ?? '';
-  const [localQuery, setLocalQuery] = useState('');
 
   const query = isCatalogPage ? urlQuery : localQuery;
   const setUrlQuery = (value: string) => {
@@ -61,7 +65,6 @@ export const SearchBarHeader = ({
     );
   };
 
-  const [isFocusedInput, setIsFocusedInput] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
 
   const trimmedQuery = query.trim();
@@ -75,13 +78,25 @@ export const SearchBarHeader = ({
   const previewResults = searchResults.slice(0, MAX_PREVIEW_RESULTS);
 
   const isDropdownVisible =
-    isFocusedInput && !isCatalogPage && Boolean(debouncedQuery);
+    isFocused && !isCatalogPage && Boolean(debouncedQuery);
 
   const closeSearch = useCallback(() => {
-    setIsFocusedInput(false);
-    if (!isCatalogPage) setLocalQuery('');
-    onFocusChange?.(false);
-  }, [onFocusChange, isCatalogPage]);
+    if (!isCatalogPage) onLocalQueryChange('');
+    onFocusChange(false);
+  }, [onFocusChange, onLocalQueryChange, isCatalogPage]);
+
+  // обробник кліку поза пошуком (лише для видимого екземпляра)
+  useEffect(() => {
+    const element = searchRef.current;
+    if (!isFocused || !element || element.getClientRects().length === 0) return;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!element.contains(event.target as Node)) closeSearch();
+    };
+
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => document.removeEventListener('pointerdown', handlePointerDown);
+  }, [isFocused, closeSearch]);
 
   const goTo = (path: string) => {
     closeSearch();
@@ -91,22 +106,16 @@ export const SearchBarHeader = ({
   const goToCatalog = () =>
     goTo(`/catalog?query=${encodeURIComponent(trimmedQuery)}`);
 
-  //обробник кліку поза пошуком
-  useEffect(() => {
-    if (!isFocusedInput) return;
-
-    const handlePointerDown = (event: PointerEvent) => {
-      if (!searchRef.current?.contains(event.target as Node)) closeSearch();
-    };
-
-    document.addEventListener('pointerdown', handlePointerDown);
-    return () => document.removeEventListener('pointerdown', handlePointerDown);
-  }, [isFocusedInput, closeSearch]);
-
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Escape') closeSearch();
-    if (event.key === 'Enter' && trimmedQuery && !isCatalogPage) {
-      goToCatalog();
+
+    if (event.key === 'Enter' && trimmedQuery) {
+      if (isCatalogPage) {
+        event.currentTarget.blur();
+        onFocusChange(false);
+      } else {
+        goToCatalog();
+      }
     }
   };
 
@@ -114,15 +123,12 @@ export const SearchBarHeader = ({
     const { value } = event.target;
 
     if (isCatalogPage) setUrlQuery(value);
-    else setLocalQuery(value);
+    else onLocalQueryChange(value);
 
-    setIsFocusedInput(true);
+    onFocusChange(true);
   };
 
-  const handleFocus = () => {
-    onFocusChange?.(true);
-    setIsFocusedInput(true);
-  };
+  const handleFocus = () => onFocusChange(true);
 
   return (
     <div

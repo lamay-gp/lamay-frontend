@@ -1,7 +1,7 @@
 import { Grid2X2, X } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { NavLink } from 'react-router';
+import { NavLink, useSearchParams } from 'react-router';
 
 import { SearchBarHeader } from '@/components/atoms/SearchBarHeader';
 import { Typography } from '@/components/atoms/Typography';
@@ -22,7 +22,11 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
 
 export const Header = () => {
   const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [localQuery, setLocalQuery] = useState('');
+
   const cartItems = useCartStore((state) => state.cartItems);
   const totalCartCount = cartItems.reduce(
     (sum, item) => sum + item.quantity,
@@ -45,6 +49,31 @@ export const Header = () => {
     }
   }, [totalCartCount]);
 
+  const handleCloseSearch = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    (document.activeElement as HTMLElement | null)?.blur();
+
+    setIsSearchFocused(false);
+    setLocalQuery('');
+
+    if (searchParams.has('query')) {
+      setSearchParams(
+        (prev) => {
+          const next = new URLSearchParams(prev);
+          next.delete('query');
+          return next;
+        },
+        { replace: true },
+      );
+    }
+  };
+
+  const preventFocusLoss = (event: SyntheticEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
+
   return (
     <header className="sticky top-0 z-50 flex h-12 w-full items-center justify-between tablet-lg:gap-4 bg-background shadow-[0_2px_6px_-2px_var(--elements)] desktop:h-16 desktop:gap-6">
       <div className="flex shrink-0 items-center h-full tablet-lg:gap-4 desktop:gap-6">
@@ -56,20 +85,9 @@ export const Header = () => {
               size="icon"
               aria-label="Open menu"
               className="h-12 w-12 shrink-0"
-              onClick={(event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                (document.activeElement as HTMLElement | null)?.blur();
-                setIsSearchFocused(false);
-              }}
-              onPointerDown={(event) => {
-                event.preventDefault();
-                event.stopPropagation();
-              }}
-              onMouseDown={(event) => {
-                event.preventDefault();
-                event.stopPropagation();
-              }}
+              onClick={handleCloseSearch}
+              onPointerDown={preventFocusLoss}
+              onMouseDown={preventFocusLoss}
             >
               <X className="size-5" />
             </Button>
@@ -123,17 +141,25 @@ export const Header = () => {
         </nav>
       </div>
 
+      {/* пошук на мобільній версії */}
       <div className="min-w-0 h-full flex-1 tablet-lg:hidden">
         <SearchBarHeader
+          isFocused={isSearchFocused}
           onFocusChange={setIsSearchFocused}
+          localQuery={localQuery}
+          onLocalQueryChange={setLocalQuery}
           className="h-full min-w-0 rounded-none border border-t-0 border-b-0 border-r-0 border-elements px-3 text-[14px] has-focus:border tablet-lg:border-r tablet-lg:border-b-elements tablet-lg:border-r-elements tablet-lg:px-4 desktop:max-w-125 desktop:text-[17px]"
           iconClassName="size-4 tablet-lg:size-5 desktop:size-6"
         />
       </div>
 
+      {/* Десктопний пошук, мова, іконки */}
       <div className="hidden h-full min-w-0 flex-1 items-center justify-end tablet-lg:flex">
         <SearchBarHeader
+          isFocused={isSearchFocused}
           onFocusChange={setIsSearchFocused}
+          localQuery={localQuery}
+          onLocalQueryChange={setLocalQuery}
           className="h-full min-w-0 rounded-none border border-t-0 border-b-0 border-r-0 border-elements px-3 text-[14px] has-focus:border tablet-lg:border-r tablet-lg:border-b-elements tablet-lg:border-r-elements tablet-lg:px-4 desktop:max-w-125 desktop:text-[17px]"
           iconClassName="size-4 tablet-lg:size-5 desktop:size-6"
         />
