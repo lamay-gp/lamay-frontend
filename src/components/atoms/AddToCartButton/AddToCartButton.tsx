@@ -4,6 +4,7 @@ import { NavLink } from 'react-router';
 
 import { Button } from '@/components/ui/Button/button';
 import { buttonVariants } from '@/components/ui/Button/button-variants';
+import { toast } from '@/components/ui/toast';
 import { useCartStore } from '@/stores/cartStore';
 import type { Product } from '@/types/Products';
 
@@ -33,6 +34,14 @@ export const AddToCartButton: React.FC<Props> = ({
       'border-elements bg-transparent text-button'
     : 'border-button bg-button',
   );
+  const handleAddToCart = () => {
+    addToCart(productId);
+    toast.add({
+      title: 'Added to cart',
+      description: 'The item has been added to your shopping cart.',
+      type: 'success',
+    });
+  };
 
   if (isInCart) {
     return (
@@ -50,7 +59,7 @@ export const AddToCartButton: React.FC<Props> = ({
       variant="primaryAction"
       className={className}
       aria-label={t('linkAddToCartAria')}
-      onClick={() => addToCart(productId)}
+      onClick={handleAddToCart}
     >
       {t('linkAddToCart')}
     </Button>
