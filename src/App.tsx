@@ -3,6 +3,7 @@ import { Outlet } from 'react-router';
 
 import { Footer } from './components/organisms/Footer';
 import { Header } from './components/organisms/Header';
+import { Toaster } from './components/ui/toast';
 import { useProductsStore } from './stores/productsStore';
 
 export const App = () => {
@@ -19,6 +20,7 @@ export const App = () => {
         <Outlet />
       </main>
       <Footer />
+      <Toaster />
     </div>
   );
 };

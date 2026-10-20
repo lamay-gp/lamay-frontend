@@ -3,6 +3,7 @@ import { XIcon } from 'lucide-react';
 import { Link } from 'react-router';
 
 import { Typography } from '@/components/atoms/Typography';
+import { toast } from '@/components/ui/toast';
 import { useCartStore } from '@/stores/cartStore';
 import type { Product } from '@/types/Products';
 
@@ -21,12 +22,23 @@ export const CartItem = ({ product }: Props) => {
   const cartItem =
     cartItems.find((item) => item.productId === product.itemId) || null;
 
+  const handleRemove = () => {
+    if (cartItem) {
+      removeFromCart(cartItem.productId);
+      toast.add({
+        title: 'Item removed',
+        description: 'The item has been removed from your cart.',
+        type: 'warning',
+      });
+    }
+  };
+
   return (
     <article className=" p-6 px-4 tablet:px-6 bg-card flex flex-row items-center rounded-lg gap-0 justify-between gap-x-8 flex-wrap gap-y-4 ring-0 inset-ring-1 inset-ring-elements">
       <div className="flex items-center">
         <Button
           className="p-2 inline-block cursor-pointer w-fit mr-2 tablet:mr-4"
-          onClick={() => removeFromCart(cartItem?.productId || '')}
+          onClick={handleRemove}
         >
           <XIcon className="text-icon-border" />
         </Button>

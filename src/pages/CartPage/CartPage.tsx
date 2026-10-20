@@ -7,6 +7,7 @@ import { Breadcrumbs } from '@/components/molecules/Breadcrumbs';
 import { CartCheckout } from '@/components/molecules/CartCheckout';
 import { CartItemList } from '@/components/organisms/CartItemList';
 import { Button } from '@/components/ui/Button/button';
+import { toast } from '@/components/ui/toast';
 import { useCartStore } from '@/stores/cartStore';
 import { useProductsStore } from '@/stores/productsStore';
 
@@ -26,6 +27,15 @@ export const CartPage = () => {
   });
 
   const hasCartItems = cartItems.length > 0;
+
+  const handleClearCart = () => {
+    clearCart();
+    toast.add({
+      title: 'Cart cleared',
+      description: 'All items have been removed from your cart.',
+      type: 'warning',
+    });
+  };
 
   return (
     <section className="mb-14 tablet:mb-16 tablet-lg:mb-20">
@@ -51,7 +61,7 @@ export const CartPage = () => {
             <Button
               variant="destructive"
               className="p-5"
-              onClick={() => clearCart()}
+              onClick={() => handleClearCart()}
             >
               <Typography variant="button">{t('clearBtn')}</Typography>
             </Button>

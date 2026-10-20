@@ -24,6 +24,7 @@ import { CheckoutForm1OrderSummary } from './checkout-form-1-order-summary';
 import { CheckoutForm1PaymentStep } from './checkout-form-1-payment-step';
 import { CheckoutForm1Progress } from './checkout-form-1-progress';
 import { CheckoutForm1ShippingStep } from './checkout-form-1-shipping-step';
+import { toast } from './ui/toast';
 
 const STEP_COPY = [
   {
@@ -90,6 +91,12 @@ export function CheckoutForm1() {
     }
 
     clearCart();
+
+    toast.add({
+      title: 'Order placed successfully!',
+      description: 'Thank you for your purchase. We have received your order.',
+      type: 'success',
+    });
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {

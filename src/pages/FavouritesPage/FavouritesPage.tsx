@@ -8,6 +8,7 @@ import { Typography } from '@/components/atoms/Typography';
 import { Breadcrumbs } from '@/components/molecules/Breadcrumbs';
 import { ProductCard } from '@/components/organisms/ProductCard';
 import { Button } from '@/components/ui/Button/button';
+import { toast } from '@/components/ui/toast';
 import { useFavouritesStore } from '@/stores/favouritesStore';
 import { useProductsStore } from '@/stores/productsStore';
 
@@ -29,6 +30,15 @@ export const FavouritesPage = () => {
 
   const hasFavouritesItems = favouriteProducts.length > 0;
   const favouritesCount = favouriteProducts.length;
+
+  const handleClearFavourites = () => {
+    clearFavourites();
+    toast.add({
+      title: 'Wishlist cleared',
+      description: 'All items have been removed from your favorites.',
+      type: 'warning',
+    });
+  };
 
   return (
     <section className="mb-14 tablet:mb-16 tablet-lg:mb-20">
@@ -63,7 +73,7 @@ export const FavouritesPage = () => {
             <Button
               variant="destructive"
               className="p-3 desktop:p-5"
-              onClick={clearFavourites}
+              onClick={handleClearFavourites}
             >
               <Typography variant="button">{t('clearBtn')}</Typography>
             </Button>
