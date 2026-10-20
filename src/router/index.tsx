@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router';
 import { App } from '@/App';
 import { CartPage } from '@/pages/CartPage';
 import { CatalogPage } from '@/pages/CatalogPage';
+import { CheckoutPage } from '@/pages/CheckoutPage';
 import { FavouritesPage } from '@/pages/FavouritesPage';
 import { GadgetDetailsPage } from '@/pages/GadgetDetailsPage';
 import { HomePage } from '@/pages/HomePage';
@@ -25,6 +26,10 @@ export const router = createBrowserRouter(
         {
           path: 'cart',
           Component: CartPage,
+        },
+        {
+          path: 'checkout',
+          Component: CheckoutPage,
         },
         {
           path: 'favourites',
