@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { Typography } from '@/components/atoms/Typography';
 import type { CheckoutForm1Data } from '@/components/data/checkout-form-1-data';
 import {
   Field,
@@ -8,8 +9,6 @@ import {
   FieldLabel,
 } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
-
-import { Typography } from './atoms/Typography';
 
 type CheckoutForm1ContactStepProps = {
   formData: CheckoutForm1Data;

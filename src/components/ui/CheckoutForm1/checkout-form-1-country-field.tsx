@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import { Typography } from './atoms/Typography';
+import { Typography } from '../../atoms/Typography';
 
 type CheckoutForm1CountryFieldProps = {
   id: string;

@@ -1,5 +1,6 @@
 'use client';
 
+import emailjs from '@emailjs/browser';
 import { ArrowLeft } from 'lucide-react';
 import { useRef, useState, type FormEvent } from 'react';
 
@@ -16,15 +17,17 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { useCartStore } from '@/stores/cartStore';
+import { useProductsStore } from '@/stores/productsStore';
+import { createProductsHtml } from '@/utils/createProductsHtml';
 
-import { BackButton } from './atoms/BackButton';
-import { Typography } from './atoms/Typography';
 import { CheckoutForm1ContactStep } from './checkout-form-1-contact-step';
 import { CheckoutForm1OrderSummary } from './checkout-form-1-order-summary';
 import { CheckoutForm1PaymentStep } from './checkout-form-1-payment-step';
 import { CheckoutForm1Progress } from './checkout-form-1-progress';
 import { CheckoutForm1ShippingStep } from './checkout-form-1-shipping-step';
-import { toast } from './ui/toast';
+import { BackButton } from '../../atoms/BackButton';
+import { Typography } from '../../atoms/Typography';
+import { toast } from '../toast';
 
 const STEP_COPY = [
   {
@@ -55,9 +58,53 @@ export function CheckoutForm1() {
     }
   });
 
+  const products = useProductsStore((state) => state.products);
+
+  const cartItems = useCartStore((state) => state.cartItems);
+
+  const cartProducts = cartItems.flatMap((cartItem) => {
+    const product = products.find((item) => item.itemId === cartItem.productId);
+
+    return product ? product : [];
+  });
+
+  const subtotalPrice = cartProducts.reduce((sum, product) => {
+    const cartItem = cartItems.find(
+      (cartItem) => cartItem.productId === product.itemId,
+    );
+
+    return sum + product.price * (cartItem?.quantity ?? 0);
+  }, 0);
+
+  const totalPrice = subtotalPrice;
+
   const clearCart = useCartStore((state) => state.clearCart);
 
-  console.log(formData);
+  const sendOrderConfirmation = async () => {
+    const templateParams = {
+      email: formData.email,
+      first_name: formData.firstName,
+      last_name: formData.lastName,
+      phone: formData.phone || 'Not provided',
+      address: formData.address,
+      city: formData.city,
+      region: formData.region,
+      zip_code: formData.zipCode,
+      country: formData.country,
+      order_id: `LM-${Date.now()}`,
+      products_html: createProductsHtml(cartProducts),
+      total_price: `${totalPrice.toLocaleString('en-US')} USD`,
+    };
+
+    await emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      templateParams,
+      {
+        publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      },
+    );
+  };
 
   const handleInputChange = (
     field: keyof CheckoutForm1Data,
@@ -83,20 +130,26 @@ export function CheckoutForm1() {
     setStep((prev) => Math.min(prev + 1, STEP_COPY.length));
   const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
 
-  const handleOrderComplete = () => {
+  const handleOrderComplete = async () => {
     if (formData.saveInfo) {
       localStorage.setItem('checkoutForm1Data', JSON.stringify(formData));
     } else {
       localStorage.removeItem('checkoutForm1Data');
     }
 
-    clearCart();
+    try {
+      await sendOrderConfirmation();
+      clearCart();
 
-    toast.add({
-      title: 'Order placed successfully!',
-      description: 'Thank you for your purchase. We have received your order.',
-      type: 'success',
-    });
+      toast.add({
+        title: 'Order placed successfully!',
+        description:
+          'Thank you for your purchase. We have received your order.',
+        type: 'success',
+      });
+    } catch (error) {
+      console.error('Failed to send order confirmation:', error);
+    }
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
