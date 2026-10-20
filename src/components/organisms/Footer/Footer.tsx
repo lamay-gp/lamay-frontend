@@ -42,8 +42,7 @@ export const Footer = () => {
           </a>
 
           <NavLink
-            to="#"
-            onClick={(e) => e.preventDefault()}
+            to="contacts"
             className="text-(--color-text-secondary) transition-colors hover:text-black"
           >
             <Typography
