@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router';
 
 import { Typography } from '@/components/atoms/Typography';
 import { Button } from '@/components/ui/Button/button';
@@ -58,13 +59,18 @@ export const CartCheckout = () => {
       </CardHeader>
       <hr className="h-px bg-elements w-full" />
       <CardFooter className="w-full p-0">
-        <Button
-          variant="primaryAction"
-          className="py-3.5 h-auto"
-          aria-label={t('ariaCheckout')}
+        <Link
+          to="/checkout"
+          className="w-full"
         >
-          <Typography variant="button">{t('checkoutBtn')}</Typography>
-        </Button>
+          <Button
+            variant="primaryAction"
+            className="py-3.5 h-auto"
+            aria-label={t('ariaCheckout')}
+          >
+            <Typography variant="button">{t('checkoutBtn')}</Typography>
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
   );
