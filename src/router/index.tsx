@@ -4,6 +4,7 @@ import { App } from '@/App';
 import { CartPage } from '@/pages/CartPage';
 import { CatalogPage } from '@/pages/CatalogPage';
 import { CheckoutPage } from '@/pages/CheckoutPage';
+import { ContactsPage } from '@/pages/ContactsPage';
 import { FavouritesPage } from '@/pages/FavouritesPage';
 import { GadgetDetailsPage } from '@/pages/GadgetDetailsPage';
 import { HomePage } from '@/pages/HomePage';
@@ -34,6 +35,10 @@ export const router = createBrowserRouter(
         {
           path: 'favourites',
           Component: FavouritesPage,
+        },
+        {
+          path: 'contacts',
+          Component: ContactsPage,
         },
         {
           path: 'product/:category/:itemId',
