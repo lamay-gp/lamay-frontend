@@ -1,5 +1,6 @@
 import { Button } from '@base-ui/react';
 import { XIcon } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 
 import { Typography } from '@/components/atoms/Typography';
@@ -15,6 +16,9 @@ type Props = {
 };
 
 export const CartItem = ({ product }: Props) => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.molecules.cartItem',
+  });
   const updateQuantity = useCartStore((state) => state.updateQuantity);
   const cartItems = useCartStore((state) => state.cartItems);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
@@ -26,8 +30,8 @@ export const CartItem = ({ product }: Props) => {
     if (cartItem) {
       removeFromCart(cartItem.productId);
       toast.add({
-        title: 'Item removed',
-        description: 'The item has been removed from your cart.',
+        title: t('toastTitle'),
+        description: t('toastDescription'),
         type: 'warning',
       });
     }

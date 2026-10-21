@@ -19,7 +19,7 @@ export const ToggleFavouriteButton: React.FC<Props> = ({
   size = 'sm',
 }) => {
   const { t } = useTranslation('', {
-    keyPrefix: 'components.stoms.toggleFavouritesBtn',
+    keyPrefix: 'components.atoms.toggleFavouritesBtn',
   });
   const favouriteIds = useFavouritesStore((state) => state.favouriteIds);
   const addToFavourites = useFavouritesStore((state) => state.addToFavourites);
@@ -33,15 +33,15 @@ export const ToggleFavouriteButton: React.FC<Props> = ({
     if (isFavorite) {
       removeFromFavourites(productId);
       toast.add({
-        title: 'Removed from favorites',
-        description: 'The item has been removed from your wishlist.',
+        title: t('toastRemoveTitle'),
+        description: t('toastRemoveDescription'),
         type: 'warning',
       });
     } else {
       addToFavourites(productId);
       toast.add({
-        title: 'Added to favorites',
-        description: 'The item has been saved to your wishlist.',
+        title: t('toastAddTitle'),
+        description: t('toastAddDescription'),
         type: 'success',
       });
       console.log(favouriteIds);

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import type { CheckoutForm1Data } from '@/components/data/checkout-form-1-data';
 import {
@@ -22,41 +23,44 @@ type CheckoutForm1ShippingStepProps = {
 type ContactField = 'address' | 'city' | 'region' | 'zipCode';
 type FieldErrors = Partial<Record<ContactField, string>>;
 
-const validateAddress = (value: string, label: string) => {
-  if (!value.trim()) {
-    return `${label} is required.`;
-  }
-
-  if (value.trim().length < 2) {
-    return `${label} must contain at least 2 characters.`;
-  }
-
-  return '';
-};
-
-const validatePostalCode = (value: string) => {
-  if (!/^\d{5}$/.test(value)) {
-    return 'Postal code must contain exactly 5 digits.';
-  }
-
-  return '';
-};
-
-const validators: Record<ContactField, (value: string) => string> = {
-  address: (value) => validateAddress(value, 'Street address'),
-  city: (value) => validateAddress(value, 'City'),
-  region: (value) => validateAddress(value, 'Region'),
-  zipCode: (value) => validatePostalCode(value),
-};
-
 export function CheckoutForm1ShippingStep({
   formData,
   onChange,
 }: CheckoutForm1ShippingStepProps) {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.organisms.checkoutForm.shipping',
+  });
   const [errors, setErrors] = useState<FieldErrors>({});
   const [touchedFields, setTouchedFields] = useState<
     Partial<Record<ContactField, boolean>>
   >({});
+
+  const validateAddress = (value: string, label: string) => {
+    if (!value.trim()) {
+      return t('fieldRequired', { field: label });
+    }
+
+    if (value.trim().length < 2) {
+      return t('fieldMinLength', { field: label });
+    }
+
+    return '';
+  };
+
+  const validatePostalCode = (value: string) => {
+    if (!/^\d{5}$/.test(value)) {
+      return t('postalCodeInvalid');
+    }
+
+    return '';
+  };
+
+  const validators: Record<ContactField, (value: string) => string> = {
+    address: (value) => validateAddress(value, t('address')),
+    city: (value) => validateAddress(value, t('city')),
+    region: (value) => validateAddress(value, t('region')),
+    zipCode: (value) => validatePostalCode(value),
+  };
 
   const handleFieldChange = (
     field: ContactField,
@@ -103,7 +107,7 @@ export function CheckoutForm1ShippingStep({
             variant="body"
             className="font-semibold"
           >
-            Street address <span className="text-destructive">*</span>
+            {t('address')} <span className="text-destructive">*</span>
           </Typography>
         </FieldLabel>
         <Input
@@ -111,7 +115,7 @@ export function CheckoutForm1ShippingStep({
           type="text"
           inputMode="text"
           required
-          placeholder="Khreshchatyk Street"
+          placeholder={t('addressPlaceholder')}
           value={formData.address}
           onChange={(event) => handleFieldChange('address', event)}
           onBlur={(event) => handleFieldBlur('address', event)}
@@ -132,7 +136,8 @@ export function CheckoutForm1ShippingStep({
               variant="body"
               className="font-semibold"
             >
-              City <span className="text-destructive">*</span>
+              {t('city')}
+              <span className="text-destructive">*</span>
             </Typography>
           </FieldLabel>
           <Input
@@ -140,7 +145,7 @@ export function CheckoutForm1ShippingStep({
             type="text"
             inputMode="text"
             required
-            placeholder="Kyiv"
+            placeholder={t('cityPlaceholder')}
             value={formData.city}
             onChange={(event) => handleFieldChange('city', event)}
             onBlur={(event) => handleFieldBlur('city', event)}
@@ -157,7 +162,7 @@ export function CheckoutForm1ShippingStep({
               variant="body"
               className="font-semibold"
             >
-              Region <span className="text-destructive">*</span>
+              {t('region')} <span className="text-destructive">*</span>
             </Typography>
           </FieldLabel>
           <Input
@@ -165,7 +170,7 @@ export function CheckoutForm1ShippingStep({
             type="text"
             inputMode="text"
             required
-            placeholder="Kyiv Oblast"
+            placeholder={t('regionPlaceholder')}
             value={formData.region}
             onChange={(event) => handleFieldChange('region', event)}
             onBlur={(event) => handleFieldBlur('region', event)}
@@ -187,7 +192,8 @@ export function CheckoutForm1ShippingStep({
               variant="body"
               className="font-semibold"
             >
-              Postal code <span className="text-destructive">*</span>
+              {t('zipCode')}
+              <span className="text-destructive">*</span>
             </Typography>
           </FieldLabel>
           <Input
@@ -196,7 +202,7 @@ export function CheckoutForm1ShippingStep({
             inputMode="numeric"
             required
             maxLength={5}
-            placeholder="01001"
+            placeholder={t('zipCodePlaceholder')}
             value={formData.zipCode}
             onChange={(event) => handleFieldChange('zipCode', event)}
             onBlur={(event) => handleFieldBlur('zipCode', event)}

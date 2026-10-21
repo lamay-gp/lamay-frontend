@@ -2,6 +2,7 @@
 
 import { CreditCard, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import type { CheckoutForm1Data } from '@/components/data/checkout-form-1-data';
 import { CheckboxCheck } from '@/components/motion/checkbox-check';
@@ -34,72 +35,75 @@ type CheckoutForm1PaymentStepProps = {
 type PaymentField = 'cardNumber' | 'expiryDate' | 'cvv' | 'cardName';
 type FieldErrors = Partial<Record<PaymentField, string>>;
 
-const validateCardNumber = (value: string) => {
-  if (!value.trim()) {
-    return 'Card number is required.';
-  }
-
-  if (!/^\d{4}( \d{4}){3}$/.test(value)) {
-    return 'Enter a valid 16-digit card number.';
-  }
-
-  return '';
-};
-
-const validateExpiryDate = (value: string) => {
-  if (!value.trim()) {
-    return 'Expiry date is required.';
-  }
-
-  if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(value)) {
-    return 'Enter expiry date in MM/YY format.';
-  }
-
-  return '';
-};
-
-const validateCvv = (value: string) => {
-  if (!value.trim()) {
-    return 'CVV is required.';
-  }
-
-  if (!/^\d{3,4}$/.test(value)) {
-    return 'CVV must contain 3 or 4 digits.';
-  }
-
-  return '';
-};
-
-const validateCardName = (value: string) => {
-  if (!value.trim()) {
-    return 'Name on card is required.';
-  }
-
-  if (value.trim().length < 2) {
-    return 'Name on card must contain at least 2 characters.';
-  }
-
-  return '';
-};
-
-const validators: Record<PaymentField, (value: string) => string> = {
-  cardNumber: validateCardNumber,
-  expiryDate: validateExpiryDate,
-  cvv: validateCvv,
-  cardName: validateCardName,
-};
-
 export function CheckoutForm1PaymentStep({
   formData,
   onChange,
   onCardNumberChange,
   onExpiryChange,
 }: CheckoutForm1PaymentStepProps) {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.organisms.checkoutForm.payment',
+  });
   const [showCvv, setShowCvv] = useState(false);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [touchedFields, setTouchedFields] = useState<
     Partial<Record<PaymentField, boolean>>
   >({});
+
+  const validateCardNumber = (value: string) => {
+    if (!value.trim()) {
+      return t('cardNumberRequired');
+    }
+
+    if (!/^\d{4}( \d{4}){3}$/.test(value)) {
+      return t('cardNumberInvalid');
+    }
+
+    return '';
+  };
+
+  const validateExpiryDate = (value: string) => {
+    if (!value.trim()) {
+      return t('expiryRequired');
+    }
+
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(value)) {
+      return t('expiryInvalid');
+    }
+
+    return '';
+  };
+
+  const validateCvv = (value: string) => {
+    if (!value.trim()) {
+      return t('cvvRequired');
+    }
+
+    if (!/^\d{3,4}$/.test(value)) {
+      return t('cvvInvalid');
+    }
+
+    return '';
+  };
+
+  const validateCardName = (value: string) => {
+    if (!value.trim()) {
+      return t('cardNameRequired');
+    }
+
+    if (value.trim().length < 2) {
+      return t('cardNameMinLength');
+    }
+
+    return '';
+  };
+
+  const validators: Record<PaymentField, (value: string) => string> = {
+    cardNumber: validateCardNumber,
+    expiryDate: validateExpiryDate,
+    cvv: validateCvv,
+    cardName: validateCardName,
+  };
 
   const handleFieldChange = (
     field: PaymentField,
@@ -167,7 +171,8 @@ export function CheckoutForm1PaymentStep({
             variant="body"
             className="font-semibold"
           >
-            Payment method <span className="text-destructive">*</span>
+            {t('method')}
+            <span className="text-destructive">*</span>
           </Typography>
         </FieldLegend>
         <RadioGroup
@@ -187,7 +192,7 @@ export function CheckoutForm1PaymentStep({
                 className="text-muted-foreground size-5"
                 aria-hidden="true"
               />
-              <span className="flex-1">Credit or debit card</span>
+              <span className="flex-1">{t('card')}</span>
             </Field>
           </FieldLabel>
         </RadioGroup>
@@ -200,7 +205,7 @@ export function CheckoutForm1PaymentStep({
               variant="body"
               className="font-semibold"
             >
-              Card number <span className="text-destructive">*</span>
+              {t('cardNumber')} <span className="text-destructive">*</span>
             </Typography>
           </FieldLabel>
           <Input
@@ -208,7 +213,7 @@ export function CheckoutForm1PaymentStep({
             type="text"
             required
             pattern="\d{4}( \d{4}){3}"
-            placeholder="1234 5678 9012 3456"
+            placeholder={t('cardNumberPlaceholder')}
             value={formData.cardNumber}
             onChange={handleCardNumberInput}
             onBlur={(event) => handleFieldBlur('cardNumber', event)}
@@ -232,14 +237,14 @@ export function CheckoutForm1PaymentStep({
                 variant="body"
                 className="font-semibold"
               >
-                Expiry <span className="text-destructive">*</span>
+                {t('expiry')} <span className="text-destructive">*</span>
               </Typography>
             </FieldLabel>
             <Input
               id="expiryDate-fJ6r29M"
               required
               pattern="(0[1-9]|1[0-2])/\d{2}"
-              placeholder="MM/YY"
+              placeholder={t('expiryPlaceholder')}
               value={formData.expiryDate}
               onChange={handleExpiryInput}
               onBlur={(event) => handleFieldBlur('expiryDate', event)}
@@ -261,7 +266,7 @@ export function CheckoutForm1PaymentStep({
                 variant="body"
                 className="font-semibold"
               >
-                CVV <span className="text-destructive">*</span>
+                {t('cvv')} <span className="text-destructive">*</span>
               </Typography>
             </FieldLabel>
             <InputGroup className="h-9">
@@ -270,7 +275,7 @@ export function CheckoutForm1PaymentStep({
                 type={showCvv ? 'text' : 'password'}
                 required
                 pattern="\d{3,4}"
-                placeholder="123"
+                placeholder={t('cvvPlaceholder')}
                 value={formData.cvv}
                 onChange={(event) => handleFieldChange('cvv', event)}
                 onBlur={(event) => handleFieldBlur('cvv', event)}
@@ -284,7 +289,7 @@ export function CheckoutForm1PaymentStep({
                   type="button"
                   variant="ghost"
                   size="icon-xs"
-                  aria-label={showCvv ? 'Hide CVV' : 'Show CVV'}
+                  aria-label={showCvv ? t('hideCvv') : t('showCvv')}
                   className="cursor-pointer hover:bg-transparent"
                   onClick={() => setShowCvv((current) => !current)}
                 >
@@ -302,14 +307,14 @@ export function CheckoutForm1PaymentStep({
                 variant="body"
                 className="font-semibold"
               >
-                Name on card <span className="text-destructive">*</span>
+                {t('cardName')} <span className="text-destructive">*</span>
               </Typography>
             </FieldLabel>
             <Input
               id="cardName-hI9t45O"
               required
               pattern=".{2,}"
-              placeholder="John Doe"
+              placeholder={t('cardNamePlaceholder')}
               value={formData.cardName}
               onChange={(event) => handleFieldChange('cardName', event)}
               onBlur={(event) => handleFieldBlur('cardName', event)}
@@ -338,7 +343,7 @@ export function CheckoutForm1PaymentStep({
             htmlFor="saveInfo-jK0u56P"
             className="text-sm font-normal"
           >
-            Save payment information for future purchases
+            {t('saveInfo')}
           </FieldLabel>
         </Field>
       </FieldGroup>

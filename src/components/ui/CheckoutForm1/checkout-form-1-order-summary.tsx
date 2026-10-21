@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 
 import { Badge } from '@/components/ui/badge';
@@ -21,6 +22,9 @@ export function CheckoutForm1OrderSummary({
   promoCode,
   onPromoCodeChange,
 }: CheckoutForm1OrderSummaryProps) {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.organisms.checkoutForm.orderSummary',
+  });
   const products = useProductsStore((state) => state.products);
 
   const cartItems = useCartStore((state) => state.cartItems);
@@ -48,7 +52,7 @@ export function CheckoutForm1OrderSummary({
             variant="h3"
             as="h3"
           >
-            Order Summary
+            {t('title')}
           </Typography>
         </CardTitle>
       </CardHeader>
@@ -109,13 +113,13 @@ export function CheckoutForm1OrderSummary({
               variant="body"
               className="font-semibold"
             >
-              Promo code
+              {t('promoCode')}
             </Typography>
           </FieldLabel>
           <div className="flex gap-2">
             <Input
               id="promoCode-kL1m67Q"
-              placeholder="Enter code"
+              placeholder={t('enterCode')}
               value={promoCode}
               className="h-9"
               onChange={(event) => onPromoCodeChange(event.target.value)}
@@ -124,7 +128,7 @@ export function CheckoutForm1OrderSummary({
               variant="outline"
               className="h-9 px-4 py-2 cursor-pointer"
             >
-              <Typography variant="button">Apply</Typography>
+              <Typography variant="button">{t('apply')}</Typography>
             </Button>
           </div>
         </Field>
@@ -133,7 +137,7 @@ export function CheckoutForm1OrderSummary({
 
         <div className="flex flex-col gap-2">
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Subtotal</span>
+            <span className="text-muted-foreground">{t('subtotal')}</span>
             <span>${subtotal.toFixed(2)}</span>
           </div>
         </div>
@@ -145,7 +149,7 @@ export function CheckoutForm1OrderSummary({
             variant="body"
             className="font-semibold"
           >
-            Total
+            {t('total')}
           </Typography>
           <Typography
             variant="body"

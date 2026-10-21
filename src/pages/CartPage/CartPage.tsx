@@ -31,8 +31,8 @@ export const CartPage = () => {
   const handleClearCart = () => {
     clearCart();
     toast.add({
-      title: 'Cart cleared',
-      description: 'All items have been removed from your cart.',
+      title: t('toastTitle'),
+      description: t('toastDescription'),
       type: 'warning',
     });
   };

@@ -1,49 +1,56 @@
+import { useTranslation } from 'react-i18next';
+
 import { Typography } from '@/components/atoms/Typography';
 
-const teamMembers = [
-  {
-    name: 'Yaroslav',
-    role: 'Creative Developer',
-    image: 'avatars/Yaroslav.webp',
-    github: 'https://github.com/bakugan228',
-    rotate: '-rotate-3',
-    position: 'desktop:col-start-1 desktop:row-start-1 desktop:translate-y-12',
-  },
-  {
-    name: 'Lena',
-    role: 'Project Manager',
-    image: 'avatars/Lena.webp',
-    github: 'https://github.com/olenabokhan1121',
-    rotate: 'rotate-2',
-    position: 'desktop:col-start-3 desktop:row-start-1 desktop:translate-y-12',
-  },
-  {
-    name: 'Anton',
-    role: 'Tech Lead',
-    image: 'avatars/Anton.webp',
-    github: 'https://github.com/AchekcSs',
-    rotate: '-rotate-2',
-    position: 'desktop:col-start-2 desktop:row-start-2',
-  },
-  {
-    name: 'Anna',
-    role: 'Redesign Developer',
-    image: 'avatars/Anna.webp',
-    github: 'https://github.com/annavas03',
-    rotate: 'rotate-3',
-    position: 'desktop:col-start-1 desktop:row-start-3 desktop:-translate-y-12',
-  },
-  {
-    name: 'Maksym',
-    role: 'Features Developer',
-    image: 'avatars/Max.webp',
-    github: 'https://github.com/YatskuliakMa',
-    rotate: '-rotate-2',
-    position:
-      'tablet:col-span-2 tablet:justify-self-center desktop:col-start-3 desktop:row-start-3 desktop:-translate-y-12',
-  },
-];
 export const ContactsPage = () => {
+  const { t } = useTranslation('', { keyPrefix: 'contactPage' });
+  const teamMembers = [
+    {
+      name: t('nameYaroslav'),
+      role: t('roleYaroslav'),
+      image: 'avatars/Yaroslav.webp',
+      github: 'https://github.com/bakugan228',
+      rotate: '-rotate-3',
+      position:
+        'desktop:col-start-1 desktop:row-start-1 desktop:translate-y-12',
+    },
+    {
+      name: t('nameLena'),
+      role: t('roleLena'),
+      image: 'avatars/Lena.webp',
+      github: 'https://github.com/olenabokhan1121',
+      rotate: 'rotate-2',
+      position:
+        'desktop:col-start-3 desktop:row-start-1 desktop:translate-y-12',
+    },
+    {
+      name: t('nameAnton'),
+      role: t('roleAnton'),
+      image: 'avatars/Anton.webp',
+      github: 'https://github.com/AchekcSs',
+      rotate: '-rotate-2',
+      position: 'desktop:col-start-2 desktop:row-start-2',
+    },
+    {
+      name: t('nameAnna'),
+      role: t('roleAnna'),
+      image: 'avatars/Anna.webp',
+      github: 'https://github.com/annavas03',
+      rotate: 'rotate-3',
+      position:
+        'desktop:col-start-1 desktop:row-start-3 desktop:-translate-y-12',
+    },
+    {
+      name: t('nameMaksym'),
+      role: t('roleMaksym'),
+      image: 'avatars/Max.webp',
+      github: 'https://github.com/YatskuliakMa',
+      rotate: '-rotate-2',
+      position:
+        'tablet:col-span-2 tablet:justify-self-center desktop:col-start-3 desktop:row-start-3 desktop:-translate-y-12',
+    },
+  ];
+
   return (
     <section className="container bg-hover py-10">
       <Typography
@@ -101,7 +108,7 @@ export const ContactsPage = () => {
         as="p"
         className="mb-1 text-center text-button font-bold"
       >
-        meet the team
+        {t('meet')}
       </Typography>
 
       <Typography
@@ -109,9 +116,9 @@ export const ContactsPage = () => {
         as="p"
         className="mb-10 text-center text-button font-normal"
       >
-        THE PEOPLE WHO
+        {t('titleLine1')}
         <br />
-        MAKE IT ALL HAPPEN
+        {t('titleLine2')}
       </Typography>
     </section>
   );

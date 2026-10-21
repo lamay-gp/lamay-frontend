@@ -1,4 +1,5 @@
 import { MinusIcon, PlusIcon } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { QuantitySelectorButton } from '@/components/atoms/QuantitySelectorButton';
 import { Typography } from '@/components/atoms/Typography';
@@ -18,11 +19,14 @@ export const QuantitySelector = ({
   cartItems,
   updateQuantity,
 }: Props) => {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.molecules.quantitySelector',
+  });
   const handleIncrement = () => {
     updateQuantity('increment', id);
     toast.add({
-      title: 'Cart updated',
-      description: 'Item quantity increased.',
+      title: t('toastTitle'),
+      description: t('toastDescriptionInc'),
       type: 'success',
     });
   };
@@ -31,8 +35,8 @@ export const QuantitySelector = ({
     if (quantity > 1) {
       updateQuantity('decrement', id);
       toast.add({
-        title: 'Cart updated',
-        description: 'Item quantity decreased.',
+        title: t('toastTitle'),
+        description: t('toastDescriptionDec'),
         type: 'warning',
       });
     } else {
