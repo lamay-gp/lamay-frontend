@@ -93,6 +93,7 @@
         "descriptionPayment": "Your payment information is secure and encrypted",
         "toastTitle": "Order placed successfully!",
         "toastDescription": "Thank you for your purchase. We have received your order.",
+        "toastError": "Failed to send order confirmation:",
         "contact": {
           "email": "Email address",
           "firstName": "First name",
