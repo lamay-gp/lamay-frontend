@@ -2,6 +2,7 @@ import { ArrowRightIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 
+import { ErrorMessage } from '@/components/atoms/ErrorMessage';
 import { Loader } from '@/components/atoms/Loader';
 import { Typography } from '@/components/atoms/Typography';
 import { Button } from '@/components/ui/Button/button';
@@ -32,6 +33,7 @@ export const ProductsSlider = ({
   });
 
   const isLoading = useProductsStore((state) => state.isLoading);
+  const errorMessage = useProductsStore((state) => state.errorMessage);
 
   return (
     <Carousel
@@ -82,6 +84,7 @@ export const ProductsSlider = ({
             ))}
           </CarouselContent>
         }
+        {errorMessage && <ErrorMessage message={errorMessage} />}
       </div>
     </Carousel>
   );

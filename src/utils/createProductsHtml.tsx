@@ -13,12 +13,16 @@ const escapeHtml = (value: string) =>
     return entities[char];
   });
 
-export const createProductsHtml = (products: Product[]) => {
+export const createProductsHtml = (
+  products: (Product & { quantity: number })[],
+) => {
   const imagesBaseUrl = import.meta.env.VITE_GADGETS_URL;
 
   return products
     .map((product) => {
       const imageUrl = `${imagesBaseUrl}/${product.image}`;
+      const unitPrice = product.price;
+      const lineTotal = unitPrice * product.quantity;
 
       return `
         <tr>
@@ -46,14 +50,20 @@ export const createProductsHtml = (products: Product[]) => {
                     ${escapeHtml(product.name)}
                   </p>
 
-                  <p style="margin:0;color:#71717a;font-size:12px;line-height:1.6;">
+                  <p style="margin:0 0 5px;color:#71717a;font-size:12px;line-height:1.6;">
                     ${escapeHtml(product.capacity)} ·
                     ${escapeHtml(product.ram)}
                   </p>
+
+                  <p style="margin:0;color:#71717a;font-size:12px;line-height:1.6;">
+                    Qty: ${product.quantity} ·
+                    ${unitPrice.toLocaleString('en-US')} USD each
+                  </p>
                 </td>
 
-                <td width="110" align="right" valign="middle" style="width:110px;padding-left:8px;color:#27272a;font-size:13px;font-weight:700;white-space:nowrap;">
-                  ${product.price.toLocaleString('en-US')} USD
+                <td width="110" align="right" valign="middle"
+                  style="width:110px;padding-left:8px;color:#27272a;font-size:13px;font-weight:700;white-space:nowrap;">
+                  ${lineTotal.toLocaleString('en-US')} USD
                 </td>
               </tr>
             </table>

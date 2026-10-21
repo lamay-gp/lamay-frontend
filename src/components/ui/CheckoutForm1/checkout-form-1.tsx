@@ -65,7 +65,7 @@ export function CheckoutForm1() {
   const cartProducts = cartItems.flatMap((cartItem) => {
     const product = products.find((item) => item.itemId === cartItem.productId);
 
-    return product ? product : [];
+    return product ? { ...product, quantity: cartItem.quantity } : [];
   });
 
   const subtotalPrice = cartProducts.reduce((sum, product) => {
