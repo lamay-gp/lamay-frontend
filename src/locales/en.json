@@ -11,7 +11,9 @@
         "linkToCard": "Go to cart",
         "linkToCardAria": "Go to cart",
         "linkAddToCart": "Add to cart",
-        "linkAddToCartAria": "Add to cart"
+        "linkAddToCartAria": "Add to cart",
+        "toastTitle": "Added to cart",
+        "toastDescription": "The item has been added to your shopping cart."
       },
       "backBtn": "Back",
       "errorMessage": {
@@ -34,7 +36,11 @@
       },
       "toggleFavouritesBtn": {
         "ariaRemoveFrom": "Remove from favorites",
-        "ariaAddTo": "Add to favorites"
+        "ariaAddTo": "Add to favorites",
+        "toastAddTitle": "Added to favorites",
+        "toastAddDescription": "The item has been saved to your wishlist.",
+        "toastRemoveTitle": "Removed from favorites",
+        "toastRemoveDescription": "The item has been removed from your wishlist."
       }
     },
     "molecules": {
@@ -58,13 +64,98 @@
         "checkoutBtn": "Checkout",
         "ariaCheckout": "Checkout"
       },
+      "cartItem": {
+        "toastTitle": "Item removed",
+        "toastDescription": "The item has been removed from your cart."
+      },
       "categoryCard": {
         "gadgetCount_one": "{{count}} model",
         "gadgetCount_other": "{{count}} models"
+      },
+      "quantitySelector": {
+        "toastTitle": "Cart updated",
+        "toastDescriptionInc": "Item quantity increased.",
+        "toastDescriptionDec": "Item quantity decreased."
       }
     },
     "organisms": {
       "brandNewProdTitle": "Brand new models",
+      "checkoutForm": {
+        "title": "Checkout",
+        "backBtn": "Back",
+        "continue": "Continue",
+        "completeOrder": "Complete Order",
+        "titleContact": "Contact Information",
+        "descriptionContact": "We'll use this to send you order updates",
+        "titleShipping": "Shipping Address",
+        "descriptionShipping": "Where should we deliver your order?",
+        "titlePayment": "Payment Details",
+        "descriptionPayment": "Your payment information is secure and encrypted",
+        "toastTitle": "Order placed successfully!",
+        "toastDescription": "Thank you for your purchase. We have received your order.",
+        "contact": {
+          "email": "Email address",
+          "firstName": "First name",
+          "lastName": "Last name",
+          "phone": "Phone number",
+          "emailRequired": "Email is required.",
+          "emailInvalid": "Enter a valid email address.",
+          "nameRequired": "{{name}} is required.",
+          "nameMinLength": "{{name}} must contain at least 2 characters.",
+          "phoneInvalid": "Enter a valid phone number.",
+          "firstNamePlaceholder": "John",
+          "lastNamePlaceholder": "Doe"
+        },
+        "country": {
+          "label": "Country",
+          "required": "Country is required.",
+          "countryOption": "Ukraine"
+        },
+        "orderSummary": {
+          "title": "Order Summary",
+          "promoCode": "Promo code",
+          "enterCode": "Enter code",
+          "apply": "Apply",
+          "subtotal": "Subtotal",
+          "total": "Total"
+        },
+        "payment": {
+          "method": "Payment method",
+          "card": "Credit or debit card",
+          "cardNumber": "Card number",
+          "expiry": "Expiry date",
+          "cvv": "CVV",
+          "cardName": "Name on card",
+          "saveInfo": "Save payment information for future purchases",
+          "showCvv": "Show CVV",
+          "hideCvv": "Hide CVV",
+          "cardNumberRequired": "Card number is required.",
+          "cardNumberInvalid": "Enter a valid 16-digit card number.",
+          "expiryRequired": "Expiry date is required.",
+          "expiryInvalid": "Enter expiry date in MM/YY format.",
+          "cvvRequired": "CVV is required.",
+          "cvvInvalid": "CVV must contain 3 or 4 digits.",
+          "cardNameRequired": "Name on card is required.",
+          "cardNameMinLength": "Name on card must contain at least 2 characters.",
+          "cardNumberPlaceholder": "1234 5678 9012 3456",
+          "expiryPlaceholder": "MM/YY",
+          "cvvPlaceholder": "123",
+          "cardNamePlaceholder": "John Doe"
+        },
+        "shipping": {
+          "address": "Street address",
+          "city": "City",
+          "region": "Region",
+          "zipCode": "Postal code",
+          "addressPlaceholder": "Khreshchatyk Street",
+          "cityPlaceholder": "Kyiv",
+          "regionPlaceholder": "Kyiv Oblast",
+          "zipCodePlaceholder": "01001",
+          "fieldRequired": "{{field}} is required.",
+          "fieldMinLength": "{{field}} must contain at least 2 characters.",
+          "postalCodeInvalid": "Postal code must contain exactly 5 digits."
+        }
+      },
       "filterContent": {
         "category": "Category",
         "price": "Price",
@@ -119,7 +210,9 @@
     "title": "Cart",
     "clearBtn": "Clear all",
     "cartEmpty": "Your cart is empty",
-    "cartEmptyAlt": "Cart is empty"
+    "cartEmptyAlt": "Cart is empty",
+    "toastTitle": "Cart cleared",
+    "toastDescription": "All items have been removed from your cart."
   },
   "catalogPage": {
     "title": "Catalog",
@@ -128,13 +221,30 @@
     "loadMoreBtn": "Load more",
     "noProducts": "No products"
   },
+  "contactPage": {
+    "nameYaroslav": "Yaroslav",
+    "roleYaroslav": "Creative Developer",
+    "nameLena": "Lena",
+    "roleLena": "Project Manager",
+    "nameAnton": "Anton",
+    "roleAnton": "Tech Lead",
+    "nameAnna": "Anna",
+    "roleAnna": "Redesign Developer",
+    "nameMaksym": "Maksym",
+    "roleMaksym": "Features Developer",
+    "meet": "meet the team",
+    "titleLine1": "THE PEOPLE WHO",
+    "titleLine2": "MAKE IT ALL HAPPEN"
+  },
   "favouritesPage": {
     "title": "Favourites",
     "item_one": "{{count}} item",
     "item_other": "{{count}} items",
     "clearBtn": "Clear all",
     "favouritesEmpty": "You haven't added any favourites yet.",
-    "favouritesEmptyAlt": "Your favourites list is empty"
+    "favouritesEmptyAlt": "Your favourites list is empty",
+    "toastTitle": "Wishlist cleared",
+    "toastDescription": "All items have been removed from your favorites."
   },
   "gadgetDetails": {
     "about": "About",

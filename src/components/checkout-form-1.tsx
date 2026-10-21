@@ -2,6 +2,7 @@
 
 import { ArrowLeft } from 'lucide-react';
 import { useRef, useState, type FormEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   initialCheckoutForm1Data,
@@ -26,22 +27,10 @@ import { CheckoutForm1Progress } from './checkout-form-1-progress';
 import { CheckoutForm1ShippingStep } from './checkout-form-1-shipping-step';
 import { toast } from './ui/toast';
 
-const STEP_COPY = [
-  {
-    title: 'Contact Information',
-    description: "We'll use this to send you order updates",
-  },
-  {
-    title: 'Shipping Address',
-    description: 'Where should we deliver your order?',
-  },
-  {
-    title: 'Payment Details',
-    description: 'Your payment information is secure and encrypted',
-  },
-];
-
 export function CheckoutForm1() {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.organisms.checkoutForm',
+  });
   const [step, setStep] = useState(1);
   const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState<CheckoutForm1Data>(() => {
@@ -56,6 +45,21 @@ export function CheckoutForm1() {
   });
 
   const clearCart = useCartStore((state) => state.clearCart);
+
+  const STEP_COPY = [
+    {
+      title: t('titleContact'),
+      description: t('descriptionContact'),
+    },
+    {
+      title: t('titleShipping'),
+      description: t('descriptionShipping'),
+    },
+    {
+      title: t('titlePayment'),
+      description: t('descriptionPayment'),
+    },
+  ];
 
   console.log(formData);
 
@@ -93,8 +97,8 @@ export function CheckoutForm1() {
     clearCart();
 
     toast.add({
-      title: 'Order placed successfully!',
-      description: 'Thank you for your purchase. We have received your order.',
+      title: t('toastTitle'),
+      description: t('toastDescription'),
       type: 'success',
     });
   };
@@ -128,7 +132,7 @@ export function CheckoutForm1() {
         as="h1"
         className="mb-8"
       >
-        Checkout
+        {t('title')}
       </Typography>
 
       <CheckoutForm1Progress step={step} />
@@ -192,7 +196,7 @@ export function CheckoutForm1() {
                       className="h-9 p-5 pr-4 cursor-pointer"
                     >
                       <ArrowLeft data-icon="inline-start" />
-                      <Typography variant="button">Back</Typography>
+                      <Typography variant="button">{t('backBtn')}</Typography>
                     </Button>
                   )}
 
@@ -201,7 +205,9 @@ export function CheckoutForm1() {
                     className="h-9 p-5 cursor-pointer bg-button hover:bg-[#195de7]"
                   >
                     <Typography variant="button">
-                      {step < STEP_COPY.length ? 'Continue' : 'Complete Order'}
+                      {step < STEP_COPY.length ?
+                        t('continue')
+                      : t('completeOrder')}
                     </Typography>
                   </Button>
                 </div>

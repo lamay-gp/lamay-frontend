@@ -34,11 +34,12 @@ export const AddToCartButton: React.FC<Props> = ({
       'border-elements bg-transparent text-button'
     : 'border-button bg-button',
   );
+
   const handleAddToCart = () => {
     addToCart(productId);
     toast.add({
-      title: 'Added to cart',
-      description: 'The item has been added to your shopping cart.',
+      title: t('toastTitle'),
+      description: t('toastDescription'),
       type: 'success',
     });
   };

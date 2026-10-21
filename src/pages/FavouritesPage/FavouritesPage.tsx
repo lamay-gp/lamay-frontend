@@ -34,8 +34,8 @@ export const FavouritesPage = () => {
   const handleClearFavourites = () => {
     clearFavourites();
     toast.add({
-      title: 'Wishlist cleared',
-      description: 'All items have been removed from your favorites.',
+      title: t('toastTitle'),
+      description: t('toastDescription'),
       type: 'warning',
     });
   };

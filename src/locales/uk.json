@@ -11,7 +11,9 @@
         "linkToCard": "Перейти до кошика",
         "linkToCardAria": "Перейти до кошика",
         "linkAddToCart": "Додати до кошика",
-        "linkAddToCartAria": "Додати до кошика"
+        "linkAddToCartAria": "Додати до кошика",
+        "toastTitle": "Додано до кошика",
+        "toastDescription": "Товар успішно додано до кошика."
       },
       "backBtn": "Назад",
       "errorMessage": {
@@ -34,7 +36,11 @@
       },
       "toggleFavouritesBtn": {
         "ariaRemoveFrom": "Видалити з обраного",
-        "ariaAddTo": "Додати до обраного"
+        "ariaAddTo": "Додати до обраного",
+        "toastAddTitle": "Додано до улюбленого",
+        "toastAddDescription": "Товар додано до списку улюблених.",
+        "toastRemoveTitle": "Видалено з улюбленого",
+        "toastRemoveDescription": "Товар видалено зі списку улюблених."
       }
     },
     "molecules": {
@@ -60,15 +66,100 @@
         "checkoutBtn": "Оформити замовлення",
         "ariaCheckout": "Оформити замовлення"
       },
+      "cartItem": {
+        "toastTitle": "Товар видалено",
+        "toastDescription": "Товар видалено з вашого кошика."
+      },
       "categoryCard": {
         "gadgetCount_one": "{{count}} модель",
         "gadgetCount_few": "{{count}} моделі",
         "gadgetCount_many": "{{count}} моделей",
         "gadgetCount_other": "{{count}} моделі"
+      },
+      "quantitySelector": {
+        "toastTitle": "Кошик оновлено",
+        "toastDescriptionInc": "Кількість товару збільшено.",
+        "toastDescriptionDec": "Кількість товару зменшено."
       }
     },
     "organisms": {
       "brandNewProdTitle": "Нові моделі",
+      "checkoutForm": {
+        "title": "Оформлення замовлення",
+        "backBtn": "Назад",
+        "continue": "Продовжити",
+        "completeOrder": "Підтвердити замовлення",
+        "titleContact": "Контактна інформація",
+        "descriptionContact": "Ми використовуватимемо ці дані, щоб повідомляти вас про статус замовлення",
+        "titleShipping": "Адреса доставки",
+        "descriptionShipping": "За якою адресою доставити ваше замовлення?",
+        "titlePayment": "Платіжні дані",
+        "descriptionPayment": "Ваші платіжні дані надійно захищені та зашифровані",
+        "toastTitle": "Замовлення успішно оформлено!",
+        "toastDescription": "Дякуємо за покупку! Ми отримали ваше замовлення.",
+        "contact": {
+          "email": "Електронна пошта",
+          "firstName": "Ім’я",
+          "lastName": "Прізвище",
+          "phone": "Номер телефону",
+          "emailRequired": "Введіть адресу електронної пошти.",
+          "emailInvalid": "Введіть коректну адресу електронної пошти.",
+          "nameRequired": "Заповніть поле «{{name}}».",
+          "nameMinLength": "Поле «{{name}}» має містити щонайменше 2 символи.",
+          "phoneInvalid": "Введіть коректний номер телефону.",
+          "firstNamePlaceholder": "Іван",
+          "lastNamePlaceholder": "Іваненко"
+        },
+        "country": {
+          "label": "Країна",
+          "required": "Оберіть країну.",
+          "countryOption": "Україна"
+        },
+        "orderSummary": {
+          "title": "Ваше замовлення",
+          "promoCode": "Промокод",
+          "enterCode": "Введіть промокод",
+          "apply": "Застосувати",
+          "subtotal": "Проміжна сума",
+          "total": "До сплати"
+        },
+        "payment": {
+          "method": "Спосіб оплати",
+          "card": "Кредитна або дебетова картка",
+          "cardNumber": "Номер картки",
+          "expiry": "Термін дії картки",
+          "cvv": "CVV-код",
+          "cardName": "Ім’я власника картки",
+          "saveInfo": "Зберегти платіжні дані для майбутніх покупок",
+          "showCvv": "Показати CVV-код",
+          "hideCvv": "Приховати CVV-код",
+          "cardNumberRequired": "Введіть номер картки.",
+          "cardNumberInvalid": "Введіть коректний номер картки з 16 цифр.",
+          "expiryRequired": "Введіть термін дії картки.",
+          "expiryInvalid": "Введіть термін дії картки у форматі ММ/РР.",
+          "cvvRequired": "Введіть CVV-код.",
+          "cvvInvalid": "CVV-код має містити 3 або 4 цифри.",
+          "cardNameRequired": "Введіть ім’я власника картки.",
+          "cardNameMinLength": "Ім’я власника картки має містити щонайменше 2 символи.",
+          "cardNumberPlaceholder": "1234 5678 9012 3456",
+          "expiryPlaceholder": "ММ/РР",
+          "cvvPlaceholder": "123",
+          "cardNamePlaceholder": "Іван Іваненко"
+        },
+        "shipping": {
+          "address": "Вулиця, будинок",
+          "city": "Місто",
+          "region": "Область",
+          "zipCode": "Поштовий індекс",
+          "addressPlaceholder": "вул. Хрещатик",
+          "cityPlaceholder": "Київ",
+          "regionPlaceholder": "Київська область",
+          "zipCodePlaceholder": "01001",
+          "fieldRequired": "Заповніть поле «{{field}}».",
+          "fieldMinLength": "Поле «{{field}}» має містити щонайменше 2 символи.",
+          "postalCodeInvalid": "Поштовий індекс має містити рівно 5 цифр."
+        }
+      },
       "filterContent": {
         "category": "Категорія",
         "price": "Ціна",
@@ -121,11 +212,14 @@
       }
     }
   },
+
   "cartPage": {
     "title": "Кошик",
     "clearBtn": "Очистити все",
     "cartEmpty": "Ваш кошик порожній",
-    "cartEmptyAlt": "Кошик порожній"
+    "cartEmptyAlt": "Кошик порожній",
+    "toastTitle": "Кошик очищено",
+    "toastDescription": "Усі товари видалено з кошика."
   },
   "catalogPage": {
     "title": "Каталог",
@@ -136,6 +230,21 @@
     "loadMoreBtn": "Завантажити ще",
     "noProducts": "Товарів не знайдено"
   },
+  "contactPage": {
+    "nameYaroslav": "Ярослав",
+    "roleYaroslav": "Креативний розробник",
+    "nameLena": "Лена",
+    "roleLena": "Проджект-менеджер",
+    "nameAnton": "Антон",
+    "roleAnton": "Технічний керівник",
+    "nameAnna": "Анна",
+    "roleAnna": "Розробниця редизайну",
+    "nameMaksym": "Максим",
+    "roleMaksym": "Розробник функціоналу",
+    "meet": "Наша команда",
+    "titleLine1": "ЛЮДИ, ЯКІ",
+    "titleLine2": "ВТІЛИЛИ ПРОЕКТ У ЖИТТЯ"
+  },
   "favouritesPage": {
     "title": "Обране",
     "item_one": "{{count}} товар",
@@ -144,7 +253,9 @@
     "item_other": "{{count}} товари",
     "clearBtn": "Очистити все",
     "favouritesEmpty": "Ви ще не додали нічого до обраного.",
-    "favouritesEmptyAlt": "Список обраного порожній."
+    "favouritesEmptyAlt": "Список обраного порожній.",
+    "toastTitle": "Список обраного очищено",
+    "toastDescription": "Усі товари видалено зі списку обраного."
   },
   "gadgetDetails": {
     "about": "Про товар",

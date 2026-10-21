@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import type { CheckoutForm1Data } from '@/components/data/checkout-form-1-data';
 import {
@@ -19,57 +20,60 @@ type CheckoutForm1ContactStepProps = {
 type ContactField = 'email' | 'firstName' | 'lastName' | 'phone';
 type FieldErrors = Partial<Record<ContactField, string>>;
 
-const validateEmail = (value: string) => {
-  if (!value.trim()) {
-    return 'Email is required.';
-  }
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-    return 'Enter a valid email address.';
-  }
-
-  return '';
-};
-
-const validateName = (value: string, label: string) => {
-  if (!value.trim()) {
-    return `${label} is required.`;
-  }
-
-  if (value.trim().length < 2) {
-    return `${label} must contain at least 2 characters.`;
-  }
-
-  return '';
-};
-
-const validatePhone = (value: string) => {
-  if (!value.trim()) {
-    return '';
-  }
-
-  if (!/^\+?[\d\s()-]{7,}$/.test(value)) {
-    return 'Enter a valid phone number.';
-  }
-
-  return '';
-};
-
-const validators: Record<ContactField, (value: string) => string> = {
-  email: validateEmail,
-  firstName: (value) => validateName(value, 'First name'),
-  lastName: (value) => validateName(value, 'Last name'),
-  phone: validatePhone,
-};
-
 export function CheckoutForm1ContactStep({
   formData,
   onChange,
 }: CheckoutForm1ContactStepProps) {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.organisms.checkoutForm.contact',
+  });
   const [errors, setErrors] = useState<FieldErrors>({});
   const [touchedFields, setTouchedFields] = useState<
     Partial<Record<ContactField, boolean>>
   >({});
+
+  const validateEmail = (value: string) => {
+    if (!value.trim()) {
+      return t('emailRequired');
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      return t('emailInvalid');
+    }
+
+    return '';
+  };
+
+  const validateName = (value: string, label: string) => {
+    if (!value.trim()) {
+      return t('nameRequired', { name: label });
+    }
+
+    if (value.trim().length < 2) {
+      return t('nameMinLength', { name: label });
+    }
+
+    return '';
+  };
+
+  const validatePhone = (value: string) => {
+    if (!value.trim()) {
+      return '';
+    }
+
+    if (!/^\+?[\d\s()-]{7,}$/.test(value)) {
+      return t('phoneInvalid');
+    }
+
+    return '';
+  };
+
+  const validators: Record<ContactField, (value: string) => string> = {
+    email: validateEmail,
+    firstName: (value) => validateName(value, t('firstName')),
+    lastName: (value) => validateName(value, t('lastName')),
+    phone: validatePhone,
+  };
 
   const handleFieldChange = (
     field: ContactField,
@@ -116,7 +120,7 @@ export function CheckoutForm1ContactStep({
             variant="body"
             className="font-semibold"
           >
-            Email address <span className="text-destructive">*</span>
+            {t('email')} <span className="text-destructive">*</span>
           </Typography>
         </FieldLabel>
         <Input
@@ -143,13 +147,13 @@ export function CheckoutForm1ContactStep({
               variant="body"
               className="font-semibold"
             >
-              First name <span className="text-destructive">*</span>
+              {t('firstName')} <span className="text-destructive">*</span>
             </Typography>
           </FieldLabel>
           <Input
             id="firstName-mN7z84Q"
             required
-            placeholder="John"
+            placeholder={t('firstNamePlaceholder')}
             value={formData.firstName}
             onChange={(event) => handleFieldChange('firstName', event)}
             onBlur={(event) => handleFieldBlur('firstName', event)}
@@ -170,13 +174,13 @@ export function CheckoutForm1ContactStep({
               variant="body"
               className="font-semibold"
             >
-              Last name <span className="text-destructive">*</span>
+              {t('lastName')} <span className="text-destructive">*</span>
             </Typography>
           </FieldLabel>
           <Input
             id="lastName-pL8w45T"
             required
-            placeholder="Doe"
+            placeholder={t('lastNamePlaceholder')}
             value={formData.lastName}
             onChange={(event) => handleFieldChange('lastName', event)}
             onBlur={(event) => handleFieldBlur('lastName', event)}
@@ -199,7 +203,7 @@ export function CheckoutForm1ContactStep({
             variant="body"
             className="font-semibold"
           >
-            Phone number
+            {t('phone')}
           </Typography>
         </FieldLabel>
         <Input

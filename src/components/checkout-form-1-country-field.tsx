@@ -1,11 +1,9 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import {
-  countryLabels,
-  countryOptions,
-} from '@/components/data/checkout-form-1-data';
+import { countryOptions } from '@/components/data/checkout-form-1-data';
 import { Field, FieldError, FieldLabel } from '@/components/ui/field';
 import {
   Select,
@@ -29,11 +27,14 @@ export function CheckoutForm1CountryField({
   value,
   onValueChange,
 }: CheckoutForm1CountryFieldProps) {
+  const { t } = useTranslation('', {
+    keyPrefix: 'components.organisms.checkoutForm.country',
+  });
+
   const [error, setError] = useState('');
   const validationInputRef = useRef<HTMLInputElement>(null);
 
-  const validateCountry = (country: string) =>
-    country ? '' : 'Country is required.';
+  const validateCountry = (country: string) => (country ? '' : t('required'));
 
   const handleValueChange = (next: string) => {
     const validationError = validateCountry(next);
@@ -64,7 +65,7 @@ export function CheckoutForm1CountryField({
           variant="body"
           className="font-semibold"
         >
-          Country <span className="text-destructive">*</span>
+          {t('label')} <span className="text-destructive">*</span>
         </Typography>
       </FieldLabel>
       <Select
@@ -79,7 +80,7 @@ export function CheckoutForm1CountryField({
           onBlur={handleBlur}
         >
           <SelectValue>
-            {(selected: string) => countryLabels[selected] ?? selected}
+            {(selected: string) => t('countryOption') ?? selected}
           </SelectValue>
         </SelectTrigger>
         <SelectContent>
@@ -89,7 +90,7 @@ export function CheckoutForm1CountryField({
                 key={country.value}
                 value={country.value}
               >
-                {country.label}
+                {t('countryOption')}
               </SelectItem>
             ))}
           </SelectGroup>
