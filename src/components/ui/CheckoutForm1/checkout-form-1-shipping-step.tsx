@@ -12,8 +12,8 @@ import {
 } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 
-import { Typography } from './atoms/Typography';
 import { CheckoutForm1CountryField } from './checkout-form-1-country-field';
+import { Typography } from '../../atoms/Typography';
 
 type CheckoutForm1ShippingStepProps = {
   formData: CheckoutForm1Data;

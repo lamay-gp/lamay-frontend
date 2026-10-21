@@ -23,7 +23,7 @@ import {
 } from '@/components/ui/input-group';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
-import { Typography } from './atoms/Typography';
+import { Typography } from '../../atoms/Typography';
 
 type CheckoutForm1PaymentStepProps = {
   formData: CheckoutForm1Data;
