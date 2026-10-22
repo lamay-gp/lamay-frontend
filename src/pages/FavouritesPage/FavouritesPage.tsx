@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import favouriteIsEmpty from '@/assets/images/favorites-is-empty.png';
@@ -39,6 +40,13 @@ export const FavouritesPage = () => {
       type: 'warning',
     });
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant',
+    });
+  }, []);
 
   return (
     <section className="mb-14 tablet:mb-16 tablet-lg:mb-20">
@@ -85,11 +93,12 @@ export const FavouritesPage = () => {
         {!isLoading && errorMessage && <ErrorMessage message={errorMessage} />}
 
         {!isLoading && !errorMessage && hasFavouritesItems && (
-          <div className="mt-6 flex flex-wrap justify-center gap-4 tablet-lg:justify-start">
+          <div className="mt-6 grid grid-cols-[repeat(auto-fill,minmax(170px,1fr))] justify-items-center gap-4">
             {favouriteProducts.map((product) => (
-              <div key={product.itemId}>
-                <ProductCard product={product} />
-              </div>
+              <ProductCard
+                key={product.itemId}
+                product={product}
+              />
             ))}
           </div>
         )}

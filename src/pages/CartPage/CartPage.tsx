@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import cartIsEmpty from '@/assets/images/cart-is-empty.png';
@@ -36,6 +37,13 @@ export const CartPage = () => {
       type: 'warning',
     });
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant',
+    });
+  }, []);
 
   return (
     <section className="mb-14 tablet:mb-16 tablet-lg:mb-20">
