@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import favouriteIsEmpty from '@/assets/images/favorites-is-empty.png';
+import favouriteIsEmpty from '@/assets/images/favorites-is-empty.webp';
 import { BackButton } from '@/components/atoms/BackButton';
 import { ErrorMessage } from '@/components/atoms/ErrorMessage';
 import { Loader } from '@/components/atoms/Loader';

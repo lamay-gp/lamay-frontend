@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import cartIsEmpty from '@/assets/images/cart-is-empty.png';
+import cartIsEmpty from '@/assets/images/cart-is-empty.webp';
 import { BackButton } from '@/components/atoms/BackButton';
 import { Typography } from '@/components/atoms/Typography';
 import { Breadcrumbs } from '@/components/molecules/Breadcrumbs';

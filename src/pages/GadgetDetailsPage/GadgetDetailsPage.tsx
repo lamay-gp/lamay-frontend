@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate, useParams } from 'react-router';
 
-import productNotFound from '@/assets/images/product-not-found.png';
+import productNotFound from '@/assets/images/product-not-found.webp';
 import { BackButton } from '@/components/atoms/BackButton';
 import { ErrorMessage } from '@/components/atoms/ErrorMessage';
 import { Loader } from '@/components/atoms/Loader';
