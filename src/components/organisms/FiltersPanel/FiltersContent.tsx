@@ -21,7 +21,6 @@ const FACETS = [
 ] as const;
 
 type FiltersContentProps = {
-  // змінюється при «Clear», щоб перемонтувати PriceRange зі скинутими значеннями
   resetKey?: number;
 };
 

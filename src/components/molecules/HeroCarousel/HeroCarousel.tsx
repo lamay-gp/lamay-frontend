@@ -47,7 +47,6 @@ export const HeroCarousel = ({
   });
   const { active: activeIndex, previous: prevIndex } = slideIndices;
 
-  // Відстежуємо зміну активного слайда через API каруселі.
   useEffect(() => {
     if (!api) {
       return;
@@ -71,7 +70,6 @@ export const HeroCarousel = ({
     };
   }, [api]);
 
-  // Автоматично перемикаємо слайд після завершення інтервалу анімації.
   useEffect(() => {
     if (!api || slides.length < 2) {
       return;
@@ -129,7 +127,6 @@ export const HeroCarousel = ({
         </Carousel>
       </div>
 
-      {/* Показуємо прогрес кожного слайда: активний індикатор заповнюється, завершений зникає. */}
       {slides.length > 1 && (
         <div
           role="group"
@@ -145,7 +142,6 @@ export const HeroCarousel = ({
                 key={slide.id}
                 className="h-1 w-3.5 shrink-0 overflow-hidden rounded-full bg-elements"
               >
-                {/* key змінюється разом зі станом, щоб браузер перезапускав CSS-анімацію. */}
                 <div
                   key={`${slide.id}-${isCurrent}-${isPrev}`}
                   className="h-full w-full origin-left bg-text"

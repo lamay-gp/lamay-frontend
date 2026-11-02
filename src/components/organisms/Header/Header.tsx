@@ -141,7 +141,6 @@ export const Header = () => {
         </nav>
       </div>
 
-      {/* пошук на мобільній версії */}
       <div className="min-w-0 h-full flex-1 tablet-lg:hidden">
         <SearchBarHeader
           isFocused={isSearchFocused}
@@ -153,7 +152,6 @@ export const Header = () => {
         />
       </div>
 
-      {/* Десктопний пошук, мова, іконки */}
       <div className="hidden h-full min-w-0 flex-1 items-center justify-end tablet-lg:flex">
         <SearchBarHeader
           isFocused={isSearchFocused}

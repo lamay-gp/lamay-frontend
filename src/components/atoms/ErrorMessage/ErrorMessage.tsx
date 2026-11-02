@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils';
 import { Typography } from '../Typography';
 
 type Props = {
-  // title?: string; з файлу перекладів берем
   message: string;
   onRetry?: () => void;
   className?: string;

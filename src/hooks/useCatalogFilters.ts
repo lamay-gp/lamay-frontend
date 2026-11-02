@@ -15,14 +15,11 @@ const FACET_KEYS = [
 
 type FacetKey = (typeof FACET_KEYS)[number];
 
-// усі параметри URL, що належать фільтрам (для скидання)
 const FILTER_PARAMS = [...FACET_KEYS, 'minPrice', 'maxPrice'];
 
-// природне сортування: 4GB < 8GB, a < b
 const naturalCompare = (a: string, b: string) =>
   a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
 
-// capacity: GB → TB → mm (окремими групами), усередині — за числом
 const capacityCompare = (a: string, b: string) => {
   const parse = (value: string) => {
     const match = value.match(/^([\d.]+)\s*(\D+)$/);
@@ -41,7 +38,6 @@ const capacityCompare = (a: string, b: string) => {
   return left.rank - right.rank || left.num - right.num;
 };
 
-// year: новіші зверху
 const yearCompare = (a: string, b: string) => Number(b) - Number(a);
 
 const SORTERS: Partial<Record<FacetKey, (a: string, b: string) => number>> = {
@@ -90,7 +86,6 @@ const toOptions = (
   return unique.map((value) => ({ id: value, label: value }));
 };
 
-// вибрані значення фасету з URL
 const getSelected = (searchParams: URLSearchParams, key: FacetKey) => {
   const raw = searchParams.get(key);
   return raw ? raw.split(',') : [];
@@ -221,7 +216,6 @@ export const useFilteredProducts = (sortBy?: SortOption) => {
       return words.every((word) => name.includes(word));
     };
 
-    // співпадіння нагору
     return [
       ...sorted.filter(isMatch),
       ...sorted.filter((product) => !isMatch(product)),

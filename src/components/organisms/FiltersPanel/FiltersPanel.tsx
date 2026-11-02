@@ -22,7 +22,6 @@ type FiltersPanelProps = {
   className?: string;
 };
 
-/* < tablet-lg: кнопка, що відкриває фільтри у висувній панелі */
 export const FiltersTrigger = ({ className }: FiltersPanelProps) => {
   const { t } = useTranslation('', {
     keyPrefix: 'components.organisms.filterPanel',
@@ -104,7 +103,6 @@ export const FiltersTrigger = ({ className }: FiltersPanelProps) => {
   );
 };
 
-/* >= tablet-lg: постійний сайдбар збоку */
 export const FiltersSidebar = ({ className }: FiltersPanelProps) => {
   const { t } = useTranslation('', {
     keyPrefix: 'components.organisms.filterPanel',
