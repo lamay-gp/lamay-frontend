@@ -184,7 +184,6 @@
     }
   }
 
-  /* тонкий приглушений скролбар, видно лише при наведенні на блок */
   .scrollbar-subtle {
     scrollbar-width: thin;
     scrollbar-color: transparent transparent;
@@ -194,7 +193,6 @@
     scrollbar-color: var(--color-icon-border) transparent;
   }
 
-  /* Chrome, Edge, Safari: точніший контроль через ::-webkit-scrollbar */
   @supports selector(::-webkit-scrollbar) {
     .scrollbar-subtle,
     .scrollbar-subtle:hover {
@@ -215,8 +213,6 @@
       margin-block: 8px;
     }
 
-    /* прозорі рамки + padding-box роблять видиму частину повзунка коротшою;
-       колір лише через background-color, бо shorthand скидає background-clip */
     .scrollbar-subtle::-webkit-scrollbar-thumb {
       background-color: transparent;
       background-clip: padding-box;
@@ -311,7 +307,6 @@
   font-display: swap;
 }
 
-/* анімації для каруселі-банерів */
 @keyframes fill-progress {
   from {
     transform: scaleX(0);

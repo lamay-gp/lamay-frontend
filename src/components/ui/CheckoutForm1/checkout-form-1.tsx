@@ -84,7 +84,6 @@ export function CheckoutForm1() {
     },
   ];
 
-  console.log(formData);
   const sendOrderConfirmation = async () => {
     const templateParams = {
       email: formData.email,
@@ -117,7 +116,6 @@ export function CheckoutForm1() {
   ) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
-  /** Card numbers read in four-digit groups, so the value is reformatted as it is typed. */
   const handleCardNumberChange = (value: string) => {
     const formatted = value
       .replace(/\s/g, '')

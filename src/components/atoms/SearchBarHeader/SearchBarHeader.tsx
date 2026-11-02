@@ -85,7 +85,6 @@ export const SearchBarHeader = ({
     onFocusChange(false);
   }, [onFocusChange, onLocalQueryChange, isCatalogPage]);
 
-  // обробник кліку поза пошуком (лише для видимого екземпляра)
   useEffect(() => {
     const element = searchRef.current;
     if (!isFocused || !element || element.getClientRects().length === 0) return;

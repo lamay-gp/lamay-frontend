@@ -12,7 +12,6 @@ import type React from 'react';
 
 type Props = {
   productId: Product['itemId'];
-  //in ItemCard page will be 'lg'
   size?: 'sm' | 'lg';
 };
 export const AddToCartButton: React.FC<Props> = ({
@@ -66,73 +65,3 @@ export const AddToCartButton: React.FC<Props> = ({
     </Button>
   );
 };
-/*//it is just for visuality
-          
-      <FavoriteButton productId={'2'} />
-      <br />
-      <FavoriteButton
-        productId={'3'}
-        size={'lg'}
-      />
-      <br />
-      <AddToCartButton
-        productId={'4'}
-        //size={'lg'}
-      />
-      <br />
-      <br />
-      <AddToCartButton
-        productId={'4'}
-        //size={'lg'}
-      />
-      <br />
-      <br />
-      <Button
-        variant="primaryAction"
-        className="py-[14px]"
-        aria-label="Checkout"
-        //onClick={}
-      >
-        Checkout
-      </Button>
-      <br />
-      <Button
-        variant="default"
-        size="icon-sm"
-        //onClick={}
-      >
-        <ChevronRight className="size-4" />
-      </Button>
-      <br />
-      <Button
-        variant="default"
-        size="icon-sm"
-        //onClick={}
-      >
-        <ChevronLeft className="size-4" />
-      </Button>
-      <br />
-      <Button
-        variant="default"
-        size="icon-sm"
-        //onClick={}
-      >
-        <ChevronUp className="size-4" />
-      </Button>
-      <br />
-      <Button
-        variant="default"
-        size="icon-sm"
-        aria-current="page"
-      >
-        1
-      </Button>
-      <br />
-      <Button
-        variant="paginationArrow"
-        //onClick={}
-      >
-        <ChevronLeft className="size-4" />
-      </Button>
-      <br />
-      <ChevronRight className="size-4 text-[#b4bdc3]" />*/

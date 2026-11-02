@@ -25,7 +25,6 @@ export const CatalogPage = () => {
   const { sortBy, setSortBy } = useCatalogSort();
   const filteredProducts = useFilteredProducts(sortBy);
 
-  // будь-яка зміна фільтрів чи сортування змінює цей рядок і скидає показ
   const [searchParams] = useSearchParams();
   const { gridRef, columns } = useGridColumns();
   const {

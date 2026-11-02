@@ -11,7 +11,6 @@ import type React from 'react';
 
 type Props = {
   productId: Product['itemId'];
-  //in ItemCard page will be 'lg'
   size?: 'sm' | 'lg';
 };
 export const ToggleFavouriteButton: React.FC<Props> = ({
@@ -44,7 +43,6 @@ export const ToggleFavouriteButton: React.FC<Props> = ({
         description: t('toastAddDescription'),
         type: 'success',
       });
-      console.log(favouriteIds);
     }
   };
 
