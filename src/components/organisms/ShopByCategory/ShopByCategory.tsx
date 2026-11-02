@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import categoryAccessories from '@/assets/images/category-accessories-desktop.png';
-import categoryPhones from '@/assets/images/category-phones-desktop.png';
-import categoryTablets from '@/assets/images/category-tablets-desktop.png';
+import categoryAccessories from '@/assets/images/category-accessories-desktop.webp';
+import categoryPhones from '@/assets/images/category-phones-desktop.webp';
+import categoryTablets from '@/assets/images/category-tablets-desktop.webp';
 import { Typography } from '@/components/atoms/Typography';
 import { CategoryCard } from '@/components/molecules/CategoryCard';
 import { useProductsStore } from '@/stores/productsStore';

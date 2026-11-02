@@ -1,7 +1,7 @@
-import bannerAppleWatch12 from '@/assets/images/banner-apple-watch-12.png';
-import bannerIpadAir13 from '@/assets/images/banner-ipad-air-13.png';
-import bannerIphone18Pro from '@/assets/images/banner-iphone-18-pro.png';
-import bannerIphoneDuo from '@/assets/images/banner-iphone-duo.png';
+import bannerAppleWatch12 from '@/assets/images/banner-apple-watch-12.webp';
+import bannerIpadAir13 from '@/assets/images/banner-ipad-air-13.webp';
+import bannerIphone18Pro from '@/assets/images/banner-iphone-18-pro.webp';
+import bannerIphoneDuo from '@/assets/images/banner-iphone-duo.webp';
 
 export type HeroSlide = {
   id: string;

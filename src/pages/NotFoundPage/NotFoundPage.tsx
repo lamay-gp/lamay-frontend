@@ -2,7 +2,7 @@ import { MoveRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 
-import pageNotFound from '@/assets/images/page-not-found.png';
+import pageNotFound from '@/assets/images/page-not-found.webp';
 import { Typography } from '@/components/atoms/Typography';
 import { Button } from '@/components/ui/Button/button';
 

@@ -2,8 +2,8 @@ import { Grid2X2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 
-import halloweenBanner from '@/assets/images/banner-halloween-sale.png';
-import salesBanner from '@/assets/images/banner-sales.png';
+import halloweenBanner from '@/assets/images/banner-halloween-sale.webp';
+import salesBanner from '@/assets/images/banner-sales.webp';
 import { Typography } from '@/components/atoms/Typography';
 import { HeroCarousel, heroSlides } from '@/components/molecules/HeroCarousel';
 
